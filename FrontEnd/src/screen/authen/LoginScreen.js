@@ -4,13 +4,21 @@ import { useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import styles from "./style.module.scss";
 import RegisterScreen from "./RegisterScreen";
+import {useDispatch, useSelector} from "react-redux";
+import {actionLogin} from "../../redux-store/action";
 
 const cx = classNames.bind(styles)
 
 function LoginScreen ( props ) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [showLogin, setShowLogin] = useState(true);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const token = useSelector(state => state.reducerAuth.token);
 
     const handleForget = () => {
         setShowLogin(!showLogin);
@@ -20,17 +28,30 @@ function LoginScreen ( props ) {
         navigate('/screen/authen/RegisterScreen');
     };
 
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const loginAction = async () => {
+        await console.log(email, password)
+        await dispatch(actionLogin(email, password))
+    }
+
     const Login = () => (
         <div className={cx('w40', 'item')} >
             <h4>ĐĂNG NHẬP</h4>
             <p>Nếu bạn có một tài khoản, xin vui lòng đăng nhập.</p>
             <h4>E-mail</h4>
-            <input className={cx('input', 'w70')} placeholder={'Nhập E-mail'} />
+            <input className={cx('input', 'w70')} placeholder={'Nhập E-mail'} onChange={handleEmail} />
             <h4>Password</h4>
-            <input className={cx('input', 'w70')} placeholder={'Nhập Password'} />
+            <input className={cx('input', 'w70')} placeholder={'Nhập Password'} onChange={handlePassword} />
             <p onClick={handleForget} className={cx('cursorP')} >Quên mật khẩu ?</p>
 
-            <div className={cx('btn', 'w20')} >ĐĂNG NHẬP</div>
+            <div className={cx('btn', 'w20')} onClick={loginAction} >ĐĂNG NHẬP</div>
         </div>
     )
 
@@ -67,6 +88,7 @@ function LoginScreen ( props ) {
     return (
         <div className={cx('login')} >
 
+            <div>{token || 'oooo'}</div>
             { showLogin ? Login() : ForgotPassword() }
             {Register()}
 
