@@ -45,7 +45,7 @@ function HeaderComponent () {
                         </Link>
                     </li>
 
-                    <li className={cx('header')} >
+                    <li className={cx('item')} >
                         <Link to="pages/ThanhToan" className={cx('Cart')}>
                             <i className={cx('bx bx-cart', 'iconCart')}></i>
                             <p className={cx('numberCart')}>9</p>
