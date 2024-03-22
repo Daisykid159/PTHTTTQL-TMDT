@@ -88,7 +88,6 @@ function LoginScreen ( props ) {
     return (
         <div className={cx('login')} >
 
-            <div>{token || 'oooo'}</div>
             { showLogin ? Login() : ForgotPassword() }
             {Register()}
 

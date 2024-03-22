@@ -17,16 +17,39 @@ function HeaderComponent () {
         <Router>
             <div id='header' className={cx('header')} >
                 <ul className={cx('headerList')} >
-                    <li className={cx('item')} >
-                        <Link to="/" className='link'>Trang chủ</Link>
+                    <li className={cx('logoItem')} >
+                        <Link to="/" className={cx('link')}>
+                            <img src={require('../../assets/img/logoWeb.png')} alt="Logo" className={cx('logo')} />
+                        </Link>
+
+                        <div className={cx('listProduct')} >
+                            <i className={cx('bx bx-menu', 'iconMenu')}></i>
+                            <div className={cx('textList')}>TẤT CẢ DANH MỤC</div>
+                        </div>
+                    </li>
+
+                    <li className={cx('search')} >
+                        <input placeholder={'Tìm kiếm...'} className={cx('searchInput')} />
+                        <div className={cx('searchIcon')} >
+                            <i className={cx('bx bx-search', 'iconSearch')}></i>
+                        </div>
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className='link'>Đăng nhập</Link>
+                        <Link to="/screen/authen/LoginScreen" className={cx('login')}>
+                            <div>
+                                <p className={cx('textLogin', 'bold')} >Đăng nhâp</p>
+                                <p className={cx('textLogin')} >Tài khoản & Đơn hàng</p>
+                            </div>
+                            <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
+                        </Link>
                     </li>
 
-                    <li className={cx('item')} >
-                        <Link to="pages/ThanhToan" className='link'>Thanh Toán</Link>
+                    <li className={cx('header')} >
+                        <Link to="pages/ThanhToan" className={cx('Cart')}>
+                            <i className={cx('bx bx-cart', 'iconCart')}></i>
+                            <p className={cx('numberCart')}>9</p>
+                        </Link>
                     </li>
                 </ul>
             </div>
