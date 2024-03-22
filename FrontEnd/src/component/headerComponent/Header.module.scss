@@ -8,6 +8,12 @@
   font-weight: 700;
 }
 
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .headerList {
   width: 70%;
   margin: auto;
@@ -32,6 +38,14 @@
 .listProduct {
   display: flex;
   align-items: center;
+  cursor: pointer;
+}
+
+.space {
+  position: absolute;
+  height: 10px;
+  top: 95px;
+  width: 100%;
 }
 
 .iconMenu {
@@ -105,4 +119,46 @@
   position: absolute;
   top: -2px;
   right: -2px;
+}
+
+.modal {
+  position: relative;
+  cursor: pointer;
+}
+
+.modalListItem {
+  position: absolute;
+  border: 1px solid #ccc;
+  top: 100px;
+  left: 0px;
+  width: 80%;
+}
+
+.modalItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+}
+
+.modalIcon {
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.iconArrowR {
+  font-size: 25px;
+  padding: 10px;
+}
+
+.textNameList {
+  margin-left: 10px;
+}
+
+.childList {
+  position: absolute;
+  margin-top: -51px;
+  left: 100%;
+  width: 100%;
+  border: 1px solid #ccc;
 }

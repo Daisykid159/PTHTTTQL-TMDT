@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomeScreen from "../../screen/home/HomeScreen";
@@ -8,10 +8,66 @@ import NoPage from "../../screen/noPage/NoPage";
 import LoginScreen from "../../screen/authen/LoginScreen";
 import FooterComponent from "../footerComponent/FooterComponent";
 import RegisterScreen from "../../screen/authen/RegisterScreen";
+import DropDownTree from "../droDownTreeH/DropDownTree";
 
 const cx = classNames.bind(styles);
 
 function HeaderComponent () {
+
+    const dataListAll = [
+        {
+            id: 1,
+            icon: 'bx bx-mobile-alt',
+            nameListProduct: 'Điện thoại',
+            listItem: [
+                {
+                    id: 1,
+                    nameItem: 'Iphone 15',
+                },
+                {
+                    id: 2,
+                    nameItem: 'Iphone 14',
+                },
+                {
+                    id: 3,
+                    nameItem: 'Iphone 13',
+                },
+                {
+                    id: 4,
+                    nameItem: 'Iphone 12',
+                }
+            ]
+        },
+        {
+            id: 1,
+            icon: 'bx bx-mobile-alt',
+            nameListProduct: 'Điện thoại',
+            listItem: [
+                {
+                    id: 1,
+                    nameItem: 'Iphone 15',
+                },
+                {
+                    id: 2,
+                    nameItem: 'Iphone 14',
+                },
+                {
+                    id: 3,
+                    nameItem: 'Iphone 13',
+                },
+                {
+                    id: 4,
+                    nameItem: 'Iphone 12',
+                }
+            ]
+        },
+    ];
+
+    const [showListProduct, setShowListProduct] = useState(false);
+
+    const handleShowProduct = () => {
+        setShowListProduct(!showListProduct);
+    }
 
     return (
         <Router>
@@ -22,9 +78,21 @@ function HeaderComponent () {
                             <img src={require('../../assets/img/logoWeb.png')} alt="Logo" className={cx('logo')} />
                         </Link>
 
-                        <div className={cx('listProduct')} >
-                            <i className={cx('bx bx-menu', 'iconMenu')}></i>
-                            <div className={cx('textList')}>TẤT CẢ DANH MỤC</div>
+                        <div onMouseEnter={handleShowProduct} onMouseLeave={handleShowProduct} >
+                            <div className={cx('listProduct')} >
+                                <i className={cx('bx bx-menu', 'iconMenu')}></i>
+                                <div className={cx('textList')}>TẤT CẢ DANH MỤC</div>
+                            </div>
+
+
+                            {showListProduct && (
+                                <div>
+                                    <div className={cx('space')}></div>
+                                    <div className={cx('modalListItem')}>
+                                        {dataListAll.map(item => (<DropDownTree item={item} />))}
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </li>
 

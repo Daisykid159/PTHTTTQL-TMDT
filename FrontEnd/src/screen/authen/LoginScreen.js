@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import classNames from "classnames/bind";
 import styles from "./style.module.scss";
-import RegisterScreen from "./RegisterScreen";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {actionLogin} from "../../redux-store/action";
 
 const cx = classNames.bind(styles)
@@ -17,8 +16,6 @@ function LoginScreen ( props ) {
     const [showLogin, setShowLogin] = useState(true);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const token = useSelector(state => state.reducerAuth.token);
 
     const handleForget = () => {
         setShowLogin(!showLogin);
