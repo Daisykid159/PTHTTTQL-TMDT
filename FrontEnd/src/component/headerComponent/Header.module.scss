@@ -1,7 +1,10 @@
 .header {
   width: 100%;
+  background-color: white;
   border-bottom: 2px solid #e0e0e0;
-  margin-bottom: 30px;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 
 .bold {
@@ -16,11 +19,12 @@
 
 .headerList {
   width: 70%;
+  padding: 0;
   margin: auto;
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .logoItem {
@@ -121,44 +125,10 @@
   right: -2px;
 }
 
-.modal {
-  position: relative;
-  cursor: pointer;
-}
-
 .modalListItem {
   position: absolute;
   border: 1px solid #ccc;
   top: 100px;
   left: 0px;
   width: 80%;
-}
-
-.modalItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-}
-
-.modalIcon {
-  font-size: 20px;
-  padding-left: 10px;
-}
-
-.iconArrowR {
-  font-size: 25px;
-  padding: 10px;
-}
-
-.textNameList {
-  margin-left: 10px;
-}
-
-.childList {
-  position: absolute;
-  margin-top: -51px;
-  left: 100%;
-  width: 100%;
-  border: 1px solid #ccc;
 }

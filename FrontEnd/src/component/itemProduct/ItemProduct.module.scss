@@ -1,0 +1,42 @@
+.itemProduct {
+  margin: 20px 40px 15px 0;
+  cursor: pointer;
+}
+
+.imgItem {
+  width: 200px;
+}
+
+.itemName {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.itemPrice {
+  font-size: 16px;
+  font-weight: 800;
+  color: red;
+}
+
+.active {
+  display: none;
+}
+
+.selectSp {
+  display: flex;
+  color: white;
+  font-weight: 700;
+  align-items: center;
+  background-color: red;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.cartIcon {
+  font-size: 24px;
+  margin: 0 10px 0 5px;
+}
+
+.textSelectSp {
+  margin: 0px;
+}

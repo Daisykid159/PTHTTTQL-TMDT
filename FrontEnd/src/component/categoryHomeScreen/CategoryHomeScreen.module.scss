@@ -1,0 +1,85 @@
+.home {
+  width: 70%;
+  margin: 100px auto;
+  z-index: 1;
+}
+
+.imgBanner {
+  width: 100%;
+  margin: 25px 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.phoneList {
+  display: flex;
+  justify-content: space-between;
+}
+
+.phoneHeader {
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  background-color: #fafafa;
+}
+
+.titleH {
+  cursor: pointer;
+}
+
+.titleP {
+  height: 46px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  margin: 0;
+  color: white;
+  background-color: #05b2e9;
+}
+
+.titleA {
+  position: absolute;
+  left: 140px;
+  top: 0px;
+  border-top: 23px solid transparent;
+  border-left: 20px solid #05b2e9;
+  border-right: 0 solid transparent;
+  border-bottom: 23px solid transparent;
+}
+
+.listItem {
+  width: 50%;
+  padding: 0;
+  margin: 0 15px;
+}
+
+.itemL {
+  cursor: pointer;
+  color: #046482;
+  padding: 10px;
+}
+
+.imgBannerItem {
+  width: 100%;
+  height: 300px;
+}
+
+.listScroll {
+  width: 100%;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ListProduct {
+  width: 100%;
+  left: 0px;
+  display: flex;
+  overflow-x: auto;
+}

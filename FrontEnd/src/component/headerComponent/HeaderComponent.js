@@ -61,6 +61,29 @@ function HeaderComponent () {
                 }
             ]
         },
+        {
+            id: 1,
+            icon: 'bx bx-mobile-alt',
+            nameListProduct: 'Điện thoại',
+            listItem: [
+                {
+                    id: 1,
+                    nameItem: 'Iphone 15',
+                },
+                {
+                    id: 2,
+                    nameItem: 'Iphone 14',
+                },
+                {
+                    id: 3,
+                    nameItem: 'Iphone 13',
+                },
+                {
+                    id: 4,
+                    nameItem: 'Iphone 12',
+                }
+            ]
+        },
     ];
 
     const [showListProduct, setShowListProduct] = useState(false);
