@@ -1,3 +1,51 @@
 .footer {
-  height: 1000px;
+  background-color: #000;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+  width: 20%;
+  justify-content: space-between;
+}
+
+.link {
+  margin-right: 30px;
+}
+
+.footerScreen {
+  width: 70%;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.textADD {
+  color: white;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.logo {
+  cursor: pointer;
+  font-size: 40px;
+}
+
+.face {
+  color: #05b2e9;
+}
+
+.instagram {
+  color: #a702ee;
+}
+
+.youtube {
+  color: red;
+}
+
+.tiktok {
+  color: white;
 }

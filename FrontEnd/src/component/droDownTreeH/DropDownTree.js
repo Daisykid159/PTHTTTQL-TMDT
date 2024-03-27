@@ -13,7 +13,7 @@ const DropDownTree = (props) => {
 
     return (
         <div className={cx('modal')} onMouseEnter={handleShowChild} onMouseLeave={handleShowChild} >
-            <div className={cx('modalItem')} >
+            <div className={cx('flex')} >
                 <div className={cx('flex')}>
                     <i className={cx(props.item.icon, 'modalIcon')} />
                     <p className={cx('textNameList')}>{props.item.nameListProduct}</p>
@@ -23,7 +23,7 @@ const DropDownTree = (props) => {
             </div>
 
             {showListChild && (<div className={cx('childList')}>
-                {props.item.listItem.map(item => (<p className={cx('textNameList')}>{item.nameItem}</p>))}
+                {props.item.listItem.map(item => (<div className={cx('textNameListChild')}>{item.nameItem}</div>))}
             </div>)}
         </div>
     )

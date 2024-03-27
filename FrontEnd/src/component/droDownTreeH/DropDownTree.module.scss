@@ -4,7 +4,7 @@
   background-color: white;
 }
 
-.modalItem {
+.flex {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,9 +25,17 @@
   margin-left: 10px;
 }
 
+.textNameListChild {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-bottom: 1px solid #ccc;
+}
+
 .childList {
   position: absolute;
-  margin-top: -51px;
+  margin-top: -50px;
   left: 100%;
   width: 100%;
   z-index: 11;
