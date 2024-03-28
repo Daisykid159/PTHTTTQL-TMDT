@@ -9,6 +9,7 @@ import LoginScreen from "../../screen/authen/LoginScreen";
 import FooterComponent from "../footerComponent/FooterComponent";
 import RegisterScreen from "../../screen/authen/RegisterScreen";
 import DropDownTree from "../droDownTreeH/DropDownTree";
+import ListProduct from "../../screen/ListProduct/ListProduct";
 
 const cx = classNames.bind(styles);
 
@@ -149,6 +150,7 @@ function HeaderComponent () {
                 <Route path="/" element={<HomeScreen />} />
                 <Route path="/screen/authen/LoginScreen" element={<LoginScreen />} />
                 <Route path="/screen/authen/RegisterScreen" element={<RegisterScreen />} />
+                <Route path="/screen/ListProduct/ListProduct" element={<ListProduct />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

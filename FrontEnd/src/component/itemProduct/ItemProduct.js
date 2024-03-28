@@ -13,7 +13,7 @@ function ItemProduct (props) {
 
     return (
         <div className={cx('itemProduct')} >
-            <img src={require(`../../assets/img/${props.data.img}`)} alt="Logo" className={cx('imgItem')} />
+            <img src={require(`../../assets/img/${props.data.img}`)} className={cx('imgItem')} />
 
             <p className={cx('itemName')}>{props.data.name}</p>
             <p className={cx('itemPrice')}>{formatPrice(props.data.price)}</p>

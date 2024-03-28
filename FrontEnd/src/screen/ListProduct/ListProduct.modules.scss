@@ -1,0 +1,40 @@
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.listProduct {
+  padding-top: 130px;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.categoryLists {
+  width: 20%;
+}
+
+.listCategoryProduct {
+  width: 75%;
+}
+
+.categoryProductH {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #cccccc;
+}
+
+.categoryProductHT {
+  font-size: 22px;
+  font-weight: 700;
+  padding-bottom: 5px;
+}
+
+.mr5pt {
+  margin-right: 5%;
+}
+
+.itemPro {
+  width: 21%;
+  margin-bottom: 50px;
+}
