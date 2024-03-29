@@ -10,6 +10,10 @@ import FooterComponent from "../footerComponent/FooterComponent";
 import RegisterScreen from "../../screen/authen/RegisterScreen";
 import DropDownTree from "../droDownTreeH/DropDownTree";
 import ListProduct from "../../screen/ListProduct/ListProduct";
+import DetailProduct from "../../screen/productDetail/DetailProduct";
+import CartScreen from "../../screen/cart/CartScreen";
+import {useSelector} from "react-redux";
+import reducerCart from "../../redux-store/reducer/reducerCart";
 
 const cx = classNames.bind(styles);
 
@@ -88,6 +92,7 @@ function HeaderComponent () {
     ];
 
     const [showListProduct, setShowListProduct] = useState(false);
+    const listCart = useSelector(state => state.reducerCart.listCart);
 
     const handleShowProduct = () => {
         setShowListProduct(!showListProduct);
@@ -138,9 +143,9 @@ function HeaderComponent () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="pages/ThanhToan" className={cx('Cart')}>
+                        <Link to="/screen/cart/CartScreen" className={cx('Cart')}>
                             <i className={cx('bx bx-cart', 'iconCart')}></i>
-                            <p className={cx('numberCart')}>9</p>
+                            <p className={cx('numberCart')}>{listCart.length}</p>
                         </Link>
                     </li>
                 </ul>
@@ -151,6 +156,8 @@ function HeaderComponent () {
                 <Route path="/screen/authen/LoginScreen" element={<LoginScreen />} />
                 <Route path="/screen/authen/RegisterScreen" element={<RegisterScreen />} />
                 <Route path="/screen/ListProduct/ListProduct" element={<ListProduct />} />
+                <Route path="/screen/productDetail/DetailProduct" element={<DetailProduct />} />
+                <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

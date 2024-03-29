@@ -1,8 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
 import styles from "./HomeScreen.modules.scss";
-import ItemProduct from "../../component/itemProduct/ItemProduct";
-import SellingProducts from "../../component/sellingProducts/SellingProducts";
 import CategoryHomeScreen from "../../component/categoryHomeScreen/CategoryHomeScreen";
 
 const cx = classNames.bind(styles);

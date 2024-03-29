@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import classNames from "classnames/bind";
 import styles from "./style.module.scss";
 import {useDispatch} from "react-redux";
-import {actionLogin} from "../../redux-store/action";
+import {actionLogin} from "../../redux-store/action/actionAuthen";
 
 const cx = classNames.bind(styles)
 

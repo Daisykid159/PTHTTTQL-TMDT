@@ -7,7 +7,7 @@ export function updateData(data) {
     }
 }
 
-export function actionLogin(userName) {
+export function actionAddProduct (userName) {
     return async (dispatch, getState) => {
         try {
             const response = await Api().getTokenLogin(userName);
@@ -30,12 +30,10 @@ export function actionLogin(userName) {
                 token: '',
             }))
         }
-
-
     };
 }
 
 
 export default {
-    actionLogin,
+    actionAddProduct,
 };
