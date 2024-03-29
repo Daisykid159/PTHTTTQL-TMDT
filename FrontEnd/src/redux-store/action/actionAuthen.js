@@ -8,16 +8,18 @@ export function updateData(data) {
     }
 }
 
-export function actionLogin (email, password) {
+export function actionLogin (email, password, nextToHome) {
     return (dispatch, getState) => {
         try {
             if(email === 'admin') {
+                nextToHome();
                 dispatch(updateData({
                     admin: true,
                     userName: email,
                 }))
                 alert(`Đăng nhập thành công!`);
             } else {
+                nextToHome();
                 dispatch(updateData({
                     token: '',
                 }))

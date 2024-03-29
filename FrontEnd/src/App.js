@@ -7,16 +7,9 @@ function App() {
 
     const isAdmin = useSelector(state => state.reducerAuth.admin);
 
-    const [admin, setAdmin] = useState(isAdmin);
-
-    useEffect(() => {
-        console.log(isAdmin)
-        setAdmin(false)
-    }, [isAdmin]);
-
     return (
         <div className="App">
-            {admin ? (<HeaderAdmin/>) : (<HeaderComponent/>)}
+            {isAdmin ? (<HeaderAdmin/>) : (<HeaderComponent/>)}
         </div>
     );
 }

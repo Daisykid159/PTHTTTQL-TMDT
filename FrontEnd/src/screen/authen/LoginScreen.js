@@ -21,6 +21,10 @@ function LoginScreen ( props ) {
         setShowLogin(!showLogin);
     }
 
+    const nextToHome = () => {
+        navigate('/');
+    };
+
     const handleRegister = () => {
         navigate('/screen/authen/RegisterScreen');
     };
@@ -35,7 +39,7 @@ function LoginScreen ( props ) {
 
     const loginAction = async () => {
         await console.log(email, password)
-        await dispatch(actionLogin(email, password))
+        await dispatch(actionLogin(email, password, nextToHome))
     }
 
     const Login = () => (
