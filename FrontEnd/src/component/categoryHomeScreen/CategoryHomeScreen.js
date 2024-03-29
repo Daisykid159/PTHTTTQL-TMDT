@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from './CategoryHomeScreen.module.scss';
 import ItemProduct from "../itemProduct/ItemProduct";
-import SellingProducts from "../sellingProducts /SellingProducts";
+import SellingProducts from "../sellingProducts/SellingProducts";
 import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
