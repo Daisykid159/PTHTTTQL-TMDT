@@ -17,6 +17,10 @@
   align-items: center;
 }
 
+.mr10 {
+  margin-right: 15px;
+}
+
 .headerList {
   width: 70%;
   padding: 0;
@@ -89,6 +93,7 @@
 }
 
 .login {
+  cursor: pointer;
   margin: 30px;
   display: flex;
   align-items: center;

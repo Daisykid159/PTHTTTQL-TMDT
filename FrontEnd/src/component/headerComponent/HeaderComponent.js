@@ -92,7 +92,12 @@ function HeaderComponent () {
     ];
 
     const [showListProduct, setShowListProduct] = useState(false);
+    const [login, setLogin] = useState(false);
     const listCart = useSelector(state => state.reducerCart.listCart);
+
+    const handleLogout = () => {
+        setLogin(false);
+    }
 
     const handleShowProduct = () => {
         setShowListProduct(!showListProduct);
@@ -132,15 +137,27 @@ function HeaderComponent () {
                         </div>
                     </li>
 
-                    <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('login')}>
-                            <div>
-                                <p className={cx('textLogin', 'bold')} >Đăng nhâp</p>
-                                <p className={cx('textLogin')} >Tài khoản & Đơn hàng</p>
+                    {login ? (
+                        <li className={cx('item')} >
+                            <div className={cx('login')}>
+                                <div className={cx('mr10')}>
+                                    <p className={cx('textLogin', 'bold')} >Tài khoản của tôi</p>
+                                    <p className={cx('textLogin')} onClick={handleLogout}>Thoát</p>
+                                </div>
+                                <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
                             </div>
-                            <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
-                        </Link>
-                    </li>
+                        </li>
+                    ) : (
+                        <li className={cx('item')} >
+                            <Link to="/screen/authen/LoginScreen" className={cx('login')}>
+                                <div>
+                                    <p className={cx('textLogin', 'bold')} >Đăng nhâp</p>
+                                    <p className={cx('textLogin')} >Tài khoản & Đơn hàng</p>
+                                </div>
+                                <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
+                            </Link>
+                        </li>
+                    )}
 
                     <li className={cx('item')} >
                         <Link to="/screen/cart/CartScreen" className={cx('Cart')}>

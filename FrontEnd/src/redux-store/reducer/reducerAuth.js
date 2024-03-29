@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+    admin: false,
     token: '',
     userName: '',
     decodeToken: '',

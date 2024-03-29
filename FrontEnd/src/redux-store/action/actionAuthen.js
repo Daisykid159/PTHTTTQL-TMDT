@@ -1,4 +1,5 @@
 import Api from "../../api";
+import reducerCart from "../reducer/reducerCart";
 
 export function updateData(data) {
     return {
@@ -7,22 +8,20 @@ export function updateData(data) {
     }
 }
 
-export function actionLogin (userName) {
-    return async (dispatch, getState) => {
+export function actionLogin (email, password) {
+    return (dispatch, getState) => {
         try {
-            const response = await Api().getTokenLogin(userName);
-            if (response && response.data){
+            if(email === 'admin') {
                 dispatch(updateData({
-                    token: response.data,
-                    userName: userName,
+                    admin: true,
+                    userName: email,
                 }))
-
-                alert(`Đăng nhập thành công ${response.data}`);
+                alert(`Đăng nhập thành công!`);
             } else {
                 dispatch(updateData({
                     token: '',
                 }))
-                alert("Đăng nhập thất bại");
+                alert("Vui lòng kiểm tra lại tài khoản và mật khẩu!");
             }
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");

@@ -12,10 +12,11 @@ const Api = (baseURL,token) => {
 
     // api get token
     const getTokenLogin =(userName, password)=> {
-        return apiConfig.post('/api/v1/login', {
-            "userName": userName,
-            "password": password
-        });
+        return true;
+        // return apiConfig.post('/api/v1/login', {
+        //     "userName": userName,
+        //     "password": password
+        // });
     }
 
     return {
