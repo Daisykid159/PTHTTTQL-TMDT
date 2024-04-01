@@ -12,19 +12,36 @@ export function actionLogin (email, password, nextToHome) {
     return (dispatch, getState) => {
         try {
             if(email === 'admin') {
-                nextToHome();
+                nextToHome('/');
                 dispatch(updateData({
                     admin: true,
                     userName: email,
                 }))
                 alert(`Đăng nhập thành công!`);
             } else {
-                nextToHome();
+                nextToHome('/screen/UserInformationScreen/UserInformationScreen');
                 dispatch(updateData({
                     token: '',
                 }))
-                alert("Vui lòng kiểm tra lại tài khoản và mật khẩu!");
+                alert("Đăng nhập thành công!");
             }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+            dispatch(updateData({
+                token: '',
+            }))
+        }
+    };
+}
+
+export function actionLogout () {
+    return (dispatch, getState) => {
+        try {
+            dispatch(updateData({
+                admin: false,
+                userName: '',
+                token: '',
+            }))
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
             dispatch(updateData({

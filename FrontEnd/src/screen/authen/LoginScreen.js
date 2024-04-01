@@ -21,8 +21,8 @@ function LoginScreen ( props ) {
         setShowLogin(!showLogin);
     }
 
-    const nextToHome = () => {
-        navigate('/');
+    const nextToHome = (url) => {
+        navigate(url);
     };
 
     const handleRegister = () => {

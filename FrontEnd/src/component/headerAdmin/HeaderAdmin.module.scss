@@ -6,8 +6,35 @@
   bottom: 0;
 }
 
-.headerAdminList {}
+.logo {
+  width: 100%;
+  margin-bottom: 10%;
+}
+
+.item {
+  height: 50px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.flex {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.headerAdminList {
+  padding: 15px;
+  margin-top: 20%;
+}
 
 .colorW {
+  margin-left: 10%;
+  width: 80%;
   color: white;
+}
+
+.iconArrowR {
+  color: white;
+  font-size: 20px;
 }

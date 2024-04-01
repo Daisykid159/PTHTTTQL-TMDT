@@ -13,7 +13,8 @@ import ListProduct from "../../screen/ListProduct/ListProduct";
 import DetailProduct from "../../screen/productDetail/DetailProduct";
 import CartScreen from "../../screen/cart/CartScreen";
 import {useSelector} from "react-redux";
-import reducerCart from "../../redux-store/reducer/reducerCart";
+import UserInformationScreen from "../../screen/UserInformationScreen/UserInformationScreen";
+import AddressInformationScreen from "../../screen/UserInformationScreen/AddressInformationScreen";
 
 const cx = classNames.bind(styles);
 
@@ -175,6 +176,8 @@ function HeaderComponent () {
                 <Route path="/screen/ListProduct/ListProduct" element={<ListProduct />} />
                 <Route path="/screen/productDetail/DetailProduct" element={<DetailProduct />} />
                 <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
+                <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
+                <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 
