@@ -95,19 +95,29 @@ tr,th,td {
 }
 
 .nameAdd {
-  width: 25%;
+  width: 20%;
 }
 
 .sdtAdd {
-  width: 30%;
+  width: 20%;
 }
 
 .address {
-  width: 40%;
+  width: 35%;
+}
+
+.editDefault {
+  width: 10%;
 }
 
 .editAddress {
   width: 5%;
+}
+
+.delete {
+  font-size: 20px;
+  text-align: center;
+  color: red;
 }
 
 .iconArrowR {

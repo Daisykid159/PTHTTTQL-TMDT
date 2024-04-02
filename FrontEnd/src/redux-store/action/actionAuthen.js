@@ -16,12 +16,14 @@ export function actionLogin (email, password, nextToHome) {
                 dispatch(updateData({
                     admin: true,
                     userName: email,
+                    isLogin: true,
                 }))
                 alert(`Đăng nhập thành công!`);
             } else {
                 nextToHome('/screen/UserInformationScreen/UserInformationScreen');
                 dispatch(updateData({
                     token: '',
+                    isLogin: true,
                 }))
                 alert("Đăng nhập thành công!");
             }
@@ -38,6 +40,7 @@ export function actionLogout () {
     return (dispatch, getState) => {
         try {
             dispatch(updateData({
+                isLogin: false,
                 admin: false,
                 userName: '',
                 token: '',

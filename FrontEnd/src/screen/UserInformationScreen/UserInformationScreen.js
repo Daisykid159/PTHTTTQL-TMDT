@@ -2,7 +2,6 @@ import React from "react";
 import styles from './UserInformationScreen.module.scss';
 import classNames from "classnames/bind";
 import {useNavigate} from "react-router-dom";
-import AddressInformationScreen from "./AddressInformationScreen";
 
 const cx = classNames.bind(styles);
 

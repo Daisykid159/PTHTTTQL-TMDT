@@ -1,0 +1,37 @@
+.payScreen {
+  padding-top: 130px;
+  width: 70%;
+  margin: 0px auto 40px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.center {
+  align-items: center;
+}
+
+.shippingPayment {
+  width: 25%;
+}
+
+.textShippingPayment {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.shipPay {
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+}
+
+.check {
+  font-size: 20px;
+  color: #05b2e9;
+  margin-right: 10px;
+}

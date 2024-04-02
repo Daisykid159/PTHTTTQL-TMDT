@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import styles from './UserInformationScreen.module.scss';
 import classNames from "classnames/bind";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {actionUpdateAddress} from "../../redux-store/action/actionUserInformation";
 
 const cx = classNames.bind(styles);
 
@@ -9,11 +11,72 @@ function AddressInformationScreen (props) {
 
     const userName = 'Vũ Dũng';
 
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [showAdd, setShowAdd] = useState(false);
     const [nameNew, setNameNew] = useState('');
     const [sdt, setSdt] = useState('');
     const [address, setAddress] = useState('');
+    const [isCheck, setIsCheck] = useState(true);
+    const UserInformations = useSelector(state => state.reducerUserInformation.UserInformations)
+    const [resetView, setResetView] = useState(false);
+
+    const handleChangeName = (e) => {
+        setNameNew(e.target.value)
+    }
+
+    const handleChangeSDT = (e) => {
+        setSdt(e.target.value)
+    }
+
+    const handleChangeAddress = (e) => {
+        setAddress(e.target.value)
+    }
+
+    const handleDefault = (i) => {
+        UserInformations.map((item, index) => {
+            if(index === i) {
+                console.log(true)
+                item.default = true;
+            } else {
+                item.default = false;
+            }
+        })
+        dispatch(actionUpdateAddress(UserInformations));
+        setResetView(!resetView);
+    }
+
+    const resetInput = () => {
+        setNameNew('');
+        setSdt('');
+        setAddress('');
+        setIsCheck(true);
+    }
+
+    const handleUpdate = () => {
+        if(nameNew && sdt && address) {
+            if (isCheck) UserInformations.map(item => {
+                item.default = false;
+            })
+            UserInformations.push({name: nameNew, sdt: sdt, address: address, default: isCheck});
+            dispatch(actionUpdateAddress(UserInformations));
+            setShowAdd(false);
+            resetInput();
+        } else {
+            alert("Vui lòng điền đầy đủ thông tin địa chỉ!")
+        }
+    }
+
+    const handleDelete = (i) => {
+        UserInformations.splice(i, 1);
+        dispatch(actionUpdateAddress(UserInformations));
+        setResetView(!resetView);
+    }
+
+    const handleCancel = () => {
+        setShowAdd(false);
+        resetInput();
+    }
 
     const handleToUserInformationScreen = () => {
         navigate('/screen/UserInformationScreen/UserInformationScreen')
@@ -25,28 +88,28 @@ function AddressInformationScreen (props) {
 
             <div className={cx('itemAddAddress')}>
                 <h4 className={cx('addHeader')}>Tên *</h4>
-                <input className={cx('input')} />
+                <input className={cx('input')} value={nameNew} onChange={handleChangeName}/>
             </div>
 
             <div className={cx('itemAddAddress')}>
                 <h4 className={cx('addHeader')}>Số điện thoại *</h4>
-                <input className={cx('input')} />
+                <input className={cx('input')} value={sdt} onChange={handleChangeSDT} />
             </div>
 
             <div className={cx('itemAddAddress')}>
                 <h4 className={cx('addHeader')}>Địa chỉ *</h4>
-                <input className={cx('input')} />
+                <input className={cx('input')} value={address} onChange={handleChangeAddress} />
             </div>
 
             <div className={cx('flex', 'center')}>
-                <input type={'checkbox'} className={cx('inputCheck')} />
+                <input type={'checkbox'} className={cx('inputCheck')} checked={isCheck} onChange={() => setIsCheck(!isCheck)} />
                 <p>Đặt làm mặc định ?</p>
             </div>
 
             <div className={cx('flex', 'center')}>
-                <p className={cx('btn', 'btnAddAddress')}>Cập nhât</p>
+                <p className={cx('btn', 'btnAddAddress')} onClick={handleUpdate}>Cập nhât</p>
                 <p className={cx('space')}>hoặc</p>
-                <p className={cx('btn', 'cancel')} onClick={() => setShowAdd(false)}>Huỷ</p>
+                <p className={cx('btn', 'cancel')} onClick={handleCancel}>Huỷ</p>
             </div>
         </div>
     )
@@ -64,21 +127,30 @@ function AddressInformationScreen (props) {
 
                 <table className={cx('tableOrder')}>
                     <thead>
-                    <tr>
-                        <th className={cx('nameAdd')}>Tên</th>
-                        <th className={cx('sdtAdd')}>Số điện thoại</th>
-                        <th className={cx('address')}>Địa chỉ</th>
-                        <th className={cx('editAddress')}></th>
-                    </tr>
+                        <tr>
+                            <th className={cx('nameAdd')}>Tên</th>
+                            <th className={cx('sdtAdd')}>Số điện thoại</th>
+                            <th className={cx('address')}>Địa chỉ</th>
+                            <th className={cx('editDefault')}></th>
+                            <th className={cx('editAddress')}></th>
+                        </tr>
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>Vũ Dũng</td>
-                        <td>Vũ Dũng</td>
-                        <td>Vũ Dũng</td>
-                        <td>Xoá</td>
-                    </tr>
+                    {UserInformations.map((item, index) => (
+                        <tr key={index}>
+                            <td>{item.name}</td>
+                            <td>{item.sdt}</td>
+                            <td>{item.address}</td>
+                            {item.default ?
+                                (<td>Mặc định</td>) : (
+                                <td onClick={() => handleDefault(index)} className={cx('cancel')}>Đặt làm mặc định</td>
+                            )}
+                            <td onClick={() => handleDelete(index)} className={cx('delete')}>
+                                <i className='bx bx-trash'></i>
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
 

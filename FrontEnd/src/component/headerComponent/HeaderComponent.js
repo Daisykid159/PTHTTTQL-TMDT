@@ -12,9 +12,11 @@ import DropDownTree from "../droDownTreeH/DropDownTree";
 import ListProduct from "../../screen/ListProduct/ListProduct";
 import DetailProduct from "../../screen/productDetail/DetailProduct";
 import CartScreen from "../../screen/cart/CartScreen";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import UserInformationScreen from "../../screen/UserInformationScreen/UserInformationScreen";
 import AddressInformationScreen from "../../screen/UserInformationScreen/AddressInformationScreen";
+import {actionLogout} from "../../redux-store/action/actionAuthen";
+import PayScreen from "../../screen/pay/PayScreen";
 
 const cx = classNames.bind(styles);
 
@@ -93,11 +95,14 @@ function HeaderComponent () {
     ];
 
     const [showListProduct, setShowListProduct] = useState(false);
-    const [login, setLogin] = useState(false);
+    const isLogin = useSelector(state => state.reducerAuth.isLogin);
     const listCart = useSelector(state => state.reducerCart.listCart);
 
+    const dispatch = useDispatch();
+
+    console.log(isLogin);
     const handleLogout = () => {
-        setLogin(false);
+        dispatch(actionLogout());
     }
 
     const handleShowProduct = () => {
@@ -138,7 +143,7 @@ function HeaderComponent () {
                         </div>
                     </li>
 
-                    {login ? (
+                    {isLogin ? (
                         <li className={cx('item')} >
                             <div className={cx('login')}>
                                 <div className={cx('mr10')}>
@@ -178,6 +183,7 @@ function HeaderComponent () {
                 <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
                 <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
                 <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
+                <Route path="/screen/pay/PayScreen" element={<PayScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

@@ -1,19 +1,15 @@
 const INITIAL_STATE = {
-    isLogin: false,
-    admin: false,
-    token: '',
-    userName: '',
-    decodeToken: '',
+    UserInformations: [],
 };
 
-const reducerAuth = (state = INITIAL_STATE, action) => {
+const reducerUserInformation = (state = INITIAL_STATE, action) => {
     let newState = { ...state };
     switch (action.type) {
         case 'UPDATE_DATA': {
             let data = action.data || {};
             return { ...newState, ...data };
         }
-        case 'RESET_AUTH':{
+        case 'RESET_DATA':{
             return INITIAL_STATE;
         }
         default:
@@ -21,4 +17,4 @@ const reducerAuth = (state = INITIAL_STATE, action) => {
     }
 };
 
-export default reducerAuth;
+export default reducerUserInformation;
