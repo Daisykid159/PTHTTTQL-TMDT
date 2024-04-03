@@ -60,10 +60,19 @@ td {
   color: red;
 }
 
+.itemSp {
+  padding-left: 20px;
+  text-align: left;
+}
+
 .nameItemSp {
   font-weight: 800;
   color: #0f8eb6;
   cursor: pointer;
+}
+
+.colorItemSp {
+  font-weight: 700;
 }
 
 .textQuantity {
@@ -88,6 +97,7 @@ td {
 }
 
 .textSumMoney {
+  font-weight: 700;
   padding: 20px;
   border: 1px solid #eeeeee;
 }

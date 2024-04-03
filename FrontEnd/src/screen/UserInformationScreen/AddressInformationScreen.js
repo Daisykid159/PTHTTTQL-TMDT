@@ -36,7 +36,6 @@ function AddressInformationScreen (props) {
     const handleDefault = (i) => {
         UserInformations.map((item, index) => {
             if(index === i) {
-                console.log(true)
                 item.default = true;
             } else {
                 item.default = false;

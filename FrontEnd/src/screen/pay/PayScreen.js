@@ -1,20 +1,80 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styles from './PayScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../unitl";
+import {Selector, useSelector} from "react-redux";
+import {useNavigate} from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 function PayScreen (props) {
+
+    const navigate = useNavigate();
+    const listAddress = useSelector(state => state.reducerUserInformation.UserInformations);
+    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedItem, setSelectedItem] = useState('');
+    const [nameClient, setNameClient] = useState('');
+    const [sdtClient, setSdtClient] = useState('');
+    const [cmtClient, setCmtClient] = useState('');
+
+    useEffect(() => {
+        listAddress.map(item => {
+            if(item.default) setSelectedItem(item);
+        })
+    }, [])
+
+    const handleOptionChange = (e) => {
+        setSelectedOption(e.target.value);
+        setSelectedItem(listAddress[e.target.value]);
+    };
+
+    const handleName = (e) => {
+        setNameClient(e.target.value);
+    }
+
+    const handleSdt = (e) => {
+        setSdtClient(e.target.value);
+    }
+
+    const handleCmt = (e) => {
+        setCmtClient(e.target.value);
+    }
+
+    const handleToDetailProduct = () => {
+        navigate('/screen/productDetail/DetailProduct');
+    }
+
+
     return (
         <div className={cx('payScreen', 'flex')}>
 
-            <div>
-                <div>Thông tin nhận hàng</div>
-                <div>Sổ địa chỉ</div>
-                <div>Họ và tên</div>
-                <div>Số điện thoại</div>
-                <div>Ghi chú</div>
+            <div className={cx('client')}>
+                <div className={cx('textShippingPayment')}>Thông tin nhận hàng</div>
+
+                <div className={cx('itemClient')}>
+                    <div className={cx('textH')}>Sổ địa chỉ</div>
+
+                    <select value={selectedOption} onChange={handleOptionChange} className={cx('selectAddress')}>
+                        {listAddress.map((item, index) => (
+                            <option value={index} >{item.address}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className={cx('itemClient')}>
+                    <div>Họ và tên</div>
+                    <input placeholder={selectedItem?.name} value={nameClient} onChange={handleName} className={cx('selectAddress', 'inputClient')}/>
+                </div>
+
+                <div className={cx('itemClient')}>
+                    <div>Số điện thoại</div>
+                    <input placeholder={selectedItem?.sdt} value={sdtClient} onChange={handleSdt} className={cx('selectAddress', 'inputClient')}/>
+                </div>
+
+                <div className={cx('itemClient')}>
+                    <div>Ghi chú</div>
+                    <input placeholder={"Nhập ghi chú"} value={cmtClient} onChange={handleCmt} className={cx('selectAddress', 'inputClient')}/>
+                </div>
             </div>
 
             <div className={cx('shippingPayment')}>
@@ -38,31 +98,45 @@ function PayScreen (props) {
                             <div>Thanh toán khi nhận hàng</div>
                         </div>
 
-                        <i className={cx('bx bx-money')}></i>
+                        <i className={cx('bx bx-money')} style={{ fontSize: 22, color: '#05b2e9' }}></i>
                     </div>
                 </div>
 
             </div>
 
+            <div className={cx('product')}>
+                <div className={cx('textShippingPayment')}>Đơn hàng</div>
 
+                <div className={cx('flex', 'center', 'mt30', 'btn')} onClick={handleToDetailProduct}>
+                    <div className={cx('relative', 'imgP')}>
+                        <img src={require('../../assets/img/imgPhone2.png')} alt="Logo" className={cx('imgProduct')} />
+                        <p className={cx('numberProduct')}>1</p>
+                    </div>
 
-            <div>
-                <div>Đơn hàng</div>
+                    <div className={cx('nameP')}>
+                        <div className={cx('nameItemSp')}>Iphone XR 64GB Like New 99%</div>
+                        <div className={cx('colorItemSp')}>Vàng</div>
+                    </div>
 
-                <div>
-                    <div>Ảnh sp</div>
-                    <div>Tên sản phẩm</div>
-                    <div>Số lượng sản phẩm</div>
-                    <div>Thành tiền</div>
+                    <div className={cx('priceP')}>{formatPrice(15600000*1)}</div>
                 </div>
 
-                <div>Tạm tính</div>
-
-                <div>
-                    <div>Tổng thanh toán</div>
-                    <div>{formatPrice(1000000 + 40000)}</div>
-                    <div>ĐẶT HÀNG</div>
+                <div className={cx('flex', 'mt30')}>
+                    <div className={cx('colorItemSp')}>Tạm tính</div>
+                    <div className={cx('priceP')}>{formatPrice(15600000*1)}</div>
                 </div>
+
+                <div className={cx('flex', 'mt10')}>
+                    <div className={cx('colorItemSp')}>Phí vận chuyển</div>
+                    <div className={cx('priceP')}>{formatPrice(40000)}</div>
+                </div>
+
+                <div className={cx('mt30', 'flex')}>
+                    <div className={cx('sumTT')}>Tổng thanh toán</div>
+                    <div className={cx('priceTT')}>{formatPrice(15600000 + 40000)}</div>
+                </div>
+
+                <div className={cx('btn', 'btnPay')}>ĐẶT HÀNG</div>
             </div>
         </div>
     )

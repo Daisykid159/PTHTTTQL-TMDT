@@ -4,9 +4,21 @@
   margin: 0px auto 40px;
 }
 
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
 .flex {
   display: flex;
   justify-content: space-between;
+}
+
+.relative {
+  position: relative;
 }
 
 .center {
@@ -28,10 +40,111 @@
   margin-top: 10px;
   padding: 10px;
   border: 1px solid #cccccc;
+  border-radius: 5px;
 }
 
 .check {
-  font-size: 20px;
+  font-size: 22px;
   color: #05b2e9;
   margin-right: 10px;
+}
+
+.client {
+  width: 25%;
+}
+
+.selectAddress {
+  margin-top: 10px;
+  width: 96%;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 2px 5px;
+}
+
+.itemClient {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #d9d9d9;
+}
+
+.inputClient {
+  width: 90%;
+  padding: 3px 10px;
+}
+
+.textH {
+  font-weight: 700;
+}
+
+.product {
+  width: 35%;
+}
+
+.imgP {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.imgProduct {
+  width: 100%;
+}
+
+.numberProduct {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 15px;
+  border-radius: 100px;
+  color: #ffffff;
+  background-color: red;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.nameItemSp {
+  font-weight: 800;
+  color: #0f8eb6;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.colorItemSp {
+  font-weight: 700;
+}
+
+.priceP {
+  text-align: end;
+  margin-left: 10px;
+  width: 35%;
+  font-weight: 700;
+}
+
+.sumTT {
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.priceTT {
+  font-weight: 800;
+  font-size: 22px;
+  color: #0799c7;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btnPay {
+  padding: 20px;
+  width: 60%;
+  margin: 30px auto;
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #05b2e9;
 }

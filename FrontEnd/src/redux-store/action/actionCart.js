@@ -7,23 +7,12 @@ export function updateData(data) {
     }
 }
 
-export function actionAddProduct (userName) {
+export function actionAddProduct (listCart) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api().getTokenLogin(userName);
-            if (response && response.data){
-                dispatch(updateData({
-                    token: response.data,
-                    userName: userName,
-                }))
-
-                alert(`Đăng nhập thành công ${response.data}`);
-            } else {
-                dispatch(updateData({
-                    token: '',
-                }))
-                alert("Đăng nhập thất bại");
-            }
+            dispatch(updateData({
+                listCart: listCart,
+            }))
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
             dispatch(updateData({

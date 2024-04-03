@@ -56,8 +56,11 @@ function CartScreen (props) {
                         <td onClick={handleToDetailProduct}>
                             <img src={require('../../assets/img/imgPhone2.png')} alt="Logo" className={cx('img')} />
                         </td>
-                        <td className={cx('nameItemSp')} onClick={handleToDetailProduct} >Iphone XR 64GB Like New 99%</td>
-                        <td>{formatPrice(5600000)}</td>
+                        <td onClick={handleToDetailProduct} className={cx('itemSp')} >
+                            <div className={cx('nameItemSp')}>Iphone XR 64GB Like New 99%</div>
+                            <div className={cx('colorItemSp')}>Vàng</div>
+                        </td>
+                        <td className={cx('colorItemSp')}>{formatPrice(5600000)}</td>
                         <td>
                             <div className={cx('quantityProductBtn')}>
                                 <button onClick={decrementQuantity} className={cx('btnQuantity')}>
@@ -69,7 +72,7 @@ function CartScreen (props) {
                                 </button>
                             </div>
                         </td>
-                        <td>{formatPrice(5600000*quantity)}</td>
+                        <td className={cx('colorItemSp')} >{formatPrice(5600000*quantity)}</td>
                         <td className={cx('delete')}>
                             <i className='bx bx-trash'></i>
                         </td>

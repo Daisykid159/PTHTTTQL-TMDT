@@ -25,14 +25,17 @@ function CategoryHomeScreen (props) {
 
                 <ul className={cx('listItem', 'flex')}>
                     {props.data.listType.map(item => (
-                        <li className={cx('itemL')} >{item.name}</li>
+                        <li className={cx('itemL')} onClick={handleList} >{item.name}</li>
                     ))}
                 </ul>
             </div>
 
             <div className={cx('phoneList')}>
                 <div style={{ width: '75%' }}>
-                    <img src={require('../../assets/img/home_banner_phone.png')} alt="Logo" className={cx('imgBannerItem')} />
+                    <div onClick={handleList}>
+                        <img src={require('../../assets/img/home_banner_phone.png')} alt="Logo" className={cx('imgBannerItem')} />
+                    </div>
+
                     <div className={cx('listScroll')}>
                         <div className={cx('ListProduct')}>
                             {props.data.listProducts.map(item => (

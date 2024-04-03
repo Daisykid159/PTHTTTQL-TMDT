@@ -17,6 +17,11 @@ import UserInformationScreen from "../../screen/UserInformationScreen/UserInform
 import AddressInformationScreen from "../../screen/UserInformationScreen/AddressInformationScreen";
 import {actionLogout} from "../../redux-store/action/actionAuthen";
 import PayScreen from "../../screen/pay/PayScreen";
+import ShoppingGuideScreen from "../../screen/categoryLists/ShoppingGuideScreen";
+import CommitmentToQualityScreen from "../../screen/categoryLists/CommitmentToQualityScreen";
+import ExchangePolicyScreen from "../../screen/categoryLists/ExchangePolicyScreen";
+import WarrantyPolicyScreen from "../../screen/categoryLists/WarrantyPolicyScreen";
+import ShippingPolicyScreen from "../../screen/categoryLists/ShippingPolicyScreen";
 
 const cx = classNames.bind(styles);
 
@@ -100,7 +105,6 @@ function HeaderComponent () {
 
     const dispatch = useDispatch();
 
-    console.log(isLogin);
     const handleLogout = () => {
         dispatch(actionLogout());
     }
@@ -147,7 +151,7 @@ function HeaderComponent () {
                         <li className={cx('item')} >
                             <div className={cx('login')}>
                                 <div className={cx('mr10')}>
-                                    <p className={cx('textLogin', 'bold')} >Tài khoản của tôi</p>
+                                    <Link to={'/screen/UserInformationScreen/UserInformationScreen'} className={cx('textLogin', 'bold')} >Tài khoản của tôi</Link>
                                     <p className={cx('textLogin')} onClick={handleLogout}>Thoát</p>
                                 </div>
                                 <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
@@ -184,6 +188,11 @@ function HeaderComponent () {
                 <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
                 <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
                 <Route path="/screen/pay/PayScreen" element={<PayScreen />} />
+                <Route path="/screen/categoryLists/ShoppingGuideScreen" element={<ShoppingGuideScreen />} />
+                <Route path="/screen/categoryLists/CommitmentToQualityScreen" element={<CommitmentToQualityScreen />} />
+                <Route path="/screen/categoryLists/ExchangePolicyScreen" element={<ExchangePolicyScreen />} />
+                <Route path="/screen/categoryLists/WarrantyPolicyScreen" element={<WarrantyPolicyScreen />} />
+                <Route path="/screen/categoryLists/ShippingPolicyScreen" element={<ShippingPolicyScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 
