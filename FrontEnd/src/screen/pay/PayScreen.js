@@ -2,8 +2,8 @@ import React, {useEffect, useState} from "react";
 import styles from './PayScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../unitl";
-import {Selector, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -15,13 +15,18 @@ function PayScreen (props) {
     const [selectedItem, setSelectedItem] = useState('');
     const [nameClient, setNameClient] = useState('');
     const [sdtClient, setSdtClient] = useState('');
+    const [addressKClient, setAddressKClient] = useState('');
     const [cmtClient, setCmtClient] = useState('');
 
     useEffect(() => {
-        listAddress.map(item => {
-            if(item.default) setSelectedItem(item);
+        listAddress.map((item, index) => {
+            if(item.default) {
+                setSelectedOption(index);
+                setSelectedItem(item);
+            }
+            return item;
         })
-    }, [])
+    }, [listAddress]);
 
     const handleOptionChange = (e) => {
         setSelectedOption(e.target.value);
@@ -36,6 +41,10 @@ function PayScreen (props) {
         setSdtClient(e.target.value);
     }
 
+    const handleAddressK = (e) => {
+        setAddressKClient(e.target.value);
+    }
+
     const handleCmt = (e) => {
         setCmtClient(e.target.value);
     }
@@ -43,7 +52,6 @@ function PayScreen (props) {
     const handleToDetailProduct = () => {
         navigate('/screen/productDetail/DetailProduct');
     }
-
 
     return (
         <div className={cx('payScreen', 'flex')}>
@@ -62,14 +70,20 @@ function PayScreen (props) {
                 </div>
 
                 <div className={cx('itemClient')}>
-                    <div>Họ và tên</div>
+                    <div>Họ và tên *</div>
                     <input placeholder={selectedItem?.name} value={nameClient} onChange={handleName} className={cx('selectAddress', 'inputClient')}/>
                 </div>
 
                 <div className={cx('itemClient')}>
-                    <div>Số điện thoại</div>
+                    <div>Số điện thoại *</div>
                     <input placeholder={selectedItem?.sdt} value={sdtClient} onChange={handleSdt} className={cx('selectAddress', 'inputClient')}/>
                 </div>
+
+                {(!selectedItem || selectedItem.notView) && (<div className={cx('itemClient')}>
+                    <div>Địa chỉ khác *</div>
+                    <input placeholder={selectedItem?.name} value={addressKClient} onChange={handleAddressK}
+                           className={cx('selectAddress', 'inputClient')}/>
+                </div>)}
 
                 <div className={cx('itemClient')}>
                     <div>Ghi chú</div>

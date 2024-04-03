@@ -40,6 +40,7 @@ function AddressInformationScreen (props) {
             } else {
                 item.default = false;
             }
+            return item;
         })
         dispatch(actionUpdateAddress(UserInformations));
         setResetView(!resetView);
@@ -56,8 +57,9 @@ function AddressInformationScreen (props) {
         if(nameNew && sdt && address) {
             if (isCheck) UserInformations.map(item => {
                 item.default = false;
+                return item;
             })
-            UserInformations.push({name: nameNew, sdt: sdt, address: address, default: isCheck});
+            UserInformations.push({name: nameNew, sdt: sdt, address: address, default: isCheck, notView: false});
             dispatch(actionUpdateAddress(UserInformations));
             setShowAdd(false);
             resetInput();
@@ -137,18 +139,22 @@ function AddressInformationScreen (props) {
 
                     <tbody>
                     {UserInformations.map((item, index) => (
-                        <tr key={index}>
-                            <td>{item.name}</td>
-                            <td>{item.sdt}</td>
-                            <td>{item.address}</td>
-                            {item.default ?
-                                (<td>Mặc định</td>) : (
-                                <td onClick={() => handleDefault(index)} className={cx('cancel')}>Đặt làm mặc định</td>
-                            )}
-                            <td onClick={() => handleDelete(index)} className={cx('delete')}>
-                                <i className='bx bx-trash'></i>
-                            </td>
-                        </tr>
+                        (!item.notView) && (
+                            <tr key={index}>
+                                <td>{item.name}</td>
+                                <td>{item.sdt}</td>
+                                <td>{item.address}</td>
+                                {item.default ?
+                                    (<td>Mặc định</td>) : (
+                                        <td onClick={() => handleDefault(index)} className={cx('cancel')}>Đặt làm
+                                            mặc
+                                            định</td>
+                                    )}
+                                <td onClick={() => handleDelete(index)} className={cx('delete')}>
+                                    <i className='bx bx-trash'></i>
+                                </td>
+                            </tr>
+                        )
                     ))}
                     </tbody>
                 </table>

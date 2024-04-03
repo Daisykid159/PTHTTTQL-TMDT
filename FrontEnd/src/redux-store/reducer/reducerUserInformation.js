@@ -1,5 +1,11 @@
 const INITIAL_STATE = {
-    UserInformations: [],
+    UserInformations: [{
+        name: null,
+        sdt: null,
+        address: 'Địa chỉ khác',
+        default: false,
+        notView: true,
+    }],
 };
 
 const reducerUserInformation = (state = INITIAL_STATE, action) => {
