@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const Api = (baseURL,token) => {
-    const apiConfig = axios.create({
+    const api = axios.create({
         baseURL: 'http://localhost:8080',
         headers: {
             'Content-Type': 'application/json',
@@ -11,16 +11,27 @@ const Api = (baseURL,token) => {
     });
 
     // api get token
-    const getTokenLogin =(userName, password)=> {
-        return true;
-        // return apiConfig.post('/api/v1/login', {
-        //     "userName": userName,
-        //     "password": password
-        // });
+    const getTokenLogin =(username, password) => {
+        return api.post('/api/v1/account/login', {
+            "username": username,
+            "password": password
+        });
+    }
+
+    const register = (username, password, email, date ) => {
+        return api.post('/api/v1/account/register', {
+            "username": username,
+            "password": password,
+            "email": email,
+            "role": "USER",
+            "date": date,
+            "gender": "male"
+        })
     }
 
     return {
         getTokenLogin,
+        register,
     };
 };
 

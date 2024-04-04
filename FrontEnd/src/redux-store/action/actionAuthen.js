@@ -7,24 +7,42 @@ export function updateData(data) {
     }
 }
 
-export function actionLogin (email, password, nextToHome) {
-    return (dispatch, getState) => {
+export function actionLogin (username, password, nextToScreen) {
+    return async (dispatch, getState) => {
         try {
-            if(email === 'admin') {
-                nextToHome('/');
+            const response = await Api().getTokenLogin(username, password);
+            console.log(response.data);
+            if (response && response.data){
+                nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
                 dispatch(updateData({
-                    admin: true,
-                    userName: email,
-                    isLogin: true,
+                    token: response.data.accessToken,
                 }))
-                alert(`Đăng nhập thành công!`);
+
+                alert("Đăng nhập thành công!");
             } else {
-                nextToHome('/screen/UserInformationScreen/UserInformationScreen');
                 dispatch(updateData({
                     token: '',
-                    isLogin: true,
                 }))
-                alert("Đăng nhập thành công!");
+                alert("Đăng nhập thất bại!");
+            }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+            dispatch(updateData({
+                token: '',
+            }))
+        }
+    };
+}
+
+export function actionRegister (username, password, date) {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api().getTokenLogin(username, password, date);
+            console.log(response.data);
+            if (response && response.data){
+                alert("Đăng ký thành công!");
+            } else {
+                alert("Đăng ký thất bại!");
             }
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
@@ -56,4 +74,6 @@ export function actionLogout () {
 
 export default {
     actionLogin,
+    actionLogout,
+    actionRegister,
 };

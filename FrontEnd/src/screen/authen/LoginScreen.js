@@ -21,7 +21,7 @@ function LoginScreen ( props ) {
         setShowLogin(!showLogin);
     }
 
-    const nextToHome = (url) => {
+    const nextToScreen = (url) => {
         navigate(url);
     };
 
@@ -38,7 +38,7 @@ function LoginScreen ( props ) {
     }
 
     const loginAction = async () => {
-        await dispatch(actionLogin(email, password, nextToHome))
+        await dispatch(actionLogin(email, password, nextToScreen))
     }
 
     const Login = () => (
