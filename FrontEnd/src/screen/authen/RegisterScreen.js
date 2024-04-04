@@ -32,12 +32,12 @@ function RegisterScreen(props) {
 
                 <div>
                     <h4>Password</h4>
-                    <input className={cx('input', 'w98')} placeholder={'Nhập Password'} />
+                    <input className={cx('input', 'w98')} placeholder={'Nhập Password'} type={'password'} />
                 </div>
 
                 <div>
                     <h4>Nhập lại Password</h4>
-                    <input className={cx('input', 'w98')} placeholder={'Nhập lại Password'} />
+                    <input className={cx('input', 'w98')} placeholder={'Nhập lại Password'} type={'password'} />
                 </div>
 
                 <div className={cx('btnList')} >

@@ -6,6 +6,9 @@ import NoPage from "../../screen/noPage/NoPage";
 import HomeAdminScreen from "../../screen/Admin/home/HomeAdminScreen";
 import {useDispatch} from "react-redux";
 import {actionLogout} from "../../redux-store/action/actionAuthen";
+import QLUserScreen from "../../screen/Admin/qlUser/QLUserScreen";
+import QLHangHoaScreen from "../../screen/Admin/qlHangHoa/QLHangHoaScreen";
+import QLKhoHangScreen from "../../screen/Admin/qlKhoHang/QLKhoHangScreen";
 
 const cx = classNames.bind(styles);
 
@@ -49,7 +52,7 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
+                        <Link to="/admin/QLHangHoaScreen" className={cx('flex')}>
                             <i className={cx('bx bx-purchase-tag', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Sản phẩm</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
@@ -57,7 +60,7 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
+                        <Link to="/admin/QLUserScreen" className={cx('flex')}>
                             <i className={cx('bx bx-user-circle', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Khách hàng</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
@@ -65,7 +68,7 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
+                        <Link to="/admin/QLKhoHangScreen" className={cx('flex')}>
                             <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Quản lý tồn kho</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
@@ -90,6 +93,9 @@ function HeaderAdmin () {
 
             <Routes>
                 <Route path="/" element={<HomeAdminScreen />} />
+                <Route path="/admin/QLUserScreen" element={<QLUserScreen />} />
+                <Route path="/admin/QLHangHoaScreen" element={<QLHangHoaScreen />} />
+                <Route path="/admin/QLKhoHangScreen" element={<QLKhoHangScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

@@ -1,8 +1,6 @@
 .sellingProducts {
   width: 100%;
-  height: 700px;
   border-bottom: 1px solid #cccccc;
-  overflow-y: auto;
 }
 
 .flex {
@@ -22,6 +20,8 @@
 }
 
 .listItem {
+  overflow-y: auto;
+  height: 640px;
   border: 1px solid #ccc;
 }
 

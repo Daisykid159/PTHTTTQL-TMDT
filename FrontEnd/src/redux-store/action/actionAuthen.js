@@ -1,5 +1,4 @@
 import Api from "../../api";
-import reducerCart from "../reducer/reducerCart";
 
 export function updateData(data) {
     return {

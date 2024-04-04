@@ -1,0 +1,91 @@
+.QLHangHoaScreen {
+  padding: 20px 20px 30px 16%;
+  color: #454545;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.relative {
+  padding-top: 50px;
+  position: relative;
+}
+
+.fixed {
+  top: 0px;
+  padding: 20px;
+  width: 90%;
+  position: fixed;
+  background-color: white;
+  z-index: 10;
+  max-height: 8%;
+}
+
+.body {
+  padding-top: 8%;
+  height: 1000px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.addSp {
+  top: 0;
+  right: 0;
+  color: white;
+  font-weight: 800;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background-color: #05b2e9;
+  position: absolute;
+}
+
+.headerQl {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.iconMenu {
+  margin-right: 10px;
+  font-size: 22px;
+}
+
+.iconSearch {
+  font-size: 20px;
+  padding: 5px 12px;
+  border-left: 1px solid #a3a1a1;
+}
+
+.searchUser {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.borderSearch {
+  border: 1px solid #a3a1a1;
+  width: 40%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.searchInput {
+  width: 90%;
+  font-size: 18px;
+  padding: 6px 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+.iconTrash {
+  font-size: 20px;
+  color: red;
+}
+
+.tableKH {
+  width: 100%;
+}
