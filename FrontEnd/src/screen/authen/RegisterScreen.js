@@ -13,6 +13,7 @@ function RegisterScreen(props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [fullName, setFullName] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [sdt, setSdt] = useState('');
@@ -22,6 +23,10 @@ function RegisterScreen(props) {
     const handleBack = () => {
         navigate('/screen/authen/LoginScreen');
     };
+
+    const handleFullName = (e) => {
+        setFullName(e.target.value);
+    }
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -55,7 +60,12 @@ function RegisterScreen(props) {
                 <h4>Thông tin cá nhân</h4>
                 <div>
                     <h4>Tên người dùng</h4>
-                    <input className={cx('input', 'w98')} placeholder={'Nhập tên người dùng'} value={username} onChange={handleUsername} />
+                    <input className={cx('input', 'w98')} placeholder={'Nhập tên người dùng'} value={fullName} onChange={handleFullName} />
+                </div>
+
+                <div>
+                    <h4>Tên đăng nhập</h4>
+                    <input className={cx('input', 'w98')} placeholder={'Nhập tên đăng nhập'} value={username} onChange={handleUsername} />
                 </div>
 
                 <div>

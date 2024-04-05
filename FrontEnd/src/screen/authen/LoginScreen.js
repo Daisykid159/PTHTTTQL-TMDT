@@ -45,8 +45,8 @@ function LoginScreen ( props ) {
         <div className={cx('w40', 'item')} >
             <h4>ĐĂNG NHẬP</h4>
             <p>Nếu bạn có một tài khoản, xin vui lòng đăng nhập.</p>
-            <h4>E-mail</h4>
-            <input className={cx('input', 'w70')} placeholder={'Nhập E-mail'} onChange={handleEmail} />
+            <h4>Tên đăng nhập</h4>
+            <input className={cx('input', 'w70')} placeholder={'Nhập tên đăng nhập'} onChange={handleEmail} />
             <h4>Password</h4>
             <input className={cx('input', 'w70')} placeholder={'Nhập Password'} onChange={handlePassword} type={'password'}/>
             <p onClick={handleForget} className={cx('cursorP')} >Quên mật khẩu ?</p>
