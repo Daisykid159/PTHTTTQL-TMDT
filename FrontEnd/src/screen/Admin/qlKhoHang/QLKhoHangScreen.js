@@ -7,11 +7,27 @@ const cx = classNames.bind(styles);
 
 function QLKhoHangScreen (props) {
 
+    const dataListTypeProductKho = [
+        {
+            id: 1,
+            name: 'iPhone XS',
+        },
+        {
+            id: 2,
+            name: 'iPhone 12',
+        }
+    ]
+
     const [textSearch, setTextSearch] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
 
     const handleSearch = (e) => {
         setTextSearch(e.target.value)
     }
+
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
 
     return (
         <div className={cx('QLKhoHangScreen')}>
@@ -27,11 +43,20 @@ function QLKhoHangScreen (props) {
                         <i className={cx('bx bx-search', 'iconSearch')}></i>
                     </div>
                 </div>
+
+                <div>
+                    <select value={selectedOption} onChange={handleOptionChange} className={cx('selectListProduct')}>
+                        {dataListTypeProductKho.map(item => (
+                            <option value={item.id} >{item.name}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className={cx('btn', 'addSp')}>Thêm sản phẩm</div>
             </div>
 
             <div className={cx('body')}>
                 <div className={cx('relative')}>
-                    <div className={cx('btn', 'addSp')}>Thêm sản phẩm</div>
 
                     <table border="1" cellPadding="1" cellSpacing="1" className={cx('tableKH')}>
                         <thead>

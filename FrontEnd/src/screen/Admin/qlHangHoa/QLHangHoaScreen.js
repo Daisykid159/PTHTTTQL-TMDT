@@ -7,11 +7,56 @@ const cx = classNames.bind(styles);
 
 function QLHangHoaScreen (props) {
 
+    const dataListTypeProduct = [
+        {
+            id: 1,
+            name: 'iPhone XS',
+        },
+        {
+            id: 2,
+            name: 'iPhone 12',
+        }
+    ]
+    const dataListProducts = [
+        {
+            idProduct: 'IP15',
+            nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 27000000,
+            priceSell: 27500000,
+            type: 'Iphone 15',
+        },
+        {
+            idProduct: 'IP14',
+            nameProduct: 'Apple iPhone 14 Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 26000000,
+            priceSell: 26500000,
+            type: 'Iphone 14',
+        },
+        {
+            idProduct: 'IP13',
+            nameProduct: 'Apple iPhone 13Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 25000000,
+            priceSell: 25500000,
+            type: 'Iphone 13',
+        }
+    ]
+
     const [textSearch, setTextSearch] = useState('');
+    const [selectedOption, setSelectedOption] = useState('');
 
     const handleSearch = (e) => {
         setTextSearch(e.target.value)
     }
+
+    const handleOptionChange = (event) => {
+        setSelectedOption(event.target.value);
+    };
 
     return (
         <div className={cx('QLHangHoaScreen')}>
@@ -27,51 +72,60 @@ function QLHangHoaScreen (props) {
                         <i className={cx('bx bx-search', 'iconSearch')}></i>
                     </div>
                 </div>
+
+                <div>
+                    <select value={selectedOption} onChange={handleOptionChange} className={cx('selectListProduct')}>
+                        {dataListTypeProduct.map(item => (
+                            <option value={item.id} >{item.name}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div className={cx('btn', 'addSp')}>Thêm sản phẩm</div>
             </div>
 
             <div className={cx('body')}>
                 <div className={cx('relative')}>
-                    <div className={cx('btn', 'addSp')}>Thêm sản phẩm</div>
-
                     <table border="1" cellPadding="1" cellSpacing="1" className={cx('tableKH')}>
                         <thead>
                         <tr>
                             <th>Mã SP</th>
-                            <th>Tên sản phẩm</th>
+                            <th style={{ width: '45%' }}>Tên sản phẩm</th>
                             <th>Đơn vị tính</th>
                             <th>Màu</th>
                             <th>Giá mua</th>
                             <th>Giá bán</th>
                             <th>Loại</th>
-                            <th>Ngày nhập</th>
-                            <th>Số lượng đã bán</th>
-                            <th>Số lượng còn lại</th>
 
                             <th></th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td>IP15</td>
-                            <td>Apple iPhone 15 Pro Max - 256GB - 99% Like New</td>
-                            <td>Cái</td>
-                            <td>Titan</td>
-                            <td>{formatPrice(27000000)}</td>
-                            <td>{formatPrice(28000000)}</td>
-                            <td>Iphone 15</td>
-                            <td>29/06/2023</td>
-                            <td>500</td>
-                            <td>100</td>
+                        {dataListProducts.map(item => (
+                            <tr>
+                                <td>{item.idProduct}</td>
+                                <td className={cx('nameProduct')}>
+                                    <img src={item.imgProduct} className={cx('imgProduct')} />
+                                    <div>{item.nameProduct}</div>
+                                </td>
+                                <td>Cái</td>
+                                <td>{item.colorProduct}</td>
+                                <td>{formatPrice(item.priceBuy)}</td>
+                                <td>{formatPrice(item.priceSell)}</td>
+                                <td>{item.type}</td>
 
-                            <td className={cx('iconTrash')}>
-                                <i className='bx bx-trash'></i>
-                            </td>
-                        </tr>
+                                <td className={cx('iconTrash')}>
+                                    <i className='bx bx-trash'></i>
+                                </td>
+                            </tr>
+                        ))}
                         </tbody>
                     </table>
                 </div>
             </div>
+
+
         </div>
     )
 }

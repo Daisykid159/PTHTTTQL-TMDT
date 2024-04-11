@@ -44,14 +44,6 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
-                            <i className={cx('bx bxs-truck', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Vận chuyển</div>
-                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        </Link>
-                    </li>
-
-                    <li className={cx('item')} >
                         <Link to="/admin/QLHangHoaScreen" className={cx('flex')}>
                             <i className={cx('bx bx-purchase-tag', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Sản phẩm</div>
@@ -77,8 +69,9 @@ function HeaderAdmin () {
 
                     <li className={cx('item')} >
                         <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
-                            <i className={cx('bx bx-pie-chart-alt-2', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Báo cáo</div>
+                            <i className={cx('bx bx-bell', 'iconArrowR')}></i>
+                            <div className={cx('colorW')}>Thông báo</div>
+                            <div className={cx('numberNotification')}>( 10 )</div>
                         </Link>
                     </li>
 

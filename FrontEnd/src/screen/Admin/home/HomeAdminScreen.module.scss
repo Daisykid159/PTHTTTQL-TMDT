@@ -31,10 +31,28 @@
   margin-right: 15px;
 }
 
+.iconLeft {
+  margin-right: 10px;
+}
+
 .itemList {
-  width: 20%;
+  width: 50%;
   font-size: 18px;
   font-weight: 700;
   padding: 10px 20px;
+  border: 1px solid #cccccc;
   justify-content: space-between;
+}
+
+.percent {
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.green {
+  color: #02ac02;
+}
+
+.red {
+  color: red;
 }
