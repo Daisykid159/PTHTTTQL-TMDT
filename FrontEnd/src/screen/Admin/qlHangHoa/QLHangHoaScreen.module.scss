@@ -81,8 +81,22 @@
   border: none;
 }
 
-.iconTrash {
+.iconList {
   font-size: 20px;
+  cursor: pointer;
+}
+
+.iconShow {
+  color: #e5ae09;
+  margin-right: 10px;
+}
+
+.iconEdit {
+  color: blue;
+  margin-right: 10px;
+}
+
+.iconTrash {
   color: red;
 }
 

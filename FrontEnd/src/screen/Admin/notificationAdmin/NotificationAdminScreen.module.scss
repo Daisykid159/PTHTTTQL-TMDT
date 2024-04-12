@@ -1,0 +1,35 @@
+.NotificationAdminScreen {
+  padding: 20px 20px 30px 16%;
+  color: #454545;
+}
+
+.flex {
+  display: flex;
+}
+
+.iconSearch {
+  font-size: 20px;
+  padding: 5px 12px;
+  border-left: 1px solid #a3a1a1;
+}
+
+.searchUser {
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.borderSearch {
+  border: 1px solid #a3a1a1;
+  width: 40%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.searchInput {
+  width: 90%;
+  font-size: 18px;
+  padding: 6px 15px;
+  border-radius: 10px;
+  border: none;
+}

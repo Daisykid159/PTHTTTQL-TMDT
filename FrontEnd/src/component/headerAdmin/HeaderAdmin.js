@@ -9,6 +9,7 @@ import {actionLogout} from "../../redux-store/action/actionAuthen";
 import QLUserScreen from "../../screen/Admin/qlUser/QLUserScreen";
 import QLHangHoaScreen from "../../screen/Admin/qlHangHoa/QLHangHoaScreen";
 import QLKhoHangScreen from "../../screen/Admin/qlKhoHang/QLKhoHangScreen";
+import NotificationAdminScreen from "../../screen/Admin/notificationAdmin/NotificationAdminScreen";
 
 const cx = classNames.bind(styles);
 
@@ -68,7 +69,7 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
+                        <Link to="/admin/NotificationAdminScreen" className={cx('flex')}>
                             <i className={cx('bx bx-bell', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Thông báo</div>
                             <div className={cx('numberNotification')}>( 10 )</div>
@@ -89,6 +90,7 @@ function HeaderAdmin () {
                 <Route path="/admin/QLUserScreen" element={<QLUserScreen />} />
                 <Route path="/admin/QLHangHoaScreen" element={<QLHangHoaScreen />} />
                 <Route path="/admin/QLKhoHangScreen" element={<QLKhoHangScreen />} />
+                <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen/>} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

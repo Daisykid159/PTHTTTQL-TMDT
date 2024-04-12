@@ -115,8 +115,10 @@ function QLHangHoaScreen (props) {
                                 <td>{formatPrice(item.priceSell)}</td>
                                 <td>{item.type}</td>
 
-                                <td className={cx('iconTrash')}>
-                                    <i className='bx bx-trash'></i>
+                                <td className={cx('iconList')}>
+                                    <i className={cx('bx bx-show-alt', 'iconShow')}></i>
+                                    <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
+                                    <i className={cx('bx bx-trash', 'iconTrash')}></i>
                                 </td>
                             </tr>
                         ))}
