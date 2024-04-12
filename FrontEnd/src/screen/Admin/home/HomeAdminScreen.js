@@ -177,7 +177,7 @@ function HomeAdminScreen (props) {
             </div>
 
             <div className={cx('listDonHang')}>
-                <div className="mixed-chart">
+                <div className={cx('flex', 'warp')}>
                     <Chart
                         options={state1.options}
                         series={state1.series}

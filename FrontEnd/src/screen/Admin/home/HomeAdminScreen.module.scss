@@ -8,6 +8,10 @@
   align-items: center;
 }
 
+.warp {
+  flex-wrap: wrap;
+}
+
 .headerA {
   justify-content: space-between;
   width: 95%;
