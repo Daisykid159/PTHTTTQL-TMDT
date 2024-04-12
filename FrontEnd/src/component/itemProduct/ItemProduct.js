@@ -16,7 +16,7 @@ function ItemProduct (props) {
 
     return (
         <div className={cx('itemProduct')} onClick={handleDetailProduct} >
-            <img src={require(`../../assets/img/${props.data.img}`)} className={cx('imgItem')} />
+            <img src={require(`../../assets/img/${props.data.img}`)} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
 
             <p className={cx('itemName')}>{props.data.name}</p>
             <p className={cx('itemPrice')}>{formatPrice(props.data.price)}</p>

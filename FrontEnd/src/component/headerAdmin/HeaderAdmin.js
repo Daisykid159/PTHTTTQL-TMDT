@@ -10,6 +10,7 @@ import QLUserScreen from "../../screen/Admin/qlUser/QLUserScreen";
 import QLHangHoaScreen from "../../screen/Admin/qlHangHoa/QLHangHoaScreen";
 import QLKhoHangScreen from "../../screen/Admin/qlKhoHang/QLKhoHangScreen";
 import NotificationAdminScreen from "../../screen/Admin/notificationAdmin/NotificationAdminScreen";
+import BillAdminScreen from "../../screen/Admin/bill/BillAdminScreen";
 
 const cx = classNames.bind(styles);
 
@@ -37,7 +38,7 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/screen/authen/LoginScreen" className={cx('flex')}>
+                        <Link to="/admin/BillAdminScreen" className={cx('flex')}>
                             <i className={cx('bx bx-cart-alt', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Đơn hàng</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
@@ -90,7 +91,9 @@ function HeaderAdmin () {
                 <Route path="/admin/QLUserScreen" element={<QLUserScreen />} />
                 <Route path="/admin/QLHangHoaScreen" element={<QLHangHoaScreen />} />
                 <Route path="/admin/QLKhoHangScreen" element={<QLKhoHangScreen />} />
-                <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen/>} />
+                <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen />} />
+                <Route path="/admin/BillAdminScreen" element={<BillAdminScreen />} />
+
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

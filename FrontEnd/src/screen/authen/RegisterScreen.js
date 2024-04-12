@@ -48,8 +48,7 @@ function RegisterScreen(props) {
         setReenterPassword(e.target.value);
     }
     const handleRegister = () => {
-        console.log(username, email, sdt, password, reenterPassword);
-        // dispatch(actionRegister(username, email, password, sdt))
+        dispatch(actionRegister(username, email, password, sdt))
     }
 
     return (

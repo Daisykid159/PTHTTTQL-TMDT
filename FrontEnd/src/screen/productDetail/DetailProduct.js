@@ -3,7 +3,6 @@ import styles from './DetailProduct.module.scss';
 import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
 import {formatPrice} from "../../unitl";
-import DropDownTree from "../../component/droDownTreeH/DropDownTree";
 
 const cx = classNames.bind(styles);
 

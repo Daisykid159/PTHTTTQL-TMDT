@@ -106,7 +106,7 @@ function QLHangHoaScreen (props) {
                             <tr>
                                 <td>{item.idProduct}</td>
                                 <td className={cx('nameProduct')}>
-                                    <img src={item.imgProduct} className={cx('imgProduct')} />
+                                    <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
                                     <div>{item.nameProduct}</div>
                                 </td>
                                 <td>Cái</td>

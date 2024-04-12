@@ -1,4 +1,4 @@
-.NotificationAdminScreen {
+.BillAdminScreen {
   padding: 20px 20px 30px 16%;
   color: #454545;
 }
@@ -48,21 +48,25 @@
   border: none;
 }
 
-.itemNotify {
-  border-radius: 15px;
-  padding: 15px 10px;
-  cursor: pointer;
-  margin-bottom: 10px;
-  background-color: #dcdcdc;
+.tableBill {
+  width: 100%;
 }
 
-.iconUser {
-  font-size: 35px;
-  margin:0 20px 0 10px;
-}
-
-.textNotifyH {
+.iconList {
   font-size: 20px;
-  font-weight: 700;
-  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.iconShow {
+  color: #e5ae09;
+  margin-right: 10px;
+}
+
+.iconEdit {
+  color: blue;
+  margin-right: 10px;
+}
+
+.iconTrash {
+  color: red;
 }
