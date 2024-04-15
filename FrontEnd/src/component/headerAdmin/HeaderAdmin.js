@@ -11,6 +11,7 @@ import QLHangHoaScreen from "../../screen/Admin/qlHangHoa/QLHangHoaScreen";
 import QLKhoHangScreen from "../../screen/Admin/qlKhoHang/QLKhoHangScreen";
 import NotificationAdminScreen from "../../screen/Admin/notificationAdmin/NotificationAdminScreen";
 import BillAdminScreen from "../../screen/Admin/bill/BillAdminScreen";
+import DetailBillAdminScreen from "../../screen/Admin/detailBill/DetailBillAdminScreen";
 
 const cx = classNames.bind(styles);
 
@@ -93,6 +94,7 @@ function HeaderAdmin () {
                 <Route path="/admin/QLKhoHangScreen" element={<QLKhoHangScreen />} />
                 <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen />} />
                 <Route path="/admin/BillAdminScreen" element={<BillAdminScreen />} />
+                <Route path="/admin/DetailBillAdminScreen/:id" element={<DetailBillAdminScreen />} />
 
                 <Route path="*" element={<NoPage />} />
             </Routes>

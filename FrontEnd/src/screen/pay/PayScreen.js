@@ -121,7 +121,7 @@ function PayScreen (props) {
             <div className={cx('product')}>
                 <div className={cx('textShippingPayment')}>Đơn hàng</div>
 
-                <div className={cx('flex', 'center', 'mt30', 'btn')} onClick={handleToDetailProduct}>
+                <div className={cx('flex', 'center', 'btn')} onClick={handleToDetailProduct}>
                     <div className={cx('relative', 'imgP')}>
                         <img src={require('../../assets/img/imgPhone2.png')} alt="Logo" className={cx('imgProduct')} />
                         <p className={cx('numberProduct')}>1</p>
