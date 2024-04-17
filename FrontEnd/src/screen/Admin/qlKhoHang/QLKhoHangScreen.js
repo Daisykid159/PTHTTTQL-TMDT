@@ -23,11 +23,12 @@ function QLKhoHangScreen (props) {
     const dataListProduct = [
         {
             id: 123,
-            name: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
+            nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
             quantitySold: 12,
             remainingAmount: 22,
             typeProduct: 'Iphone 15',
             colorProduct: 'Titan',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
             priceBuy: 24000000,
             priceSell: 24500000,
             dayNhap: '2024-12-02T00:00:00',
@@ -87,7 +88,7 @@ function QLKhoHangScreen (props) {
                             <th>Tên sản phẩm</th>
                             <th>Đơn vị tính</th>
                             <th>Màu</th>
-                            <th>Giá nhập</th>
+                            <th>Giá tin</th>
                             <th>Giá bán</th>
                             <th>Loại</th>
                             <th>Ngày nhập</th>
@@ -102,7 +103,10 @@ function QLKhoHangScreen (props) {
                             {dataListProduct.map(item => (
                                 <tr>
                                     <td>{item.id}</td>
-                                    <td>{item.name}</td>
+                                    <td className={cx('nameProduct')}>
+                                        <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
+                                        <div>{item.nameProduct}</div>
+                                    </td>
                                     <td>Cái</td>
                                     <td>{item.colorProduct}</td>
                                     <td>{formatPrice(item.priceBuy)}</td>
