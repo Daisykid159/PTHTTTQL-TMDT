@@ -12,6 +12,7 @@ import QLKhoHangScreen from "../../screen/Admin/qlKhoHang/QLKhoHangScreen";
 import NotificationAdminScreen from "../../screen/Admin/notificationAdmin/NotificationAdminScreen";
 import BillAdminScreen from "../../screen/Admin/bill/BillAdminScreen";
 import DetailBillAdminScreen from "../../screen/Admin/detailBill/DetailBillAdminScreen";
+import EditProductKhoHangAdminScreen from "../../screen/Admin/editProductKhoHang/EditProductKhoHangAdminScreen";
 
 const cx = classNames.bind(styles);
 
@@ -39,14 +40,6 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/admin/BillAdminScreen" className={cx('flex')}>
-                            <i className={cx('bx bx-cart-alt', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Đơn hàng</div>
-                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        </Link>
-                    </li>
-
-                    <li className={cx('item')} >
                         <Link to="/admin/QLHangHoaScreen" className={cx('flex')}>
                             <i className={cx('bx bx-purchase-tag', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Sản phẩm</div>
@@ -58,6 +51,14 @@ function HeaderAdmin () {
                         <Link to="/admin/QLUserScreen" className={cx('flex')}>
                             <i className={cx('bx bx-user-circle', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Khách hàng</div>
+                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
+                        </Link>
+                    </li>
+
+                    <li className={cx('item')} >
+                        <Link to="/admin/BillAdminScreen" className={cx('flex')}>
+                            <i className={cx('bx bx-cart-alt', 'iconArrowR')}></i>
+                            <div className={cx('colorW')}>Đơn hàng</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
                         </Link>
                     </li>
@@ -95,6 +96,7 @@ function HeaderAdmin () {
                 <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen />} />
                 <Route path="/admin/BillAdminScreen" element={<BillAdminScreen />} />
                 <Route path="/admin/DetailBillAdminScreen/:id" element={<DetailBillAdminScreen />} />
+                <Route path="/admin/EditProductKhoHangAdminScreen/:id" element={<EditProductKhoHangAdminScreen />} />
 
                 <Route path="*" element={<NoPage />} />
             </Routes>

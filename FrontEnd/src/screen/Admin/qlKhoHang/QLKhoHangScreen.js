@@ -1,7 +1,9 @@
 import React, {useState} from "react";
 import styles from './QLKhoHangScreen.module.scss';
 import classNames from "classnames/bind";
-import {formatPrice} from "../../../unitl";
+import {formatDay, formatPrice} from "../../../unitl";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +20,23 @@ function QLKhoHangScreen (props) {
         }
     ]
 
+    const dataListProduct = [
+        {
+            id: 123,
+            name: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
+            quantitySold: 12,
+            remainingAmount: 22,
+            typeProduct: 'Iphone 15',
+            colorProduct: 'Titan',
+            priceBuy: 24000000,
+            priceSell: 24500000,
+            dayNhap: '2024-12-02T00:00:00',
+        }
+    ]
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [textSearch, setTextSearch] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -29,6 +48,9 @@ function QLKhoHangScreen (props) {
         setSelectedOption(event.target.value);
     };
 
+    const handleToEditProductKhoHangAdminScreen = (item) => {
+        navigate(`/admin/EditProductKhoHangAdminScreen/${item.id}`);
+    }
     return (
         <div className={cx('QLKhoHangScreen')}>
             <div className={cx('fixed')}>
@@ -77,24 +99,26 @@ function QLKhoHangScreen (props) {
                         </thead>
 
                         <tbody>
-                        <tr>
-                            <td>IP15</td>
-                            <td>Apple iPhone 15 Pro Max - 256GB - 99% Like New</td>
-                            <td>Cái</td>
-                            <td>Titan</td>
-                            <td>{formatPrice(27000000)}</td>
-                            <td>{formatPrice(28000000)}</td>
-                            <td>Iphone 15</td>
-                            <td>29/06/2023</td>
-                            <td>500</td>
-                            <td>100</td>
+                            {dataListProduct.map(item => (
+                                <tr>
+                                    <td>{item.id}</td>
+                                    <td>{item.name}</td>
+                                    <td>Cái</td>
+                                    <td>{item.colorProduct}</td>
+                                    <td>{formatPrice(item.priceBuy)}</td>
+                                    <td>{formatPrice(item.priceSell)}</td>
+                                    <td>Iphone 15</td>
+                                    <td>{formatDay(item.dayNhap)}</td>
+                                    <td>{item.quantitySold}</td>
+                                    <td>{item.remainingAmount}</td>
 
-                            <td className={cx('iconList')}>
-                                <i className={cx('bx bx-show-alt', 'iconShow')}></i>
-                                <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
-                                <i className={cx('bx bx-trash', 'iconTrash')}></i>
-                            </td>
-                        </tr>
+                                    <td className={cx('iconList')}>
+                                        <i className={cx('bx bx-show-alt', 'iconShow')}></i>
+                                        <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
+                                        <i className={cx('bx bx-trash', 'iconTrash')}></i>
+                                    </td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
