@@ -87,7 +87,7 @@ function QLKhoHangScreen (props) {
                             <th>Tên sản phẩm</th>
                             <th>Đơn vị tính</th>
                             <th>Màu</th>
-                            <th>Giá mua</th>
+                            <th>Giá nhập</th>
                             <th>Giá bán</th>
                             <th>Loại</th>
                             <th>Ngày nhập</th>

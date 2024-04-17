@@ -93,7 +93,6 @@ function QLHangHoaScreen (props) {
                             <th style={{ width: '45%' }}>Tên sản phẩm</th>
                             <th>Đơn vị tính</th>
                             <th>Màu</th>
-                            <th>Giá mua</th>
                             <th>Giá bán</th>
                             <th>Loại</th>
 
@@ -111,7 +110,6 @@ function QLHangHoaScreen (props) {
                                 </td>
                                 <td>Cái</td>
                                 <td>{item.colorProduct}</td>
-                                <td>{formatPrice(item.priceBuy)}</td>
                                 <td>{formatPrice(item.priceSell)}</td>
                                 <td>{item.type}</td>
 
