@@ -1,16 +1,64 @@
 import React, {useState} from "react";
 import styles from './QLUserScreen.module.scss';
 import classNames from "classnames/bind";
-import {formatPrice} from "../../../unitl";
+import {formatDay, formatPrice} from "../../../unitl";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const cx = classNames.bind(styles);
 
 function QLUserScreen () {
 
+    const data = [
+        {
+            id: 1,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalPrice: 700000000,
+        },
+        {
+            id: 2,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalPrice: 700000000,
+        },
+        {
+            id: 3,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalPrice: 700000000,
+        },
+        {
+            id: 4,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalPrice: 700000000,
+        }
+    ]
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [textSearch, setTextSearch] = useState('');
 
     const handleSearch = (e) => {
         setTextSearch(e.target.value)
+    }
+
+    const handleToDetailUserAdminScreen = (item) => {
+        navigate(`/admin/DetailUserAdminScreen/${item.id}`);
     }
 
     return (
@@ -34,8 +82,8 @@ function QLUserScreen () {
                     <thead>
                     <tr>
                         <th>Mã KH</th>
+                        <th>Loại TK</th>
                         <th>Tên khách hàng</th>
-                        <th>Địa chỉ</th>
                         <th>SĐT</th>
                         <th>E-mail</th>
                         <th>Ngày tạo</th>
@@ -45,18 +93,20 @@ function QLUserScreen () {
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <td>Admin</td>
-                        <td>Vũ Dũng</td>
-                        <td>Thanh Xuân, Hà Nội</td>
-                        <td>03288855361</td>
-                        <td>daisyss159@gmail.com</td>
-                        <td>29/06/2023</td>
-                        <td>{formatPrice(5000000)}</td>
-                        <td className={cx('iconTrash')}>
-                            <i className='bx bx-trash'></i>
-                        </td>
-                    </tr>
+                    {data.map(item => (
+                        <tr>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.id}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.role}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.nameUser}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.phoneUser}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.emailUser}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{formatDay(item.dateCreate)}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{formatPrice(item.totalPrice)}</td>
+                            <td className={cx('iconTrash')}>
+                                <i className='bx bx-trash'></i>
+                            </td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

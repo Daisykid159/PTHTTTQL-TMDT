@@ -27,6 +27,39 @@
   justify-content: space-between;
 }
 
+.textHeader {
+  font-size: 20px;
+}
+
+.statusBill {
+  margin: 10px 0 20px 0;
+  padding: 10px 30px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+}
+
+.textStatus {
+  padding-right: 10px;
+}
+
+.selectStatusBill {
+  width: 40%;
+}
+
+.selectStatus {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+}
+
+.updateStatusBull {
+  cursor: pointer;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 10px ;
+  background-color: #3461ff;
+}
+
 .itemH {
   width: 30%;
   padding: 10px;

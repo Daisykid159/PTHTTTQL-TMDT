@@ -1,0 +1,66 @@
+.DetailUserAdminScreen {
+  padding: 20px 20px 30px 16%;
+  color: #454545;
+}
+
+.flex {
+  display: flex;
+}
+
+.flexStart {
+  align-items: flex-start;
+}
+
+.center {
+  align-items: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.w45pt {
+  width: 45%;
+}
+
+.w8pt {
+  width: 8%;
+}
+
+.textHeader {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.textT {
+  width: 27%;
+  margin-right: 10px;
+}
+
+.itemAddress {
+  margin-bottom: 10px;
+}
+
+.tableBill {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.iconList {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.iconShow {
+  color: #e5ae09;
+  margin-right: 10px;
+}
+
+.iconEdit {
+  color: blue;
+  margin-right: 10px;
+}
+
+.iconTrash {
+  color: red;
+}

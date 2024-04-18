@@ -207,6 +207,14 @@ function HomeAdminScreen (props) {
                     />
                 </div>
             </div>
+
+            <div>
+                <div>Loại sản phẩm bán chạy</div>
+
+                <div>Sản phẩm được bán nhiều nhất</div>
+
+                <div>Khách hàng chi tiêu nhiều nhất</div>
+            </div>
         </div>
     )
 }

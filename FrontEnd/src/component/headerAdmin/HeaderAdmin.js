@@ -13,6 +13,7 @@ import NotificationAdminScreen from "../../screen/Admin/notificationAdmin/Notifi
 import BillAdminScreen from "../../screen/Admin/bill/BillAdminScreen";
 import DetailBillAdminScreen from "../../screen/Admin/detailBill/DetailBillAdminScreen";
 import EditProductKhoHangAdminScreen from "../../screen/Admin/editProductKhoHang/EditProductKhoHangAdminScreen";
+import DetailUserAdminScreen from "../../screen/Admin/detailUserAdmin/DetailUserAdminScreen";
 
 const cx = classNames.bind(styles);
 
@@ -97,7 +98,7 @@ function HeaderAdmin () {
                 <Route path="/admin/BillAdminScreen" element={<BillAdminScreen />} />
                 <Route path="/admin/DetailBillAdminScreen/:id" element={<DetailBillAdminScreen />} />
                 <Route path="/admin/EditProductKhoHangAdminScreen/:id" element={<EditProductKhoHangAdminScreen />} />
-
+                <Route path="/admin/DetailUserAdminScreen/:id" element={<DetailUserAdminScreen />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

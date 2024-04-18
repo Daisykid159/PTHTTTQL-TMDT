@@ -83,16 +83,15 @@ function BillAdminScreen (props) {
 
                         <tbody>
                         {dataListBill.map(item => (
-                            <tr>
-                                <td onClick={() => handleDetailBill(item)}>{item.id}</td>
-                                <td onClick={() => handleDetailBill(item)}>{item.userBuy}</td>
-                                <td onClick={() => handleDetailBill(item)}>{formatPrice(item.priceBuy)}</td>
+                            <tr onClick={() => handleDetailBill(item)}>
+                                <td>{item.id}</td>
+                                <td>{item.userBuy}</td>
+                                <td>{formatPrice(item.priceBuy)}</td>
                                 <td>{item.status}</td>
                                 <td>{formatDay(item.dateBuy)}</td>
                                 <td className={cx('iconList')}>
-                                    <i className={cx('bx bx-show-alt', 'iconShow')} onClick={() => handleDetailBill(item)} ></i>
+                                    <i className={cx('bx bx-show-alt', 'iconShow')}></i>
                                     <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
-                                    <i className={cx('bx bx-trash', 'iconTrash')}></i>
                                 </td>
                             </tr>
                         ))}
