@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +22,7 @@ public class User {
     private Long id;
 
     @Column(name = "username")
+    @NaturalId
     private String username;
 
     @Column(name = "email")
@@ -34,7 +37,25 @@ public class User {
     @Column(name = "gender")
     private String gender;
 
+    @Column(name = "phone")
+    private String phone;
+
+    private String city;
+    private String street;
+
+    @Column(updatable = false)
+    private Date createdAt;
+    private Date updatedAt;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "role_user", joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
+    }
 }

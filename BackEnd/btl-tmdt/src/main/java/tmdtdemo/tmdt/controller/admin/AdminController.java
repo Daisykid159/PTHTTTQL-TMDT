@@ -1,4 +1,4 @@
-package tmdtdemo.tmdt.controller.test;
+package tmdtdemo.tmdt.controller.admin;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
