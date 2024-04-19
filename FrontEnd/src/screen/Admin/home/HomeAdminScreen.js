@@ -176,7 +176,7 @@ function HomeAdminScreen (props) {
                 </div>
             </div>
 
-            <div className={cx('listDonHang')}>
+            <div className={cx('listChart')}>
                 <div className={cx('flex', 'warp')}>
                     <Chart
                         options={state1.options}
@@ -189,14 +189,14 @@ function HomeAdminScreen (props) {
                         options={state2.options}
                         series={state2.series}
                         type="area"
-                        width="500"
+                        width="800"
                     />
 
                     <Chart
                         options={state3.options}
                         series={state3.series}
                         type="bar"
-                        width="500"
+                        width="800"
                     />
 
                     <Chart

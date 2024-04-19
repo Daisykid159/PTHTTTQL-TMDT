@@ -1,5 +1,5 @@
 .DetailBillAdminScreen {
-  padding: 20px 20px 30px 16%;
+  padding: 20px 4% 30px 22%;
   color: #454545;
 }
 
@@ -29,6 +29,7 @@
 
 .textHeader {
   font-size: 20px;
+  margin-bottom: 20px;
 }
 
 .statusBill {
@@ -42,11 +43,8 @@
   padding-right: 10px;
 }
 
-.selectStatusBill {
-  width: 40%;
-}
-
 .selectStatus {
+  width: 150px;
   padding: 10px;
   border: 1px solid #cccccc;
   border-radius: 10px;
@@ -54,6 +52,7 @@
 
 .updateStatusBull {
   cursor: pointer;
+  margin-left: 15px;
   padding: 10px 15px;
   color: white;
   border-radius: 10px ;

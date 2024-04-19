@@ -119,7 +119,7 @@ function DetailUserAdminScreen (props) {
                     </div>
                 </div>
 
-                <div>
+                <div className={cx('listBill')}>
                     <div className={cx('bold')}>Danh sách đơn hàng</div>
 
                     <table border="1" cellPadding="1" cellSpacing="1" className={cx('tableBill')}>

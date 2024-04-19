@@ -1,5 +1,5 @@
 .QLKhoHangScreen {
-  padding: 20px 20px 30px 16%;
+  padding: 20px 4% 30px 22%;
   color: #454545;
 }
 
@@ -9,14 +9,13 @@
 }
 
 .relative {
-  padding-top: 50px;
   position: relative;
 }
 
 .fixed {
   top: 0px;
-  padding: 20px;
-  width: 90%;
+  padding-top: 20px;
+  width: 82%;
   position: fixed;
   background-color: white;
   z-index: 10;
@@ -24,7 +23,7 @@
 }
 
 .body {
-  padding-top: 8%;
+  padding-top: 12%;
   height: 1000px;
 }
 
