@@ -127,6 +127,111 @@ function HomeAdminScreen (props) {
         },
     };
 
+    const topTypeSell = [
+        {
+            id: 1,
+            nameType: 'Iphone 15',
+            percentType: '70%'
+        },
+        {
+            id: 2,
+            nameType: 'Iphone 14',
+            percentType: '60%'
+        },
+        {
+            id: 3,
+            nameType: 'Iphone 13',
+            percentType: '40%'
+        },
+        {
+            id: 4,
+            nameType: 'Iphone 12',
+            percentType: '20%'
+        }
+    ]
+
+    const topProducts = [
+        {
+            idProduct: 'IP15',
+            nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 27000000,
+            priceSell: 27500000,
+            type: 'Iphone 15',
+        },
+        {
+            idProduct: 'IP14',
+            nameProduct: 'Apple iPhone 14 Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 26000000,
+            priceSell: 26500000,
+            type: 'Iphone 14',
+        },
+        {
+            idProduct: 'IP13',
+            nameProduct: 'Apple iPhone 13Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 25000000,
+            priceSell: 25500000,
+            type: 'Iphone 13',
+        },
+        {
+            idProduct: 'IP12',
+            nameProduct: 'Apple iPhone 12Pro Max - 256GB - 99% Like New',
+            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
+            colorProduct: 'Titan',
+            priceBuy: 25000000,
+            priceSell: 25500000,
+            type: 'Iphone 13',
+        }
+    ]
+
+    const topUser = [
+        {
+            id: 1,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalBill: 2000,
+            totalPrice: 700000000,
+        },
+        {
+            id: 2,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalBill: 2000,
+            totalPrice: 700000000,
+        },
+        {
+            id: 3,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalBill: 2000,
+            totalPrice: 700000000,
+        },
+        {
+            id: 4,
+            role: 'ADMIN',
+            nameUser: 'Vũ Văn Dũng',
+            phoneUser: '01216048012',
+            emailUser: 'daisyss159@gmail.com',
+            dateCreate: '2024-04-05T00:00:00',
+            totalBill: 2000,
+            totalPrice: 700000000,
+        }
+    ]
+
     return (
         <div className={cx('HomeAdminScreen')}>
             <div className={cx('flex', 'headerA')}>
@@ -177,7 +282,7 @@ function HomeAdminScreen (props) {
             </div>
 
             <div className={cx('listChart')}>
-                <div className={cx('flex', 'warp')}>
+                <div className={cx('flex', 'warp', 'center')}>
                     <Chart
                         options={state1.options}
                         series={state1.series}
@@ -208,12 +313,53 @@ function HomeAdminScreen (props) {
                 </div>
             </div>
 
-            <div>
-                <div>Loại sản phẩm bán chạy</div>
+            <div className={cx('rank', 'flex', 'spaceBetween', 'warp')}>
+                <div className={cx('topTypeSell')}>
+                    <div className={cx('bold', 'textType')}>Loại sản phẩm bán chạy</div>
 
-                <div>Sản phẩm được bán nhiều nhất</div>
+                    {topTypeSell.map(item => (
+                        <div className={cx('rowPercent')}>
+                            <div className={cx('bold')}>{item.nameType}</div>
+                            <div className={cx('w100pt', 'rowPt')}>
+                                <div className={cx('linearGradientHTC')} style={{ width: item.percentType, height: 5 }}></div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
 
-                <div>Khách hàng chi tiêu nhiều nhất</div>
+                <div className={cx('topTypeSell')}>
+                    <div className={cx('bold', 'textType')}>Sản phẩm được bán nhiều nhất</div>
+
+                    {topProducts.map(item => (
+                        <div className={cx('rowPercent')}>
+                            <div className={cx('flex', 'center', 'spaceBetween')}>
+                                <div className={cx('flex', 'center', 'imgAndName')}>
+                                    <img src={item.imgProduct} className={cx('imgProduct')} />
+                                    <div className={cx('bold')}>{item.nameProduct}</div>
+                                </div>
+
+                                <div>{item.priceBuy}</div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className={cx('topTypeSell')}>
+                    <div className={cx('bold', 'textType')}>Khách hàng chi tiêu nhiều nhất</div>
+
+                    {topUser.map(item => (
+                        <div className={cx('flex', 'center', 'spaceBetween', 'rowPercent', 'bold')}>
+                            <div className={cx('flex', 'center')}>
+                                <i className={cx('bx bxs-user', 'iconUser')}></i>
+                                <div>{item.nameUser}</div>
+                            </div>
+
+                            <div>{item.totalBill} đơn hàng</div>
+
+                            <div>{formatPrice(item.totalPrice)}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </div>
     )

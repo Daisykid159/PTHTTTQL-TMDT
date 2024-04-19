@@ -5,11 +5,64 @@
 
 .flex {
   display: flex;
+}
+
+.center {
   align-items: center;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.w100pt {
+  width: 100%;
+}
+
+.rank {
+  margin-top: 20px;
+}
+
+.textType {
+  margin: 10px 0 15px 0;
+  font-size: 18px;
+  padding: 10px 0;
+  border-bottom: 1px solid #cccccc;
+}
+
+.topTypeSell {
+  width: 400px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+}
+
+.rowPercent {
+  margin: 10px 0;
+}
+
+.rowPt {
+  margin-top: 5px;
+  height: 5px;
+  border-radius: 50px;
+  border: 1px solid #cccccc;
+  overflow: hidden;
+}
+
+.linearGradientHTC {
+  background: linear-gradient(to right, rgb(238, 9, 121), rgb(255, 106, 0));
 }
 
 .warp {
   flex-wrap: wrap;
+}
+
+.imgAndName {
+  width: 70%;
 }
 
 .headerA {
@@ -52,6 +105,11 @@
   justify-content: space-between;
 }
 
+.imgProduct {
+  width: 15%;
+  margin-right: 10px;
+}
+
 .percent {
   font-size: 14px;
   margin-top: 10px;
@@ -63,4 +121,12 @@
 
 .red {
   color: red;
+}
+
+.iconUser {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 100000px;
+  background-color: rgba(52, 96, 255, 0.22);
+  color: #0892c1;
 }
