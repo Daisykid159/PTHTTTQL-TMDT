@@ -152,7 +152,9 @@ function HeaderComponent () {
                             <div className={cx('login')}>
                                 <div className={cx('mr10')}>
                                     <Link to={'/screen/UserInformationScreen/UserInformationScreen'} className={cx('textLogin', 'bold')} >Tài khoản của tôi</Link>
-                                    <p className={cx('textLogin')} onClick={handleLogout}>Thoát</p>
+                                    <div>
+                                        <Link to={'/screen/authen/LoginScreen'} className={cx('textLogin')} onClick={handleLogout}>Thoát</Link>
+                                    </div>
                                 </div>
                                 <i className={cx('bx bxs-down-arrow', 'iconArrow')}></i>
                             </div>
