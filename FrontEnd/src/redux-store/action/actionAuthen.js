@@ -13,14 +13,16 @@ export function actionLogin (username, password, nextToScreen) {
             const response = await Api().getTokenLogin(username, password);
             console.log(response.data);
             if (response && response.data){
-                nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
                 dispatch(updateData({
+                    isLogin: true,
                     token: response.data.accessToken,
                 }))
 
                 alert("Đăng nhập thành công!");
+                nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
             } else {
                 dispatch(updateData({
+                    isLogin: false,
                     token: '',
                 }))
                 alert("Đăng nhập thất bại!");

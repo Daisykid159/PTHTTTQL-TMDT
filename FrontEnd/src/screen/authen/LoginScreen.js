@@ -38,8 +38,7 @@ function LoginScreen ( props ) {
     }
 
     const loginAction = async () => {
-        navigate('/screen/UserInformationScreen/UserInformationScreen');
-        // await dispatch(actionLogin(email, password, nextToScreen))
+        await dispatch(actionLogin(email, password, nextToScreen));
     }
 
     const Login = () => (
