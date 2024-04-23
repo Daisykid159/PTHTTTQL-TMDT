@@ -2,6 +2,8 @@ import React, {useState} from "react";
 import styles from './QLHangHoaScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../../unitl";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -47,6 +49,9 @@ function QLHangHoaScreen (props) {
         }
     ]
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
     const [textSearch, setTextSearch] = useState('');
     const [selectedOption, setSelectedOption] = useState('');
 
@@ -57,6 +62,14 @@ function QLHangHoaScreen (props) {
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
     };
+
+    const handleToEditProductKhoHangAdminScreen = (item) => {
+        const editSanPham = true;
+
+        navigate(`/admin/EditProductKhoHangAdminScreen/${item.idProduct}`, {
+            state: { editSanPham },
+        });
+    }
 
     return (
         <div className={cx('QLHangHoaScreen')}>
@@ -103,19 +116,19 @@ function QLHangHoaScreen (props) {
                         <tbody>
                         {dataListProducts.map(item => (
                             <tr>
-                                <td>{item.idProduct}</td>
-                                <td className={cx('nameProduct')}>
+                                <td onClick={() => handleToEditProductKhoHangAdminScreen(item)}>{item.idProduct}</td>
+                                <td className={cx('nameProduct')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
                                     <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
                                     <div>{item.nameProduct}</div>
                                 </td>
                                 <td>Cái</td>
                                 <td>{item.colorProduct}</td>
-                                <td>{formatPrice(item.priceSell)}</td>
+                                <td onClick={() => handleToEditProductKhoHangAdminScreen(item)}>{formatPrice(item.priceSell)}</td>
                                 <td>{item.type}</td>
 
                                 <td className={cx('iconList')}>
-                                    <i className={cx('bx bx-show-alt', 'iconShow')}></i>
-                                    <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
+                                    <i className={cx('bx bx-show-alt', 'iconShow')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
+                                    <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
                                     <i className={cx('bx bx-trash', 'iconTrash')}></i>
                                 </td>
                             </tr>

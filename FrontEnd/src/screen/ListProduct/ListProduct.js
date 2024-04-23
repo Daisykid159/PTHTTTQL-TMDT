@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './ListProduct.modules.scss';
 import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
 import ItemProduct from "../../component/itemProduct/ItemProduct";
+import {useNavigate} from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {actionGetListProducts} from "../../redux-store/action/actionProducts";
 
 const cx = classNames.bind(styles);
 
@@ -45,6 +48,13 @@ function ListProduct(props) {
             price: 25300000,
         },
     ];
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(actionGetListProducts())
+    }, [])
 
     return (
         <div className={cx('listProduct')}>

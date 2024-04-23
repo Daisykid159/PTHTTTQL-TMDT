@@ -15,9 +15,6 @@ export function actionAddProduct (listCart) {
             }))
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
-            dispatch(updateData({
-                token: '',
-            }))
         }
     };
 }

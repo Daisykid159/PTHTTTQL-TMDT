@@ -22,7 +22,7 @@ function QLKhoHangScreen (props) {
 
     const dataListProduct = [
         {
-            id: 123,
+            idProduct: 123,
             nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
             quantitySold: 12,
             remainingAmount: 22,
@@ -50,8 +50,9 @@ function QLKhoHangScreen (props) {
     };
 
     const handleToEditProductKhoHangAdminScreen = (item) => {
-        navigate(`/admin/EditProductKhoHangAdminScreen/${item.id}`);
+        navigate(`/admin/EditProductKhoHangAdminScreen/${item.idProduct}`);
     }
+
     return (
         <div className={cx('QLKhoHangScreen')}>
             <div className={cx('fixed')}>
@@ -85,11 +86,9 @@ function QLKhoHangScreen (props) {
                         <thead>
                         <tr>
                             <th>Mã SP</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Đơn vị tính</th>
+                            <th width={'35ss%'}>Tên sản phẩm</th>
                             <th>Màu</th>
-                            <th>Giá tin</th>
-                            <th>Giá bán</th>
+                            <th>Giá nhập</th>
                             <th>Loại</th>
                             <th>Ngày nhập</th>
                             <th>Số lượng đã bán</th>
@@ -102,19 +101,17 @@ function QLKhoHangScreen (props) {
                         <tbody>
                             {dataListProduct.map(item => (
                                 <tr>
-                                    <td>{item.id}</td>
+                                    <td>{item.idProduct}</td>
                                     <td className={cx('nameProduct')}>
                                         <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
                                         <div>{item.nameProduct}</div>
                                     </td>
-                                    <td>Cái</td>
                                     <td>{item.colorProduct}</td>
                                     <td>{formatPrice(item.priceBuy)}</td>
-                                    <td>{formatPrice(item.priceSell)}</td>
-                                    <td>Iphone 15</td>
+                                    <td>{item.typeProduct}</td>
                                     <td>{formatDay(item.dayNhap)}</td>
-                                    <td>{item.quantitySold}</td>
-                                    <td>{item.remainingAmount}</td>
+                                    <td>{item.quantitySold} chiếc</td>
+                                    <td>{item.remainingAmount} chiếc</td>
 
                                     <td className={cx('iconList')}>
                                         <i className={cx('bx bx-show-alt', 'iconShow')}></i>

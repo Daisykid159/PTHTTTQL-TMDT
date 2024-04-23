@@ -3,6 +3,7 @@ import styles from './EditProductKhoHangAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {useParams} from "react-router-dom";
 import moment from "moment";
+import { useLocation } from 'react-router-dom';
 import {formatPrice} from "../../../unitl";
 
 const cx = classNames.bind(styles);
@@ -17,7 +18,11 @@ function EditProductKhoHangAdminScreen (props) {
     const [typeProduct, setTypeProduct] = useState();
     const [priceImportProduct, setPriceImportProduct] = useState();
     const [priceSellProduct, setPriceSellProduct] = useState();
+    const [quantityImportProduct, setQuantityImportProduct] = useState();
     const [dateImportProduct, setDateImportProduct] = useState();
+
+    const location = useLocation();
+    const editSanPham = location.state?.editSanPham;
 
     useEffect(() => {
         const dateNow = new Date();
@@ -38,6 +43,10 @@ function EditProductKhoHangAdminScreen (props) {
 
     const handlePriceImportProduct = (e) => {
         setPriceImportProduct(e.target.value);
+    }
+
+    const handleQuantityImportProduct = (e) => {
+        setQuantityImportProduct(e.target.value);
     }
 
     const handlePriceSellProduct = (e) => {
@@ -73,7 +82,7 @@ function EditProductKhoHangAdminScreen (props) {
 
                     <div className={cx('itemInput')}>
                         <div className={cx('textInput')}>Loại sản phẩm</div>
-                        <input className={cx('input')} onChange={typeProduct} value={typeProduct} />
+                        <input className={cx('input')} onChange={handleTypeProduct} value={typeProduct} />
                     </div>
 
                     <div className={cx('select', 'selectImg', 'itemInput')}>
@@ -91,15 +100,24 @@ function EditProductKhoHangAdminScreen (props) {
                 </div>
 
                 <div className={cx('w50pt')}>
-                    <div className={cx('itemInput')}>
+                    {!editSanPham && (<div className={cx('itemInput')}>
                         <div className={cx('textInput')}>Giá nhập sản phẩm (đ)</div>
-                        <input className={cx('input')} type={'number'} onChange={handlePriceImportProduct} value={priceImportProduct} />
-                    </div>
+                        <input className={cx('input')} type={'number'} onChange={handlePriceImportProduct}
+                               value={priceImportProduct}/>
+                    </div>)}
 
-                    <div className={cx('itemInput')}>
-                        <div className={cx('textInput')}>Giá bán sản phẩm (đ)</div>
-                        <input className={cx('input')} type={'number'} onChange={handlePriceSellProduct} value={priceSellProduct} />
-                    </div>
+                    {!editSanPham && (<div className={cx('itemInput')}>
+                        <div className={cx('textInput')}>Số lượng nhập</div>
+                        <input className={cx('input')} type={'number'} onChange={handleQuantityImportProduct}
+                               value={quantityImportProduct}/>
+                    </div>)}
+
+                    {editSanPham && (
+                        <div className={cx('itemInput')}>
+                            <div className={cx('textInput')}>Giá bán sản phẩm (đ)</div>
+                            <input className={cx('input')} type={'number'} onChange={handlePriceSellProduct} value={priceSellProduct} />
+                        </div>
+                    )}
 
                     <div className={cx('itemInput')}>
                         <div className={cx('textInput')}>Ngày nhập sản phẩm</div>
@@ -108,9 +126,12 @@ function EditProductKhoHangAdminScreen (props) {
                 </div>
             </div>
 
-            <div>
-                <div className={cx('textDescribe', 'bold')}>Mô tả</div>
-            </div>
+            {editSanPham && (
+                <div>
+                    <div className={cx('textDescribe', 'bold')}>Mô tả</div>
+                </div>
+            )}
+
         </div>
     )
 }
