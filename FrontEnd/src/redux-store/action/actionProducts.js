@@ -7,10 +7,10 @@ export function updateData(data) {
     }
 }
 
-export function actionGetListProducts (typeProduct, quantity) {
+export function actionGetListProducts (pageNumber, sortBy, type, categoryId) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api().getListTypeProducts();
+            const response = await Api().getListTypeProducts(pageNumber, sortBy, type, categoryId);
             console.log(response.data);
 
             if (response && response.data){

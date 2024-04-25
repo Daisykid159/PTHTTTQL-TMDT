@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './ListProduct.modules.scss';
 import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
 import ItemProduct from "../../component/itemProduct/ItemProduct";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {actionGetListProducts} from "../../redux-store/action/actionProducts";
 
@@ -51,10 +51,17 @@ function ListProduct(props) {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const location = useLocation();
+
+    const [currentPageNumber, setCurrentPageNumber] = useState('0');
+    const sortBy = 'name';
+    const type = location.state?.type;
+    const categoryId = location.state?.categoryId;
 
     useEffect(() => {
-        dispatch(actionGetListProducts())
-    }, [])
+        console.log(type, categoryId)
+        dispatch(actionGetListProducts(currentPageNumber, sortBy, type, categoryId))
+    }, [type, categoryId])
 
     return (
         <div className={cx('listProduct')}>

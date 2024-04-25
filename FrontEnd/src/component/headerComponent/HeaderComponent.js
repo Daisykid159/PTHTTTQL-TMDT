@@ -36,23 +36,31 @@ function HeaderComponent () {
                 {
                     id: 1,
                     nameItem: 'Iphone 15',
+                    type: 15,
+                    categoryId: 1,
                 },
                 {
                     id: 2,
                     nameItem: 'Iphone 14',
+                    type: 14,
+                    categoryId: 1,
                 },
                 {
                     id: 3,
                     nameItem: 'Iphone 13',
+                    type: 13,
+                    categoryId: 1,
                 },
                 {
                     id: 4,
                     nameItem: 'Iphone 12',
+                    type: 12,
+                    categoryId: 1,
                 }
             ]
         },
         {
-            id: 1,
+            id: 2,
             icon: 'bx bx-mobile-alt',
             nameListProduct: 'Điện thoại',
             listItem: [
@@ -75,7 +83,7 @@ function HeaderComponent () {
             ]
         },
         {
-            id: 1,
+            id: 3,
             icon: 'bx bx-mobile-alt',
             nameListProduct: 'Điện thoại',
             listItem: [

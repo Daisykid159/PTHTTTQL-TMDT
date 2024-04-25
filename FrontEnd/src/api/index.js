@@ -32,8 +32,8 @@ const Api = (token, username) => {
         })
     }
 
-    const getListTypeProducts = (pageNumber, pageSize, sortBy, type, categoryId) => {
-        return api.post('/product/allProductSpu?pageNumber=0&pageSize=6&sortBy=name&type=12&categoryId=1')
+    const getListTypeProducts = (pageNumber, sortBy, type, categoryId) => {
+        return api.post(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type}&categoryId=${categoryId}`)
     }
 
     return {
