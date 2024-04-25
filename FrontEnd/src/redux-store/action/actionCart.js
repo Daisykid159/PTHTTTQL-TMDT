@@ -12,6 +12,20 @@ export function actionAddProduct (listCart) {
         try {
             dispatch(updateData({
                 listCart: listCart,
+                quantityCart: listCart.length,
+            }))
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+        }
+    };
+}
+
+export function actionDeleteProduct (listCart) {
+    return async (dispatch, getState) => {
+        try {
+            dispatch(updateData({
+                listCart: listCart,
+                quantityCart: listCart.length,
             }))
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
@@ -22,4 +36,5 @@ export function actionAddProduct (listCart) {
 
 export default {
     actionAddProduct,
+    actionDeleteProduct,
 };

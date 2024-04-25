@@ -121,14 +121,16 @@
 
 .numberCart {
   margin: 0;
-  padding: 2px 5px;
+  padding: 3px 5px;
   font-size: 15px;
   border-radius: 100px;
   color: #ffffff;
   background-color: red;
   position: absolute;
-  top: -2px;
-  right: -2px;
+  top: -5px;
+  width: 20px;
+  text-align: center;
+  right: -10px;
 }
 
 .modalListItem {

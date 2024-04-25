@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import HomeScreen from "../../screen/home/HomeScreen";
@@ -109,7 +109,7 @@ function HeaderComponent () {
 
     const [showListProduct, setShowListProduct] = useState(false);
     const isLogin = useSelector(state => state.reducerAuth.isLogin);
-    const listCart = useSelector(state => state.reducerCart.listCart);
+    const quantityCart = useSelector(state => state.reducerCart.quantityCart);
 
     const dispatch = useDispatch();
 
@@ -182,7 +182,7 @@ function HeaderComponent () {
                     <li className={cx('item')} >
                         <Link to="/screen/cart/CartScreen" className={cx('Cart')}>
                             <i className={cx('bx bx-cart', 'iconCart')}></i>
-                            <p className={cx('numberCart')}>{listCart.length}</p>
+                            <p className={cx('numberCart')}>{quantityCart}</p>
                         </Link>
                     </li>
                 </ul>

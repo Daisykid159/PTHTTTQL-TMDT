@@ -3,6 +3,9 @@ import styles from './DetailProduct.module.scss';
 import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
 import {formatPrice} from "../../unitl";
+import {useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {actionAddProduct} from "../../redux-store/action/actionCart";
 
 const cx = classNames.bind(styles);
 
@@ -12,7 +15,7 @@ function DetailProduct (props) {
         id: 1,
         name: 'iPhone XS 256GB Like New 99%',
         price: 6800000,
-        quantity: 1000,
+        quantity: 1,
         imgs: [
             {
                 id: 0,
@@ -47,9 +50,16 @@ function DetailProduct (props) {
         ]
     }
 
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+
     const [indexImg, setIndexImg] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
     const [quantity, setQuantity] = useState(1);
+
+    const listCart = useSelector(state => state.reducerCart.listCart);
+    const isLogin = useSelector(state => state.reducerAuth.isLogin);
 
     const handleImg = (index) => {
         setIndexImg(index);
@@ -73,6 +83,15 @@ function DetailProduct (props) {
         setSelectedOption(event.target.value);
         setIndexImg(event.target.value);
     };
+
+    const handleBuy = () => {
+        if(isLogin) {
+            listCart.push(dataDetailProduct);
+            dispatch(actionAddProduct(listCart))
+        } else {
+            navigate('/screen/authen/LoginScreen');
+        }
+    }
 
     return (
         <div className={cx('DetailProduct')}>
@@ -115,7 +134,7 @@ function DetailProduct (props) {
                             </div>
                         </div>
 
-                        <div className={cx('btnBuy')}>MUA HÀNG</div>
+                        <div className={cx('btnBuy')} onClick={handleBuy}>MUA HÀNG</div>
                     </div>
                 </div>
 

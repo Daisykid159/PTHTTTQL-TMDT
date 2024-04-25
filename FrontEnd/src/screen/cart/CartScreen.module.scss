@@ -92,6 +92,9 @@ td {
 }
 
 .sumMoney {
+  border-radius: 10px;
+  border: 1px solid #eeeeee;
+  overflow: hidden;
   align-items: center;
   justify-content: center;
 }
@@ -99,7 +102,6 @@ td {
 .textSumMoney {
   font-weight: 700;
   padding: 20px;
-  border: 1px solid #eeeeee;
 }
 
 .btnSummit {
@@ -110,4 +112,16 @@ td {
   font-weight: 800;
   padding: 20px 50px;
   background-color: red;
+}
+
+.textListCartNone {
+  width: 100%;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+  background: linear-gradient(#f6fada, #f3e287);
+  border-radius: 10px;
+  padding: 20px 0;
 }

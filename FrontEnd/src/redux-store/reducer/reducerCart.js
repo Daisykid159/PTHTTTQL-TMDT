@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     listCart: [],
+    quantityCart: 0,
 };
 
 const reducerCart = (state = INITIAL_STATE, action) => {
