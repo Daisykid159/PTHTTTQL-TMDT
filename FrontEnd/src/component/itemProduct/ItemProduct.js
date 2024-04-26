@@ -16,10 +16,10 @@ function ItemProduct (props) {
 
     return (
         <div className={cx('itemProduct')} onClick={handleDetailProduct} >
-            <img src={require(`../../assets/img/${props.data.img}`)} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
+            <img src={require(`../../assets/img/imgPhone1.png`)} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
 
-            <p className={cx('itemName')}>{props.data.name}</p>
-            <p className={cx('itemPrice')}>{formatPrice(props.data.price)}</p>
+            <p className={cx('itemName')}>{props.data.name} {props.data.description}</p>
+            <p className={cx('itemPrice')}>{formatPrice(props.data.price || 0)}</p>
 
             <div className={cx('active', 'selectSp')}>
                 <i className={cx('bx bx-cart-alt', 'cartIcon')}></i>

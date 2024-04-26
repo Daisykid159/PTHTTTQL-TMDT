@@ -33,7 +33,7 @@ const Api = (token, username) => {
     }
 
     const getListTypeProducts = (pageNumber, sortBy, type, categoryId) => {
-        return api.post(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type}&categoryId=${categoryId}`)
+        return api.get(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type}&categoryId=${categoryId}`)
     }
 
     return {
