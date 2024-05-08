@@ -4,50 +4,13 @@ import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
 import ItemProduct from "../../component/itemProduct/ItemProduct";
 import {useLocation, useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {actionGetListProducts} from "../../redux-store/action/actionProducts";
 
 const cx = classNames.bind(styles);
 
 function ListProduct(props) {
-    const dataListProducts= [
-        {
-            id: 1,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-        {
-            id: 2,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-        {
-            id: 3,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-        {
-            id: 4,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-        {
-            id: 5,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-        {
-            id: 6,
-            img: 'imgItemH.png',
-            name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-            price: 25300000,
-        },
-    ];
+    const listProducts= useSelector(state => state.reducerProducts.listProducts);;
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -61,7 +24,7 @@ function ListProduct(props) {
     useEffect(() => {
         console.log(type, categoryId)
         dispatch(actionGetListProducts(currentPageNumber, sortBy, type, categoryId))
-    }, [type, categoryId])
+    }, [type, categoryId]);
 
     return (
         <div className={cx('listProduct')}>
@@ -75,7 +38,7 @@ function ListProduct(props) {
                 </div>
 
                 <div className={cx('flex')}>
-                    {dataListProducts.map((item, index) => (
+                    {listProducts?.responses?.map((item, index) => (
                         <div className={cx('itemPro', (index % 3 !== 0 || index === 0) ? 'mr5pt' : null )}>
                             <ItemProduct data={item} />
                         </div>
