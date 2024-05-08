@@ -33,13 +33,13 @@ function CategoryHomeScreen (props) {
             <div className={cx('phoneList')}>
                 <div style={{ width: '75%' }}>
                     <div onClick={handleList}>
-                        <img src={require('../../assets/img/home_banner_phone.png')} alt="Logo" className={cx('imgBannerItem')} />
+                        <img src={require('../../assets/img/home_banner_phone.png')} alt="imgBannerItem" className={cx('imgBannerItem')} />
                     </div>
 
                     <div className={cx('listScroll')}>
                         <div className={cx('ListProduct')}>
                             {props.data.listProducts.map(item => (
-                                <div className={cx('itemItem')}>
+                                <div className={cx('itemItem')} >
                                     <ItemProduct data={item}/>
                                 </div>
                             ))}
