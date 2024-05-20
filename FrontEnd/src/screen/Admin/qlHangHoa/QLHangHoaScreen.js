@@ -64,10 +64,11 @@ function QLHangHoaScreen (props) {
     };
 
     const handleToEditProductKhoHangAdminScreen = (item) => {
-        const editSanPham = true;
-
-        navigate(`/admin/EditProductKhoHangAdminScreen/${item.idProduct}`, {
-            state: { editSanPham },
+        navigate(`/admin/EditProductKhoHangAdminScreen`, {
+            state: {
+                editSanPham: true,
+                data: item || null,
+            },
         });
     }
 

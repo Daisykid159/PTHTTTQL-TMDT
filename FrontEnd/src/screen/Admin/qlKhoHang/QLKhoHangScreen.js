@@ -50,7 +50,22 @@ function QLKhoHangScreen (props) {
     };
 
     const handleToEditProductKhoHangAdminScreen = (item) => {
-        navigate(`/admin/EditProductKhoHangAdminScreen/${item.idProduct}`);
+        if(item) {
+            console.log(item)
+            navigate(`/admin/EditProductKhoHangAdminScreen`, {
+                state: {
+                    editSanPham: false,
+                    data: item
+                },
+            });
+        } else {
+            navigate(`/admin/EditProductKhoHangAdminScreen`, {
+                state: {
+                    editSanPham: false,
+                    data: null
+                },
+            });
+        }
     }
 
     return (
@@ -76,7 +91,10 @@ function QLKhoHangScreen (props) {
                     </select>
                 </div>
 
-                <div className={cx('btn', 'addSp')}>Thêm sản phẩm</div>
+                <div
+                    className={cx('btn', 'addSp')}
+                    onClick={() => handleToEditProductKhoHangAdminScreen()}
+                >Thêm sản phẩm</div>
             </div>
 
             <div className={cx('body')}>
@@ -102,7 +120,7 @@ function QLKhoHangScreen (props) {
                             {dataListProduct.map(item => (
                                 <tr>
                                     <td>{item.idProduct}</td>
-                                    <td className={cx('nameProduct')}>
+                                    <td className={cx('nameProduct')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
                                         <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
                                         <div>{item.nameProduct}</div>
                                     </td>
@@ -114,7 +132,7 @@ function QLKhoHangScreen (props) {
                                     <td>{item.remainingAmount} chiếc</td>
 
                                     <td className={cx('iconList')}>
-                                        <i className={cx('bx bx-show-alt', 'iconShow')}></i>
+                                        <i className={cx('bx bx-show-alt', 'iconShow')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
                                         <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
                                         <i className={cx('bx bx-trash', 'iconTrash')}></i>
                                     </td>

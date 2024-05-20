@@ -14,6 +14,7 @@ import BillAdminScreen from "../../screen/Admin/bill/BillAdminScreen";
 import DetailBillAdminScreen from "../../screen/Admin/detailBill/DetailBillAdminScreen";
 import EditProductKhoHangAdminScreen from "../../screen/Admin/editProductKhoHang/EditProductKhoHangAdminScreen";
 import DetailUserAdminScreen from "../../screen/Admin/detailUserAdmin/DetailUserAdminScreen";
+import FakeAPIPay from "../../screen/Admin/fakeAPIPay/FakeAPIPay";
 
 const cx = classNames.bind(styles);
 
@@ -65,9 +66,17 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
+                        <Link to="/admin/FakeAPIPay" className={cx('flex')}>
+                            <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
+                            <div className={cx('colorW')}>Call Api thanh toán</div>
+                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
+                        </Link>
+                    </li>
+
+                    <li className={cx('item')} >
                         <Link to="/admin/QLKhoHangScreen" className={cx('flex')}>
                             <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Quản lý tồn kho</div>
+                            <div className={cx('colorW')}>Quản lý nhập kho</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
                         </Link>
                     </li>
@@ -97,8 +106,10 @@ function HeaderAdmin () {
                 <Route path="/admin/NotificationAdminScreen" element={<NotificationAdminScreen />} />
                 <Route path="/admin/BillAdminScreen" element={<BillAdminScreen />} />
                 <Route path="/admin/DetailBillAdminScreen/:id" element={<DetailBillAdminScreen />} />
-                <Route path="/admin/EditProductKhoHangAdminScreen/:id" element={<EditProductKhoHangAdminScreen />} />
+                <Route path="/admin/EditProductKhoHangAdminScreen" element={<EditProductKhoHangAdminScreen />} />
                 <Route path="/admin/DetailUserAdminScreen/:id" element={<DetailUserAdminScreen />} />
+
+                <Route path="/admin/FakeAPIPay" element={<FakeAPIPay />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
 

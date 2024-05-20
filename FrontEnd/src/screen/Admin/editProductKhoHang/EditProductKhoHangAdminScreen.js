@@ -58,15 +58,27 @@ function EditProductKhoHangAdminScreen (props) {
         setDateImportProduct(moment(date).format('YYYY-MM-DDTHH:mm:ss'));
     }
 
-    console.log(dateImportProduct)
-
     const handleSelectImg = (e) => {
         setSelectedImg(e.target.files[0]);
     }
 
+    const handleUpdate = () => {
+        console.log(nameProduct, colorProduct, typeProduct, priceImportProduct, quantityImportProduct, dateImportProduct);
+        alert("Cập nhật");
+    }
+
     return (
         <div className={cx('EditProductKhoHangAdminScreen')}>
-            <div className={cx('textHeader', 'bold')}>CHỈNH SỬA THÔNG TIN SẢN PHẨM</div>
+            <div className={cx('flex', 'center', 'spbw', 'w90pt')}>
+                <div className={cx('textHeader', 'bold')}>CHỈNH SỬA THÔNG TIN SẢN PHẨM</div>
+
+                <div
+                    className={cx('btnUpdate')}
+                    onClick={handleUpdate}
+                >
+                    Cập nhật
+                </div>
+            </div>
 
             <div className={cx('flex')}>
                 <div className={cx('w50pt')}>
@@ -85,18 +97,18 @@ function EditProductKhoHangAdminScreen (props) {
                         <input className={cx('input')} onChange={handleTypeProduct} value={typeProduct} />
                     </div>
 
-                    <div className={cx('select', 'selectImg', 'itemInput')}>
-                        <div className={cx('selectInput')}>
-                            <div className={cx('textInput')}>Ảnh sản phẩm</div>
-                            <input className={cx('inputImg')} type={'file'} onChange={handleSelectImg} />
-                        </div>
+                    {/*<div className={cx('select', 'selectImg', 'itemInput')}>*/}
+                    {/*    <div className={cx('selectInput')}>*/}
+                    {/*        <div className={cx('textInput')}>Ảnh sản phẩm</div>*/}
+                    {/*        <input className={cx('inputImg')} type={'file'} onChange={handleSelectImg} />*/}
+                    {/*    </div>*/}
 
-                        {selectedImg && (
-                            <div>
-                                <img className={cx('imgSelected')} src={URL.createObjectURL(selectedImg)} alt="Ảnh sản phẩm được chọn" />
-                            </div>
-                        )}
-                    </div>
+                    {/*    {selectedImg && (*/}
+                    {/*        <div>*/}
+                    {/*            <img className={cx('imgSelected')} src={URL.createObjectURL(selectedImg)} alt="Ảnh sản phẩm được chọn" />*/}
+                    {/*        </div>*/}
+                    {/*    )}*/}
+                    {/*</div>*/}
                 </div>
 
                 <div className={cx('w50pt')}>
