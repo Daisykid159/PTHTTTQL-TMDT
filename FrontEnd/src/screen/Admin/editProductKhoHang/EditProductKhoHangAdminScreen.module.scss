@@ -7,8 +7,20 @@
   display: flex;
 }
 
+.center {
+  align-items: center;
+}
+
+.spbw {
+  justify-content: space-between;
+}
+
 .w50pt {
   width: 50%;
+}
+
+.w90pt {
+  width: 91%;
 }
 
 .bold {
@@ -58,4 +70,12 @@
 .textDescribe {
   margin-top: 20px;
   font-size: 18px;
+}
+
+.btnUpdate {
+  cursor: pointer;
+  padding: 5px 15px;
+  color: white;
+  background-color: #02ac02;
+  border-radius: 10px;
 }
