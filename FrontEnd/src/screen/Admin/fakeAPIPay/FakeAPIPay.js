@@ -44,7 +44,7 @@ function FakeAPIPay(props) {
         let check = true;
         listTmp?.map((item, index) => {
             if(item.idSku === Product.idSku && item.idSpu === Product.idSpu){
-                item.quantity += Product.quantity;
+                item.quantity += parseInt(Product.quantity);
                 check = false;
             }
         })

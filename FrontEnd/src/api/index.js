@@ -50,6 +50,10 @@ const Api = (token, username) => {
         return api.post(`/admin/createFlashOrder`, {...data});
     }
 
+    const productImportBill = (data) => {
+        return api.post(`/import/productImportBill`, {...data});
+    }
+
     return {
         getTokenLogin,
         register,
@@ -59,6 +63,7 @@ const Api = (token, username) => {
         getAllSpu,
         getAllSkuById,
         createFlashOrder,
+        productImportBill,
     };
 };
 

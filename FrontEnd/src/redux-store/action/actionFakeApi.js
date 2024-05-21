@@ -88,10 +88,34 @@ export function actionCreateFlashOrder (token, username, data) {
     };
 }
 
+export function actionImportProduct (token, username, data) {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api(token, username).productImportBill(data);
+
+            if (response && response.data){
+                if(response.data === "done") {
+                    alert("Nhập hàng thành công!");
+                } else {
+                    alert(response.data.message);
+                }
+
+                dispatch(updateData({
+                    doneImport: true,
+                }));
+            } else {
+                alert("Nhập hàng thất bại!");
+            }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+        }
+    };
+}
+
 export function actionDonePay () {
     return async (dispatch, getState) => {
         dispatch(updateData({
-            donePay: false,
+            doneImport: false,
         }))
     };
 }
@@ -102,4 +126,5 @@ export default {
     actionGetAllSkuById,
     actionCreateFlashOrder,
     actionDonePay,
+    actionImportProduct,
 };

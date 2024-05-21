@@ -15,6 +15,7 @@ import DetailBillAdminScreen from "../../screen/Admin/detailBill/DetailBillAdmin
 import EditProductKhoHangAdminScreen from "../../screen/Admin/editProductKhoHang/EditProductKhoHangAdminScreen";
 import DetailUserAdminScreen from "../../screen/Admin/detailUserAdmin/DetailUserAdminScreen";
 import FakeAPIPay from "../../screen/Admin/fakeAPIPay/FakeAPIPay";
+import QLNhapKho from "../../screen/Admin/qlNhapKho/QLNhapKho";
 
 const cx = classNames.bind(styles);
 
@@ -74,9 +75,17 @@ function HeaderAdmin () {
                     </li>
 
                     <li className={cx('item')} >
-                        <Link to="/admin/QLKhoHangScreen" className={cx('flex')}>
+                        <Link to="/admin/QLNhapKho" className={cx('flex')}>
                             <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Quản lý nhập kho</div>
+                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
+                        </Link>
+                    </li>
+
+                    <li className={cx('item')} >
+                        <Link to="/admin/QLKhoHangScreen" className={cx('flex')}>
+                            <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
+                            <div className={cx('colorW')}>Quản lý hàng tồn kho</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
                         </Link>
                     </li>
@@ -109,6 +118,7 @@ function HeaderAdmin () {
                 <Route path="/admin/EditProductKhoHangAdminScreen" element={<EditProductKhoHangAdminScreen />} />
                 <Route path="/admin/DetailUserAdminScreen/:id" element={<DetailUserAdminScreen />} />
 
+                <Route path="/admin/QLNhapKho" element={<QLNhapKho />} />
                 <Route path="/admin/FakeAPIPay" element={<FakeAPIPay />} />
                 <Route path="*" element={<NoPage />} />
             </Routes>
