@@ -4,43 +4,20 @@ import classNames from "classnames/bind";
 import ItemProductFakeApi from "./ItemProductFakeApi";
 import {formatPrice} from "../../../unitl";
 import {useDispatch, useSelector} from "react-redux";
-import {actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
+import {
+    actionCreateFlashOrder,
+    ActionGetAllSkuById,
+    actionGetAllSpu,
+    actionGetAllUser
+} from "../../../redux-store/action/actionFakeApi";
+import moment from "moment";
 
 const cx = classNames.bind(styles);
 
 function FakeAPIPay(props) {
 
     const listUser = useSelector(state => state.reducerFakeApi.listAllUser);
-    const listDataProduct = [
-        {
-            "productSpu_name": "IPhone 15",
-            "productSku_name": "Đen",
-            "src": "https://bizweb.dktcdn.net/100/112/815/products/ryd…3-2d74-4ada-932f-9ec5b5652486.jpg?v=1703477620890",
-            "quantity": 1,
-            "price": 22100000
-        },
-        {
-            "productSpu_name": "IPhone 15 Plus",
-            "productSku_name": "Đen",
-            "src": "https://bizweb.dktcdn.net/100/112/815/products/ryd…3-2d74-4ada-932f-9ec5b5652486.jpg?v=1703477620890",
-            "quantity": 1,
-            "price": 22200000
-        },
-        {
-            "productSpu_name": "IPhone 15 Pro",
-            "productSku_name": "Đen",
-            "src": "https://bizweb.dktcdn.net/100/112/815/products/ryd…3-2d74-4ada-932f-9ec5b5652486.jpg?v=1703477620890",
-            "quantity": 1,
-            "price": 22300000
-        },
-        {
-            "productSpu_name": "IPhone 15 Pro Max",
-            "productSku_name": "Đen",
-            "src": "https://bizweb.dktcdn.net/100/112/815/products/ryd…3-2d74-4ada-932f-9ec5b5652486.jpg?v=1703477620890",
-            "quantity": 1,
-            "price": 22400000
-        }
-    ]
+    const listDataProduct = useSelector(state => state.reducerFakeApi.listDataProduct);
 
     const dispatch = useDispatch();
     const token = useSelector(state => state.reducerAuth.token);
@@ -49,14 +26,25 @@ function FakeAPIPay(props) {
     const [userCurrent, setUserCurrent] = useState(null);
     const [listProduct, setListProduct] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
+    const [dateCreateBill, setDateCreateBill] = useState(Date.now());
     const payment_id = 1;
 
     useEffect(() => {
         dispatch(actionGetAllUser(token, decoded.sub))
+        dispatch(actionGetAllSpu(token, decoded.sub))
+        dispatch(ActionGetAllSkuById(token, decoded.sub, 1))
     }, [])
     const addProduct = (Product) => {
         const listTmp = listProduct || [];
-        listTmp?.push(Product);
+        let check = true;
+        listTmp?.map((item, index) => {
+            if(item.idSku === Product.idSku && item.idSpu === Product.idSpu){
+                item.quantity += Product.quantity;
+                check = false;
+            }
+        })
+
+        if(check) listTmp?.push(Product);
 
         let total = 0;
         listTmp?.map(item => {
@@ -65,11 +53,23 @@ function FakeAPIPay(props) {
 
         setTotalPrice(total);
         setListProduct(listTmp);
+        console.log(Product);
+    }
+
+    const handleDateCreateBill = (e) => {
+        setDateCreateBill(e.target.value);
     }
 
     const handlePay = () => {
         alert("thanh toan");
-        console.log(listProduct, totalPrice, payment_id)
+        const dataPay = {
+            "username": userCurrent,
+            "createdAt": moment(dateCreateBill).format("HH:mm DD/MM/yyyy"),
+            "total": totalPrice,
+            "payment_id": payment_id,
+            "carts": listProduct,
+        }
+        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay))
     }
 
     return (
@@ -114,7 +114,6 @@ function FakeAPIPay(props) {
                         listProduct?.map(item => (
                             <tr>
                                 <td className={cx('nameProduct')}>
-                                    <img src={item.src} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
                                     <div>{item.productSpu_name}</div>
                                 </td>
                                 <td>{item.productSku_name}</td>
@@ -128,15 +127,30 @@ function FakeAPIPay(props) {
                 </table>
             </div>
 
-            <div className={cx('flex', 'bold', 'mt10px')}>
-                <div className={cx('w25pt')}>Tổng thanh toán:</div>
-                <div className={cx('red')}>{formatPrice(totalPrice)}</div>
+            <div className={cx('flex', 'center')}>
+                <div className={cx('w50pt')}>
+                    <div className={cx('flex', 'bold', 'mt10px')}>
+                        <div className={cx('w30pt')}>Tổng thanh toán:</div>
+                        <div className={cx('red')}>{formatPrice(totalPrice)}</div>
+                    </div>
+
+                    <div className={cx('flex', 'bold', 'mt10px')}>
+                        <div className={cx('w30pt')}>Phương thức thanh toán:</div>
+                        <div className={cx('green')}>VNPay</div>
+                    </div>
+                </div>
+
+                <div className={cx('flex', 'center', 'bold', 'mt10px')}>
+                    <div>Ngày mua hàng: </div>
+                    <input
+                        value={dateCreateBill}
+                        className={cx('inputDate')}
+                        type={"datetime-local"}
+                        onChange={handleDateCreateBill}
+                    />
+                </div>
             </div>
 
-            <div className={cx('flex', 'bold', 'mt10px')}>
-                <div className={cx('w25pt')}>Phương thức thanh toán:</div>
-                <div className={cx('green')}>VNPay</div>
-            </div>
 
             <div className={cx('summit')} onClick={handlePay}>Thanh toán</div>
         </div>

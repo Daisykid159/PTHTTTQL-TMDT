@@ -37,7 +37,19 @@ const Api = (token, username) => {
     }
 
     const getAllUser = () => {
-        return api.get(`/admin/getAllUser`)
+        return api.get(`/admin/getAllUser`);
+    }
+
+    const getAllSpu = () => {
+        return api.get(`/admin/getAllSpu`);
+    }
+
+    const getAllSkuById = (id) => {
+        return api.get(`/admin/getAllSkuBy/${id}`);
+    }
+
+    const createFlashOrder = (data) => {
+        return api.post(`/admin/createFlashOrder`, {data});
     }
 
     return {
@@ -46,6 +58,9 @@ const Api = (token, username) => {
         getListTypeProducts,
 
         getAllUser,
+        getAllSpu,
+        getAllSkuById,
+        createFlashOrder,
     };
 };
 

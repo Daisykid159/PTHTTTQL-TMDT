@@ -12,7 +12,6 @@ export function actionLogin (username, password, nextToScreen) {
     return async (dispatch, getState) => {
         try {
             const response = await Api().getTokenLogin(username, password);
-            console.log(response.data);
             if (response && response.data){
                 const decoded = jwtDecode(response.data.accessToken);
 

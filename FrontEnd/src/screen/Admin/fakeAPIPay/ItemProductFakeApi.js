@@ -2,35 +2,55 @@ import React, {useEffect, useState} from "react";
 import styles from './FakeAPIPay.module.scss';
 import classNames from "classnames/bind";
 import listProduct from "../../ListProduct/ListProduct";
+import {useDispatch, useSelector} from "react-redux";
+import {ActionGetAllSkuById} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
 function ItemProductFakeApi(props) {
 
-    const [product, setProduct] = useState(null);
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+
+    const listDataProductColor = useSelector(state => state.reducerFakeApi.listDataProductColor);
+
+    const [product, setProduct] = useState(listDataProductColor[0]);
     const [nameProduct, setNameProduct] = useState();
     const [colorProduct, setColorProduct] = useState();
     const [quantityProduct, setQuantityProduct] = useState(1);
+    const [idProduct, setIdProduct] = useState(1);
 
     useEffect(() => {
-        setNameProduct(props.listDataProduct[0].productSpu_name)
-        setColorProduct(props.listDataProduct[0].productSku_name);
-        setProduct(props.listDataProduct[0]);
-    }, []);
+        if(idProduct) dispatch(ActionGetAllSkuById(token, decoded.sub, idProduct))
+    }, [idProduct]);
 
     const handleAddProduct = () => {
+        // Spu : san pham
+        // Sku : mau
+
         props.addProduct({
-            "productSpu_name": product.productSpu_name,
-            "productSku_name": colorProduct,
-            "src": product.src,
+            "idSku": product.id || 1,
+            "idSpu": idProduct,
+            "productSpu_name": product.productSpu.name,
+            "productSku_name": product.color,
             "quantity": quantityProduct,
             "price": product.price
         })
     }
 
     const handleSelectProduct = (e) => {
+        setIdProduct(props.listDataProduct[e.target.value].id);
         setNameProduct(e.target.label);
-        setProduct(props.listDataProduct[e.target.value])
+    }
+
+    const handleSelectProductColor = (e) => {
+        setColorProduct(e.target.label);
+        setProduct(listDataProductColor[e.target.value]);
+    }
+
+    const handleQuantityProduct = (e) => {
+        setQuantityProduct(e.target.value);
     }
 
     return (
@@ -43,7 +63,7 @@ function ItemProductFakeApi(props) {
                     onChange={handleSelectProduct}
                 >
                     {props.listDataProduct.map((item, index) => (
-                        <option label={item.productSpu_name}>{index}</option>
+                        <option label={item.name}>{index}</option>
                     ))}
                 </select>
             </div>
@@ -53,10 +73,10 @@ function ItemProductFakeApi(props) {
                 <select
                     className={cx('selectOption', 'w100pt')}
                     value={colorProduct}
-                    onChange={(e) => setColorProduct(e.target.value)}
+                    onChange={handleSelectProductColor}
                 >
-                    {props.listDataProduct.map(item => (
-                        <option>{item.productSku_name}</option>
+                    {listDataProductColor.map((item, index) => (
+                        <option label={item.color}>{index}</option>
                     ))}
                 </select>
             </div>
@@ -67,7 +87,7 @@ function ItemProductFakeApi(props) {
                     className={cx('selectOption', 'w100pt')}
                     value={quantityProduct}
                     type={'number'}
-                    onChange={e => setQuantityProduct(e.target.value)}
+                    onChange={handleQuantityProduct}
                 />
             </div>
 
