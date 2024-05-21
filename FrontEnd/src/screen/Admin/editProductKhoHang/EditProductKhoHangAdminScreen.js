@@ -23,9 +23,15 @@ function EditProductKhoHangAdminScreen (props) {
 
     const location = useLocation();
     const editSanPham = location.state?.editSanPham;
+    const data = location.state?.data;
 
     useEffect(() => {
         const dateNow = new Date();
+        setNameProduct(data.productSpu.name);
+        setColorProduct(data.color);
+        setPriceImportProduct(data.price);
+        setQuantityImportProduct(1);
+        setTypeProduct(data.productSpu.type);
         setDateImportProduct(moment(dateNow).format('YYYY-MM-DDTHH:mm:ss'));
     }, []);
 
