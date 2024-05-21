@@ -1,9 +1,8 @@
 const INITIAL_STATE = {
     isLogin: false,
     admin: false,
+    decoded: {},
     token: '',
-    userName: '',
-    decodeToken: '',
 };
 
 const reducerAuth = (state = INITIAL_STATE, action) => {

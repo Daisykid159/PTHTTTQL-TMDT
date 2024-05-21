@@ -6,7 +6,7 @@ const Api = (token, username) => {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token || ''}`,
-            'x-client-username': username,
+            'x-admin-username': username,
         },
         timeout: 20000,
     });
@@ -36,10 +36,16 @@ const Api = (token, username) => {
         return api.get(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type}&categoryId=${categoryId}`)
     }
 
+    const getAllUser = () => {
+        return api.get(`/admin/getAllUser`)
+    }
+
     return {
         getTokenLogin,
         register,
         getListTypeProducts,
+
+        getAllUser,
     };
 };
 

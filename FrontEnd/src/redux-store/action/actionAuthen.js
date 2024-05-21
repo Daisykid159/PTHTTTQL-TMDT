@@ -1,4 +1,5 @@
 import Api from "../../api";
+import {jwtDecode} from "jwt-decode";
 
 export function updateData(data) {
     return {
@@ -13,13 +14,21 @@ export function actionLogin (username, password, nextToScreen) {
             const response = await Api().getTokenLogin(username, password);
             console.log(response.data);
             if (response && response.data){
+                const decoded = jwtDecode(response.data.accessToken);
+
                 dispatch(updateData({
                     isLogin: true,
+                    decoded: decoded,
                     token: response.data.accessToken,
+                    admin: decoded?.authorities[0] === "ADMIN",
                 }))
 
                 alert("Đăng nhập thành công!");
-                nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
+                if(decoded?.authorities[0] === "ADMIN") {
+                    nextToScreen("/");
+                } else {
+                    nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
+                }
             } else {
                 dispatch(updateData({
                     isLogin: false,

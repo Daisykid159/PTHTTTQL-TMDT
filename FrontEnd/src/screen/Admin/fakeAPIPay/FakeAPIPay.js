@@ -3,29 +3,14 @@ import styles from './FakeAPIPay.module.scss';
 import classNames from "classnames/bind";
 import ItemProductFakeApi from "./ItemProductFakeApi";
 import {formatPrice} from "../../../unitl";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
 function FakeAPIPay(props) {
 
-    const listUser = [
-        {
-            idUser: 1,
-            userName: 'user1',
-        },
-        {
-            idUser: 2,
-            userName: 'user2',
-        },
-        {
-            idUser: 3,
-            userName: 'user3',
-        },
-        {
-            idUser: 4,
-            userName: 'user4',
-        }
-    ]
+    const listUser = useSelector(state => state.reducerFakeApi.listAllUser);
     const listDataProduct = [
         {
             "productSpu_name": "IPhone 15",
@@ -57,11 +42,18 @@ function FakeAPIPay(props) {
         }
     ]
 
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+
     const [userCurrent, setUserCurrent] = useState(null);
     const [listProduct, setListProduct] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const payment_id = 1;
 
+    useEffect(() => {
+        dispatch(actionGetAllUser(token, decoded.sub))
+    }, [])
     const addProduct = (Product) => {
         const listTmp = listProduct || [];
         listTmp?.push(Product);
@@ -91,7 +83,7 @@ function FakeAPIPay(props) {
                     onChange={(e) => setUserCurrent(e.target.value)}
                 >
                     {listUser.map(item => (
-                        <option>{item.userName}</option>
+                        <option>{item.username}</option>
                     ))}
                 </select>
             </div>
