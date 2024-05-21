@@ -2,6 +2,7 @@ const INITIAL_STATE = {
     listAllUser: [],
     listDataProduct: [],
     listDataProductColor: [],
+    donePay: false,
 };
 
 const reducerFakeApi = (state = INITIAL_STATE, action) => {

@@ -5,8 +5,7 @@ import ItemProductFakeApi from "./ItemProductFakeApi";
 import {formatPrice} from "../../../unitl";
 import {useDispatch, useSelector} from "react-redux";
 import {
-    actionCreateFlashOrder,
-    ActionGetAllSkuById,
+    actionCreateFlashOrder, actionDonePay, actionGetAllSkuById,
     actionGetAllSpu,
     actionGetAllUser
 } from "../../../redux-store/action/actionFakeApi";
@@ -18,6 +17,7 @@ function FakeAPIPay(props) {
 
     const listUser = useSelector(state => state.reducerFakeApi.listAllUser);
     const listDataProduct = useSelector(state => state.reducerFakeApi.listDataProduct);
+    const donePay = useSelector(state => state.reducerFakeApi.donePay);
 
     const dispatch = useDispatch();
     const token = useSelector(state => state.reducerAuth.token);
@@ -55,7 +55,6 @@ function FakeAPIPay(props) {
     }
 
     const handlePay = () => {
-        alert("thanh toan");
         const dataPay = {
             "username": userCurrent,
             "createdAt": moment(dateCreateBill).format("HH:mm DD/MM/yyyy"),
@@ -66,6 +65,17 @@ function FakeAPIPay(props) {
         console.log(dataPay)
         dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay))
     }
+
+    useEffect(() => {
+        if(donePay) {
+            setListProduct([]);
+            setTotalPrice(0);
+            dispatch(actionGetAllUser(token, decoded.sub))
+            dispatch(actionGetAllSpu(token, decoded.sub))
+            dispatch(actionGetAllSkuById(token, decoded.sub, 1))
+            dispatch(actionDonePay());
+        }
+    }, [donePay]);
 
     return (
         <div className={cx('FakeAPIPay')}>
@@ -89,6 +99,7 @@ function FakeAPIPay(props) {
                 <ItemProductFakeApi
                     addProduct={addProduct}
                     listDataProduct={listDataProduct}
+                    listProduct={listProduct}
                 />
             </div>
 

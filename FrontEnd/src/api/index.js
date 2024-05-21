@@ -49,7 +49,7 @@ const Api = (token, username) => {
     }
 
     const createFlashOrder = (data) => {
-        return api.post(`/admin/createFlashOrder`, {data});
+        return api.post(`/admin/createFlashOrder`, {...data});
     }
 
     return {

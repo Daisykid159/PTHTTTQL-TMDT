@@ -3,7 +3,7 @@ import styles from './FakeAPIPay.module.scss';
 import classNames from "classnames/bind";
 import listProduct from "../../ListProduct/ListProduct";
 import {useDispatch, useSelector} from "react-redux";
-import {ActionGetAllSkuById} from "../../../redux-store/action/actionFakeApi";
+import {actionGetAllSkuById} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
@@ -22,21 +22,36 @@ function ItemProductFakeApi(props) {
     const [idProduct, setIdProduct] = useState(null);
 
     useEffect(() => {
-        if(idProduct) dispatch(ActionGetAllSkuById(token, decoded.sub, idProduct))
+        if(idProduct) dispatch(actionGetAllSkuById(token, decoded.sub, idProduct))
     }, [idProduct]);
 
     const handleAddProduct = () => {
         // Spu : san pham
         // Sku : mau
 
-        props.addProduct({
-            "idSku": product.id || 1,
-            "idSpu": idProduct,
-            "productSpu_name": product.productSpu.name,
-            "productSku_name": product.color,
-            "quantity": quantityProduct,
-            "price": product.price
+        console.log(listDataProductColor);
+
+        const listTmp = props.listProduct || [];
+        let check = false;
+        listTmp?.map((item, index) => {
+            if(item.idSku === product.id && item.idSpu === idProduct){
+                check = item.quantity + quantityProduct > product.quantity;
+            }
         })
+
+        if(check) {
+            alert("Số lượng không đủ!")
+            setQuantityProduct(1);
+        } else {
+            props.addProduct({
+                "idSku": product.id || 1,
+                "idSpu": idProduct,
+                "productSpu_name": product.productSpu.name,
+                "productSku_name": product.color,
+                "quantity": quantityProduct,
+                "price": product.price
+            })
+        }
     }
 
     const handleSelectProduct = (e) => {

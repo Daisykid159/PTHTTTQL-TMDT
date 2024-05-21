@@ -45,7 +45,7 @@ export function actionGetAllSpu (token, username) {
     };
 }
 
-export function ActionGetAllSkuById (token, username, id) {
+export function actionGetAllSkuById (token, username, id) {
     return async (dispatch, getState) => {
         try {
             const response = await Api(token, username).getAllSkuById(id);
@@ -70,7 +70,15 @@ export function actionCreateFlashOrder (token, username, data) {
             const response = await Api(token, username).createFlashOrder(data);
 
             if (response && response.data){
-                alert("Thanh toán thành công")
+                if(response.data === "done") {
+                    alert("Thanh toán thành công!");
+                } else {
+                    alert(response.data.message);
+                }
+
+                dispatch(updateData({
+                    donePay: true,
+                }));
             } else {
                 alert("Thanh toán thất bại!");
             }
@@ -80,9 +88,18 @@ export function actionCreateFlashOrder (token, username, data) {
     };
 }
 
+export function actionDonePay () {
+    return async (dispatch, getState) => {
+        dispatch(updateData({
+            donePay: false,
+        }))
+    };
+}
+
 export default {
     actionGetAllUser,
     actionGetAllSpu,
-    ActionGetAllSkuById,
+    actionGetAllSkuById,
     actionCreateFlashOrder,
+    actionDonePay,
 };

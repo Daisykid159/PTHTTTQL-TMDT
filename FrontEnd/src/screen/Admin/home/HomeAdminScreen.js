@@ -3,7 +3,11 @@ import Chart from 'react-apexcharts'
 import styles from './HomeAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../../unitl";
-import {ActionGetAllSkuById, actionGetAllSpu, actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
+import {
+    actionGetAllSkuById,
+    actionGetAllSpu,
+    actionGetAllUser
+} from "../../../redux-store/action/actionFakeApi";
 import {useDispatch, useSelector} from "react-redux";
 
 const cx = classNames.bind(styles);
@@ -240,8 +244,8 @@ function HomeAdminScreen (props) {
 
     useEffect(() => {
         dispatch(actionGetAllUser(token, decoded.sub))
-        dispatch(actionGetAllSpu(token, decoded.sub))
-        dispatch(ActionGetAllSkuById(token, decoded.sub, 1))
+        dispatch(actionGetAllSpu(token, decoded.sub));
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1))
     }, [])
 
     return (
