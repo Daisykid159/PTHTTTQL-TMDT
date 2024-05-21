@@ -19,7 +19,7 @@ function ItemProductFakeApi(props) {
     const [nameProduct, setNameProduct] = useState();
     const [colorProduct, setColorProduct] = useState();
     const [quantityProduct, setQuantityProduct] = useState(1);
-    const [idProduct, setIdProduct] = useState(1);
+    const [idProduct, setIdProduct] = useState(null);
 
     useEffect(() => {
         if(idProduct) dispatch(ActionGetAllSkuById(token, decoded.sub, idProduct))

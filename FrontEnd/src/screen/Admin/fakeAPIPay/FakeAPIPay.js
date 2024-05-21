@@ -23,17 +23,12 @@ function FakeAPIPay(props) {
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
 
-    const [userCurrent, setUserCurrent] = useState(null);
+    const [userCurrent, setUserCurrent] = useState(listUser[0].username);
     const [listProduct, setListProduct] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [dateCreateBill, setDateCreateBill] = useState(Date.now());
     const payment_id = 1;
 
-    useEffect(() => {
-        dispatch(actionGetAllUser(token, decoded.sub))
-        dispatch(actionGetAllSpu(token, decoded.sub))
-        dispatch(ActionGetAllSkuById(token, decoded.sub, 1))
-    }, [])
     const addProduct = (Product) => {
         const listTmp = listProduct || [];
         let check = true;
@@ -53,7 +48,6 @@ function FakeAPIPay(props) {
 
         setTotalPrice(total);
         setListProduct(listTmp);
-        console.log(Product);
     }
 
     const handleDateCreateBill = (e) => {
@@ -69,6 +63,7 @@ function FakeAPIPay(props) {
             "payment_id": payment_id,
             "carts": listProduct,
         }
+        console.log(dataPay)
         dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay))
     }
 

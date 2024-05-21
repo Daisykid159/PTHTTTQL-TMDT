@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Chart from 'react-apexcharts'
 import styles from './HomeAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../../unitl";
+import {ActionGetAllSkuById, actionGetAllSpu, actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
+import {useDispatch, useSelector} from "react-redux";
 
 const cx = classNames.bind(styles);
 
@@ -231,6 +233,16 @@ function HomeAdminScreen (props) {
             totalPrice: 700000000,
         }
     ]
+
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+
+    useEffect(() => {
+        dispatch(actionGetAllUser(token, decoded.sub))
+        dispatch(actionGetAllSpu(token, decoded.sub))
+        dispatch(ActionGetAllSkuById(token, decoded.sub, 1))
+    }, [])
 
     return (
         <div className={cx('HomeAdminScreen')}>
