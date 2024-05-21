@@ -27,7 +27,17 @@ function FakeAPIPay(props) {
     const [listProduct, setListProduct] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [dateCreateBill, setDateCreateBill] = useState(Date.now());
-    const payment_id = 1;
+    const [paymentId, setPaymentId] = useState(1);
+    const payment_id = [
+        {
+            id: 1,
+            paymentName: "VNPAY",
+        },
+        {
+            id: 2,
+            paymentName: "Trực tiếp",
+        }
+    ];
 
     const addProduct = (Product) => {
         const listTmp = listProduct || [];
@@ -59,7 +69,7 @@ function FakeAPIPay(props) {
             "username": userCurrent,
             "createdAt": moment(dateCreateBill).format("HH:mm DD/MM/yyyy"),
             "total": totalPrice,
-            "payment_id": payment_id,
+            "payment_id": paymentId,
             "carts": listProduct,
         }
         console.log(dataPay)
@@ -142,7 +152,16 @@ function FakeAPIPay(props) {
 
                     <div className={cx('flex', 'bold', 'mt10px')}>
                         <div className={cx('w30pt')}>Phương thức thanh toán:</div>
-                        <div className={cx('green')}>VNPay</div>
+                        <div className={cx('green')}>
+                            <select
+                                value={paymentId}
+                                onChange={e => setPaymentId(e.target.value)}
+                            >
+                                {payment_id.map(item => (
+                                    <option value={item.id}>{item.paymentName}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                 </div>
 

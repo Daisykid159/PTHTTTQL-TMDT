@@ -44,13 +44,14 @@ export function actionLogin (username, password, nextToScreen) {
     };
 }
 
-export function actionRegister (username, password, date) {
+export function actionRegister (username, email, password, handleBack) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api().getTokenLogin(username, password, date);
+            const response = await Api().register(username, email, password);
             console.log(response.data);
             if (response && response.data){
                 alert("Đăng ký thành công!");
+                handleBack();
             } else {
                 alert("Đăng ký thất bại!");
             }

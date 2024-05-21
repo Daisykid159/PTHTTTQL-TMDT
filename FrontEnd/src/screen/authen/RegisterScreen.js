@@ -48,7 +48,7 @@ function RegisterScreen(props) {
         setReenterPassword(e.target.value);
     }
     const handleRegister = () => {
-        dispatch(actionRegister(username, email, password, sdt))
+        dispatch(actionRegister(username, email, password, handleBack))
     }
 
     return (
@@ -57,10 +57,10 @@ function RegisterScreen(props) {
                 <h3>ĐĂNG KÝ TÀI KHOẢN</h3>
                 <p>Nếu bạn có một tài khoản, xin vui lòng chuyển qua trang đăng nhập</p>
                 <h4>Thông tin cá nhân</h4>
-                <div>
-                    <h4>Tên người dùng</h4>
-                    <input className={cx('input', 'w98')} placeholder={'Nhập tên người dùng'} value={fullName} onChange={handleFullName} />
-                </div>
+                {/*<div>*/}
+                {/*    <h4>Tên người dùng</h4>*/}
+                {/*    <input className={cx('input', 'w98')} placeholder={'Nhập tên người dùng'} value={fullName} onChange={handleFullName} />*/}
+                {/*</div>*/}
 
                 <div>
                     <h4>Tên đăng nhập</h4>
@@ -72,10 +72,10 @@ function RegisterScreen(props) {
                     <input className={cx('input', 'w98')} placeholder={'Nhập E-mail'} value={email} onChange={handleEmail} />
                 </div>
 
-                <div>
-                    <h4>Số điện thoại</h4>
-                    <input className={cx('input', 'w98')} placeholder={'Nhập số điện thoại'} value={sdt} onChange={handleSDT} />
-                </div>
+                {/*<div>*/}
+                {/*    <h4>Số điện thoại</h4>*/}
+                {/*    <input className={cx('input', 'w98')} placeholder={'Nhập số điện thoại'} value={sdt} onChange={handleSDT} />*/}
+                {/*</div>*/}
 
                 <div>
                     <h4>Password</h4>

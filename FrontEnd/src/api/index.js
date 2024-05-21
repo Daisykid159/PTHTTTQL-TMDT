@@ -19,15 +19,13 @@ const Api = (token, username) => {
         });
     }
 
-    const register = (fullName, username, password, email, sdt, date ) => {
+    const register = (username, email, password) => {
         return api.post('/account/register', {
-            "fullName": fullName,
             "username": username,
             "password": password,
             "email": email,
-            "sdt": sdt,
             "role": "USER",
-            "date": date,
+            "date": "01/05/2024",
             "gender": "male"
         })
     }
