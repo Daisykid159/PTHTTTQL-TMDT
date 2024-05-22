@@ -15,8 +15,8 @@ const DropDownTree = (props) => {
     }
 
     const handleList = (item) => {
-        const categoryId = item.categoryId;
-        const type = item.type;
+        const categoryId = item.categories;
+        const type = parseInt(item.type);
 
         navigate('/screen/ListProduct/ListProduct', {
             state: { categoryId, type },
@@ -35,7 +35,7 @@ const DropDownTree = (props) => {
             </div>
 
             {showListChild && (<div className={cx('childList')}>
-                {props.item.listItem.map(item => (<div className={cx('textNameListChild')} onClick={() => handleList(item)} >{item.nameItem}</div>))}
+                {props.item.listItem.map(item => (<div className={cx('textNameListChild')} onClick={() => handleList(item)} >{item.spuCustom}</div>))}
             </div>)}
         </div>
     )

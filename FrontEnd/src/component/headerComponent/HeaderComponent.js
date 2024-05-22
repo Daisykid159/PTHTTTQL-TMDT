@@ -30,78 +30,75 @@ function HeaderComponent () {
     const dataListAll = [
         {
             id: 1,
-            icon: 'bx bx-mobile-alt',
             nameListProduct: 'Điện thoại',
             listItem: [
                 {
-                    id: 1,
-                    nameItem: 'Iphone 15',
-                    type: 15,
-                    categoryId: 1,
+                    "type": "11",
+                    "categories": 1,
+                    "spuCustom": "IPhone 11|IPhone 11 Pro|IPhone 11 ProMax"
                 },
                 {
-                    id: 2,
-                    nameItem: 'Iphone 14',
-                    type: 14,
-                    categoryId: 1,
+                    "type": "12",
+                    "categories": 1,
+                    "spuCustom": "IPhone 12 Mini|IPhone 12 |IPhone 12 Pro|IPhone 12 ProMax"
                 },
                 {
-                    id: 3,
-                    nameItem: 'Iphone 13',
-                    type: 13,
-                    categoryId: 1,
+                    "type": "13",
+                    "categories": 1,
+                    "spuCustom": "IPhone 13|IPhone 13 Pro|IPhone 13 Pro Max"
                 },
                 {
-                    id: 4,
-                    nameItem: 'Iphone 12',
-                    type: 12,
-                    categoryId: 1,
+                    "type": "14",
+                    "categories": 1,
+                    "spuCustom": "IPhone 14|IPhone 14 Plus|IPhone 14 Pro|IPhone 14 Pro Max"
+                },
+                {
+                    "type": "15",
+                    "categories": 1,
+                    "spuCustom": "IPhone 15|IPhone 15 Plus|IPhone 15 Pro|IPhone 15 Pro Max"
+                },
+                {
+                    "type": "5",
+                    "categories": 1,
+                    "spuCustom": "IPhone SE"
+                },
+                {
+                    "type": "8",
+                    "categories": 1,
+                    "spuCustom": "IPhone 8|IPhone 8 Plus"
+                },
+                {
+                    "type": "10",
+                    "categories": 1,
+                    "spuCustom": "IPhone XS|IPhone XR|IPhone XSMax"
                 }
             ]
         },
         {
             id: 2,
             icon: 'bx bx-mobile-alt',
-            nameListProduct: 'Điện thoại',
-            listItem: [
-                {
-                    id: 1,
-                    nameItem: 'Iphone 15',
-                },
-                {
-                    id: 2,
-                    nameItem: 'Iphone 14',
-                },
-                {
-                    id: 3,
-                    nameItem: 'Iphone 13',
-                },
-                {
-                    id: 4,
-                    nameItem: 'Iphone 12',
-                }
-            ]
+            nameListProduct: 'Linh kiện',
+            listItem: []
         },
         {
             id: 3,
             icon: 'bx bx-mobile-alt',
-            nameListProduct: 'Điện thoại',
+            nameListProduct: 'Phụ kiện',
             listItem: [
                 {
-                    id: 1,
-                    nameItem: 'Iphone 15',
+                    "type": "Củ sạc Iphone/Ipad",
+                    "categories": 3,
+                    "spuCustom": "Sạc nhanh IPhone 20W|Sạc IPhone 5W"
                 },
                 {
-                    id: 2,
-                    nameItem: 'Iphone 14',
+                    "type": "Tai nghe",
+                    "categories": 3,
+                    "spuCustom": "Tai nghe Lightning Iphone"
                 },
                 {
-                    id: 3,
-                    nameItem: 'Iphone 13',
-                },
-                {
-                    id: 4,
-                    nameItem: 'Iphone 12',
+                    "type": "Cáp sạc Iphone/Ipad",
+                    "categories": 3,
+                    "spuCustom": "Cáp sạc nhanh Type-C PD|Cáp Type C - Type C 1m|Cap IPhone|Cáp dù sạc nhanh Type-C PD iMac"
                 }
             ]
         },

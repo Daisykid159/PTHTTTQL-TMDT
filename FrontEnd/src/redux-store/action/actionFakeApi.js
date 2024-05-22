@@ -72,10 +72,10 @@ export function actionGetAllSkuById (token, username, id, setProduct, setColorPr
     };
 }
 
-export function actionCreateFlashOrder (token, username, data) {
+export function actionCreateFlashOrder (token, username, data, isAdmin) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username).createFlashOrder(data);
+            const response = await Api(token, username, isAdmin).createFlashOrder(data);
 
             if (response && response.data){
                 if(response.data === "done") {

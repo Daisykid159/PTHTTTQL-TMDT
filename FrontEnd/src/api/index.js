@@ -1,15 +1,29 @@
 import axios from 'axios';
 
-const Api = (token, username) => {
-    const api = axios.create({
-        baseURL: 'http://localhost:8080/api/v1',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token || ''}`,
-            'x-admin-username': username,
-        },
-        timeout: 20000,
-    });
+const Api = (token, username, role) => {
+    let api
+
+    if(role === false) {
+        api = axios.create({
+            baseURL: 'http://localhost:8080/api/v1',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token || ''}`,
+                'x-user-username': username,
+            },
+            timeout: 20000,
+        });
+    } else {
+        api = axios.create({
+            baseURL: 'http://localhost:8080/api/v1',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token || ''}`,
+                'x-admin-username': username,
+            },
+            timeout: 20000,
+        });
+    }
 
     // api get token
     const getTokenLogin =(username, password) => {

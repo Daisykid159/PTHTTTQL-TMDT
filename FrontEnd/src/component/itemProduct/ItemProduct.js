@@ -11,12 +11,14 @@ function ItemProduct (props) {
     const navigate = useNavigate();
 
     const handleDetailProduct = () => {
-        navigate('/screen/productDetail/DetailProduct');
+        navigate('/screen/productDetail/DetailProduct', {
+            state: { data: props.data}
+        });
     }
 
     return (
         <div className={cx('itemProduct')} onClick={handleDetailProduct} >
-            <img src={require(`../../assets/img/${props.data.img}`)} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
+            <img src={props.data.src} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
 
             <div className={cx('itemName')}>{props.data.name}</div>
             <div className={cx('itemPrice')}>{formatPrice(props.data.price)}</div>
@@ -29,4 +31,4 @@ function ItemProduct (props) {
     )
 }
 
-export default React.memo(ItemProduct);
+export default ItemProduct;

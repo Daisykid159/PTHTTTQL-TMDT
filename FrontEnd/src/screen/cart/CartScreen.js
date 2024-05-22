@@ -36,8 +36,10 @@ function CartScreen (props) {
         setResetView(!resetView);
     }
 
-    const handleToDetailProduct = () => {
-        navigate('/screen/productDetail/DetailProduct');
+    const handleToDetailProduct = (item) => {
+        navigate('/screen/productDetail/DetailProduct', {
+            state: { data: item }
+        });
     }
 
     const handleToHome = () => {
@@ -82,12 +84,11 @@ function CartScreen (props) {
                     <tbody>
                     {listCart.map((item, index) => (
                         <tr>
-                            <td onClick={handleToDetailProduct}>
-                                <img src={require(`../../assets/img/${item.imgs[1].img}`)} alt="Logo" className={cx('img')} />
+                            <td onClick={() => handleToDetailProduct(item)}>
+                                <img src={item.src} alt="Logo" className={cx('img')} />
                             </td>
-                            <td onClick={handleToDetailProduct} className={cx('itemSp')} >
-                                <div className={cx('nameItemSp')}>{item.name}</div>
-                                <div className={cx('colorItemSp')}>{item.colors[0].color}</div>
+                            <td onClick={() => handleToDetailProduct(item)} className={cx('itemSp')} >
+                                <div className={cx('nameItemSp')}>{item.name} {item.description}</div>
                             </td>
                             <td className={cx('colorItemSp')}>{formatPrice(item.price)}</td>
                             <td>

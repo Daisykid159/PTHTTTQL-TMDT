@@ -2,21 +2,38 @@ import React, {useEffect, useState} from "react";
 import styles from './PayScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../unitl";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
+import moment from "moment/moment";
+import {actionCreateFlashOrder} from "../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
 function PayScreen (props) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+    const isAdmin = useSelector(state => state.reducerAuth.admin);
     const listAddress = useSelector(state => state.reducerUserInformation.UserInformations);
+    const listCart = useSelector(state => state.reducerCart.listCart);
     const [selectedOption, setSelectedOption] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
     const [nameClient, setNameClient] = useState('');
     const [sdtClient, setSdtClient] = useState('');
     const [addressKClient, setAddressKClient] = useState('');
     const [cmtClient, setCmtClient] = useState('');
+    const [totalPrice, setTotalPrice] = useState(0);
+
+    useEffect(() => {
+        let totalPriceTmp = 0;
+        listCart.map(item => {
+            totalPriceTmp += (item.price * item.quantity)
+        })
+
+        setTotalPrice(totalPriceTmp);
+    }, [])
 
     useEffect(() => {
         listAddress.map((item, index) => {
@@ -51,6 +68,18 @@ function PayScreen (props) {
 
     const handleToDetailProduct = () => {
         navigate('/screen/productDetail/DetailProduct');
+    }
+
+    const handlePay = () => {
+        const dataPay = {
+            "username": decoded.sub,
+            "createdAt": moment(Date.now()).format("HH:mm DD/MM/yyyy"),
+            "total": totalPrice+40000,
+            "payment_id": 1,
+            "carts": listCart,
+        }
+        console.log(dataPay)
+        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay, isAdmin))
     }
 
     return (
@@ -109,7 +138,7 @@ function PayScreen (props) {
                     <div className={cx('flex', 'center', 'shipPay')}>
                         <div className={cx('flex', 'center')}>
                             <i className={cx('bx bx-check-circle', 'check')}></i>
-                            <div>Thanh toán khi nhận hàng</div>
+                            <div>VNPAY</div>
                         </div>
 
                         <i className={cx('bx bx-money')} style={{ fontSize: 22, color: '#05b2e9' }}></i>
@@ -121,23 +150,24 @@ function PayScreen (props) {
             <div className={cx('product')}>
                 <div className={cx('textShippingPayment')}>Đơn hàng</div>
 
-                <div className={cx('flex', 'center', 'btn')} onClick={handleToDetailProduct}>
-                    <div className={cx('relative', 'imgP')}>
-                        <img src={require('../../assets/img/imgPhone2.png')} alt="Logo" className={cx('imgProduct')} />
-                        <p className={cx('numberProduct')}>1</p>
-                    </div>
+                {listCart.map(item => (
+                    <div className={cx('flex', 'center', 'btn')} onClick={handleToDetailProduct}>
+                        <div className={cx('relative', 'imgP')}>
+                            <img src={item.src} alt="Logo" className={cx('imgProduct')} />
+                            <p className={cx('numberProduct')}>1</p>
+                        </div>
 
-                    <div className={cx('nameP')}>
-                        <div className={cx('nameItemSp')}>Iphone XR 64GB Like New 99%</div>
-                        <div className={cx('colorItemSp')}>Vàng</div>
-                    </div>
+                        <div className={cx('nameP')}>
+                            <div className={cx('nameItemSp')}>{item.name} {item.description}</div>
+                        </div>
 
-                    <div className={cx('priceP')}>{formatPrice(15600000*1)}</div>
-                </div>
+                        <div className={cx('priceP')}>{formatPrice(item.quantity * item.price)}</div>
+                    </div>
+                ))}
 
                 <div className={cx('flex', 'mt30')}>
                     <div className={cx('colorItemSp')}>Tạm tính</div>
-                    <div className={cx('priceP')}>{formatPrice(15600000*1)}</div>
+                    <div className={cx('priceP')}>{formatPrice(totalPrice)}</div>
                 </div>
 
                 <div className={cx('flex', 'mt10')}>
@@ -147,10 +177,10 @@ function PayScreen (props) {
 
                 <div className={cx('mt30', 'flex')}>
                     <div className={cx('sumTT')}>Tổng thanh toán</div>
-                    <div className={cx('priceTT')}>{formatPrice(15600000 + 40000)}</div>
+                    <div className={cx('priceTT')}>{formatPrice(totalPrice + 40000)}</div>
                 </div>
 
-                <div className={cx('btn', 'btnPay')}>ĐẶT HÀNG</div>
+                <div className={cx('btn', 'btnPay')} onClick={handlePay}>ĐẶT HÀNG</div>
             </div>
         </div>
     )

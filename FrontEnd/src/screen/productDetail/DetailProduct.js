@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './DetailProduct.module.scss';
 import classNames from "classnames/bind";
 import CategoryList from "../../component/categoryList/CategoryList";
@@ -11,48 +11,10 @@ const cx = classNames.bind(styles);
 
 function DetailProduct (props) {
 
-    const dataDetailProduct = {
-        id: 1,
-        name: 'iPhone XS 256GB Like New 99%',
-        price: 6800000,
-        quantity: 1,
-        imgs: [
-            {
-                id: 0,
-                img: 'imgItemH.png'
-            },
-            {
-                id: 1,
-                img: 'imgPhone1.png'
-            },
-            {
-                id: 2,
-                img: 'imgPhone2.png'
-            },
-            {
-                id: 3,
-                img: 'imgPhone3.png'
-            },
-        ],
-        colors: [
-            {
-                id: 1,
-                color: 'Đen',
-            },
-            {
-                id: 2,
-                color: 'Vàng',
-            },
-            {
-                id: 3,
-                color: 'Trắng',
-            }
-        ]
-    }
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
+    const data = location?.state.data;
 
     const [indexImg, setIndexImg] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
@@ -86,10 +48,12 @@ function DetailProduct (props) {
 
     const handleBuy = () => {
         if(isLogin) {
-            listCart.push(dataDetailProduct);
+            listCart.push({...data, quantity: quantity, "idSku": 1, "idSpu": data.id});
             dispatch(actionAddProduct(listCart))
         } else {
-            navigate('/screen/authen/LoginScreen');
+            navigate('/screen/authen/LoginScreen', {
+                state: { data: data }
+            });
         }
     }
 
@@ -98,28 +62,12 @@ function DetailProduct (props) {
             <div className={cx('product')}>
                 <div className={cx('flex')}>
                     <div className={cx('imgProduct')}>
-                        <img src={require(`../../assets/img/${dataDetailProduct.imgs[indexImg].img}`)} alt="Product" className={cx('imgItem')} />
-
-                        <div className={cx('listImg')}>
-                            {dataDetailProduct.imgs.map((img, index) => (
-                                <div onClick={() => handleImg(index)} className={cx('imgItemList')}>
-                                    <img src={require(`../../assets/img/${img.img}`)} alt="Product" className={cx('imgItem')} />
-                                </div>
-                            ))}
-                        </div>
+                        <img src={data.src} alt="Product" className={cx('imgItem')} />
                     </div>
 
                     <div className={cx('productInformation')}>
-                        <div className={cx('textProductName')}>{dataDetailProduct.name}</div>
-                        <div className={cx('textProductPrice')}>{formatPrice(dataDetailProduct.price)}</div>
-                        <div className={cx('colorsProduct')}>
-                            <div className={cx('textColorsProduct')}>Màu sắc:</div>
-                            <select value={selectedOption} onChange={handleOptionChange} className={cx('selectColorsProduct')}>
-                                {dataDetailProduct.colors.map(item => (
-                                    <option value={item.id} >{item.color}</option>
-                                ))}
-                            </select>
-                        </div>
+                        <div className={cx('textProductName')}>{data.name} {data.description}</div>
+                        <div className={cx('textProductPrice')}>{formatPrice(data.price)}</div>
 
                         <div className={cx('quantityProduct')}>
                             <div className={cx('textQuantityProduct')}>Số lương:</div>
