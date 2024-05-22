@@ -80,13 +80,12 @@ export function actionCreateFlashOrder (token, username, data) {
             if (response && response.data){
                 if(response.data === "done") {
                     alert("Thanh toán thành công!");
+                    dispatch(updateData({
+                        donePay: true,
+                    }));
                 } else {
                     alert(response.data.message);
                 }
-
-                dispatch(updateData({
-                    donePay: true,
-                }));
             } else {
                 alert("Thanh toán thất bại!");
             }
@@ -124,6 +123,7 @@ export function actionDonePay () {
     return async (dispatch, getState) => {
         dispatch(updateData({
             doneImport: false,
+            donePay: false,
         }))
     };
 }

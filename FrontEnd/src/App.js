@@ -9,7 +9,7 @@ function App() {
 
     return (
         <div className="App">
-            {true ? (<HeaderAdmin/>) : (<HeaderComponent/>)}
+            {isAdmin ? (<HeaderAdmin/>) : (<HeaderComponent/>)}
         </div>
     );
 }

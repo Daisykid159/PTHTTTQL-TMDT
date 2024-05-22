@@ -19,11 +19,11 @@ function HomeAdminScreen (props) {
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
 
-    // useEffect(() => {
-    //     dispatch(actionGetAllUser(token, decoded.sub))
-    //     dispatch(actionGetAllSpu(token, decoded.sub));
-    //     dispatch(actionGetAllSkuById(token, decoded.sub, 1))
-    // }, [])
+    useEffect(() => {
+        dispatch(actionGetAllUser(token, decoded.sub))
+        dispatch(actionGetAllSpu(token, decoded.sub));
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1))
+    }, [])
 
     return (
         <div className={cx('HomeAdminScreen')}>
