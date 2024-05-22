@@ -4,6 +4,7 @@
   position: fixed;
   top: 0;
   bottom: 0;
+  overflow-y: auto;
 }
 
 .logo {
@@ -26,6 +27,7 @@
 .headerAdminList {
   padding: 15px;
   margin-top: 20%;
+  overflow-y: auto;
 }
 
 .colorW {
