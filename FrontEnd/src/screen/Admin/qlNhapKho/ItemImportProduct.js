@@ -22,8 +22,19 @@ function ItemImportProduct(props) {
     const [idProduct, setIdProduct] = useState(null);
 
     useEffect(() => {
-        if(idProduct) dispatch(actionGetAllSkuById(token, decoded.sub, idProduct))
+        setIdProduct(props.listDataProduct[0].id);
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1, setProduct, setColorProduct))
+    }, [])
+
+    useEffect(() => {
+        if(idProduct) {
+            dispatch(actionGetAllSkuById(token, decoded.sub, idProduct, setProduct, setColorProduct))
+        }
     }, [idProduct]);
+
+    useEffect(() => {
+        setPriceImport(product.price);
+    }, [product]);
 
     const handleAddProduct = () => {
         // Spu : san pham

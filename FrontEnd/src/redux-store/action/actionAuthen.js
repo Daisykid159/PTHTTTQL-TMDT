@@ -48,7 +48,7 @@ export function actionRegister (username, email, password, handleBack) {
     return async (dispatch, getState) => {
         try {
             const response = await Api().register(username, email, password);
-            console.log(response.data);
+
             if (response && response.data){
                 alert("Đăng ký thành công!");
                 handleBack();

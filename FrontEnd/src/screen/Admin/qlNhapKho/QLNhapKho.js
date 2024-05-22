@@ -24,13 +24,13 @@ function QLNhapKho(props) {
 
     const [listImportProduct, setListImportProduct] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
-    const [dateCreateBill, setDateCreateBill] = useState(Date.now());
+    const [dateImpotProduct, setDateImpotProduct] = useState(Date.now());
 
     const importProductList = (Product) => {
         const listTmp = listImportProduct || [];
         let checkImport = true;
         listTmp?.map((item, index) => {
-            if(item.idSku === Product.idSku && item.idSpu === Product.idSpu){
+            if(item.skuId === Product.skuId && item.spuId === Product.spuId){
                 item.price = Product.price
                 item.quantity += parseInt(Product.quantity);
                 checkImport = false;
@@ -48,19 +48,23 @@ function QLNhapKho(props) {
         setListImportProduct(listTmp);
     }
 
-    const handleDateCreateBill = (e) => {
-        setDateCreateBill(e.target.value);
+    const handleDateImpotProduct = (e) => {
+        setDateImpotProduct(e.target.value);
     }
 
     const handlePay = () => {
         const dataImportProduct = {
             "total_price": totalPrice,
-            "importAt": moment(dateCreateBill).format("HH:mm DD/MM/yyyy"),
+            "importAt": moment(dateImpotProduct).format("HH:mm DD/MM/yyyy"),
             "importList": listImportProduct,
         }
         console.log(dataImportProduct)
         dispatch(actionImportProduct(token, decoded.sub, dataImportProduct))
     }
+
+    useEffect(() => {
+        setDateImpotProduct(moment(Date.now()).format("yyyy-MM-DDTHH:mm"))
+    }, [])
 
     useEffect(() => {
         if(doneImport) {
@@ -127,10 +131,10 @@ function QLNhapKho(props) {
                 <div className={cx('flex', 'center', 'bold', 'mt10px')}>
                     <div>Ngày nhập hàng: </div>
                     <input
-                        value={dateCreateBill}
+                        value={dateImpotProduct}
                         className={cx('inputDate')}
                         type={"datetime-local"}
-                        onChange={handleDateCreateBill}
+                        onChange={handleDateImpotProduct}
                     />
                 </div>
             </div>

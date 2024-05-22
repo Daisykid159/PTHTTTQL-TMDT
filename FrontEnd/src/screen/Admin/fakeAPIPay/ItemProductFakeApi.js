@@ -22,14 +22,18 @@ function ItemProductFakeApi(props) {
     const [idProduct, setIdProduct] = useState(null);
 
     useEffect(() => {
-        if(idProduct) dispatch(actionGetAllSkuById(token, decoded.sub, idProduct))
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1, setProduct, setColorProduct))
+    }, [])
+
+    useEffect(() => {
+        if(idProduct) {
+            dispatch(actionGetAllSkuById(token, decoded.sub, idProduct, setProduct, setColorProduct));
+        }
     }, [idProduct]);
 
     const handleAddProduct = () => {
         // Spu : san pham
         // Sku : mau
-
-        console.log(listDataProductColor);
 
         const listTmp = props.listProduct || [];
         let check = false;

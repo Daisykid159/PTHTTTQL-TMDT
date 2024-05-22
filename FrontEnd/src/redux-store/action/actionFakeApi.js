@@ -45,7 +45,7 @@ export function actionGetAllSpu (token, username) {
     };
 }
 
-export function actionGetAllSkuById (token, username, id) {
+export function actionGetAllSkuById (token, username, id, setProduct, setColorProduct) {
     return async (dispatch, getState) => {
         try {
             const response = await Api(token, username).getAllSkuById(id);
@@ -54,6 +54,14 @@ export function actionGetAllSkuById (token, username, id) {
                 dispatch(updateData({
                     listDataProductColor: response.data,
                 }))
+
+                if(setProduct) {
+                    setProduct(response.data[0]);
+                }
+
+                if(setColorProduct) {
+                    setColorProduct(response.data[0].color)
+                }
 
             } else {
                 alert("ActionGetAllSkuBy thất bại!");

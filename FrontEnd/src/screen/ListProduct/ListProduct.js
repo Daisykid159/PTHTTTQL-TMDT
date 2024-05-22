@@ -22,7 +22,6 @@ function ListProduct(props) {
     const categoryId = location.state?.categoryId;
 
     useEffect(() => {
-        console.log(type, categoryId)
         dispatch(actionGetListProducts(currentPageNumber, sortBy, type, categoryId))
     }, [type, categoryId]);
 

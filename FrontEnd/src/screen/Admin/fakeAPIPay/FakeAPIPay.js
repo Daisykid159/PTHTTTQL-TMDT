@@ -77,6 +77,10 @@ function FakeAPIPay(props) {
     }
 
     useEffect(() => {
+        setDateCreateBill(moment(Date.now()).format("yyyy-MM-DDTHH:mm"))
+    }, [])
+
+    useEffect(() => {
         if(donePay) {
             setListProduct([]);
             setTotalPrice(0);

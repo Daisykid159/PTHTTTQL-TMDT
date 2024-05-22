@@ -27,14 +27,12 @@ function QLKhoHangScreen (props) {
     }
 
     const handleOptionChange = (event) => {
-        console.log(event.target.value)
         dispatch(actionGetAllSkuById(token, decoded.sub, event.target.value));
         setSelectedOption(event.target.value);
     };
 
     const handleToEditProductKhoHangAdminScreen = (item) => {
         if(item) {
-            console.log(item)
             navigate(`/admin/EditProductKhoHangAdminScreen`, {
                 state: {
                     editSanPham: false,
