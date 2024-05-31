@@ -73,7 +73,7 @@ function FakeAPIPay(props) {
             "carts": listProduct,
         }
         console.log(dataPay)
-        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay))
+        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay, 'user'))
     }
 
     useEffect(() => {

@@ -3,7 +3,18 @@ import axios from 'axios';
 const Api = (token, username, role) => {
     let api
 
-    if(role === false) {
+    if(role === 'goship') {
+        api = axios.create({
+            baseURL: 'http://sandbox.goship.io/api/v2',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token || ''}`,
+            },
+            timeout: 20000,
+        });
+    }
+
+    if(role === 'user') {
         api = axios.create({
             baseURL: 'http://localhost:8080/api/v1',
             headers: {
@@ -13,7 +24,9 @@ const Api = (token, username, role) => {
             },
             timeout: 20000,
         });
-    } else {
+    }
+
+    if(role === 'admin') {
         api = axios.create({
             baseURL: 'http://localhost:8080/api/v1',
             headers: {
@@ -68,10 +81,40 @@ const Api = (token, username, role) => {
         return api.post(`/import/productImportBill`, {...data});
     }
 
+    const loginGoship = () => {
+        return axios.post('https://sandbox.goship.io/api/v2/login', {
+            "username": "daisyss159@gmail.com",
+            "password": "Dieulinh29.",
+            "client_id": 93,
+            "client_secret": "ElGPVYyAQsrEpc2uDMG5sirzGT8tpcbn32cnXaya"
+        });
+    }
+
+    const getAllCity = () => {
+        return api.get('/cities');
+    }
+
+    const getAllDistrictsById = (idCity) => {
+        return api.get(`/cities/${idCity}/districts`);
+    }
+
+    const getAllWardsById = (idDistricts) => {
+        return api.get(`districts/${idDistricts}/wards`);
+    }
+
+    const getRate = (data) => {
+        return api.post(`/rates`, data)
+    }
+
     return {
         getTokenLogin,
         register,
         getListTypeProducts,
+        loginGoship,
+        getAllCity,
+        getAllDistrictsById,
+        getAllWardsById,
+        getRate,
 
         getAllUser,
         getAllSpu,

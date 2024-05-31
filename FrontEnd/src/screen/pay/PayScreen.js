@@ -6,6 +6,11 @@ import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import {actionCreateFlashOrder} from "../../redux-store/action/actionFakeApi";
+import {
+    actionGetAllCityGoShip,
+    actionGetAllDistrictsById,
+    actionGetAllWardsById, actionGetRate
+} from "../../redux-store/action/actionPay";
 
 const cx = classNames.bind(styles);
 
@@ -14,10 +19,16 @@ function PayScreen (props) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const token = useSelector(state => state.reducerAuth.token);
+    const tokenGoShip = useSelector(state => state.reducerPay.tokenGoShip);
     const decoded = useSelector(state => state.reducerAuth.decoded);
     const isAdmin = useSelector(state => state.reducerAuth.admin);
     const listAddress = useSelector(state => state.reducerUserInformation.UserInformations);
     const listCart = useSelector(state => state.reducerCart.listCart);
+    const listCity = useSelector(state => state.reducerPay.listCity);
+    const listDistricts = useSelector(state => state.reducerPay.listDistricts);
+    const listWards = useSelector(state => state.reducerPay.listWards);
+    const ListOfShippingUnits = useSelector(state => state.reducerPay.ListOfShippingUnits);
+
     const [selectedOption, setSelectedOption] = useState('');
     const [selectedItem, setSelectedItem] = useState('');
     const [nameClient, setNameClient] = useState('');
@@ -25,6 +36,22 @@ function PayScreen (props) {
     const [addressKClient, setAddressKClient] = useState('');
     const [cmtClient, setCmtClient] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+    const [selectCity, setSelectCity] = useState('');
+    const [selectDistricts, setSelectDistricts] = useState('');
+    const [selectWards, setSelectWards] = useState('');
+    const [shippingUnits, setShippingUnits] = useState();
+    const [paymentId, setPaymentId] = useState(1);
+
+    const payment_id = [
+        {
+            id: 1,
+            paymentName: "Thanh toán qua VNPAY",
+        },
+        {
+            id: 2,
+            paymentName: "Thanh toán khi nhận hàng",
+        }
+    ];
 
     useEffect(() => {
         let totalPriceTmp = 0;
@@ -33,6 +60,10 @@ function PayScreen (props) {
         })
 
         setTotalPrice(totalPriceTmp);
+    }, [])
+
+    useEffect(() => {
+        dispatch(actionGetAllCityGoShip(tokenGoShip, decoded))
     }, [])
 
     useEffect(() => {
@@ -79,7 +110,48 @@ function PayScreen (props) {
             "carts": listCart,
         }
         console.log(dataPay)
-        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay, isAdmin))
+        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay, 'admin'))
+    }
+
+    const handleSelectCity = (e) => {
+        setSelectCity(e.target.value)
+        dispatch(actionGetAllDistrictsById(tokenGoShip, decoded.sub, e.target.value))
+    }
+
+    const handleSelectDistricts = (e) => {
+        setSelectDistricts(e.target.value)
+        dispatch(actionGetAllWardsById(tokenGoShip, decoded.sub, e.target.value))
+    }
+
+    const handleSelectWards = (e) => {
+        const dataShip = {
+            "shipment": {
+                "address_from": {
+                    "district": 100700,
+                    "city": 100000
+                },
+                "address_to": {
+                    "district": selectDistricts,
+                    "city": selectDistricts
+                },
+                "parcel": {
+                    "cod": totalPrice,
+                    "amount": totalPrice,
+                    "width": 15,
+                    "height": 5,
+                    "length": 10,
+                    "weight": 750
+                }
+            }
+        }
+
+        setSelectWards(e.target.value)
+        setShippingUnits(null);
+        dispatch(actionGetRate(tokenGoShip, decoded.sub, dataShip))
+    }
+
+    const handleShippingUnits = (e) => {
+        setShippingUnits(ListOfShippingUnits.find(item => item.id === e.target.value));
     }
 
     return (
@@ -110,8 +182,42 @@ function PayScreen (props) {
 
                 {(!selectedItem || selectedItem.notView) && (<div className={cx('itemClient')}>
                     <div>Địa chỉ khác *</div>
-                    <input placeholder={selectedItem?.name} value={addressKClient} onChange={handleAddressK}
-                           className={cx('selectAddress', 'inputClient')}/>
+
+                    <div className={cx('mt10')}>
+                        <div>Tỉnh</div>
+                        <select value={selectCity} onChange={handleSelectCity} className={cx('selectAdd')}>
+                            {listCity.map(item => (
+                                <option label={item.name}>{item.id}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className={cx('mt10')}>
+                        <div>Quận / Huyện</div>
+                        <select value={selectDistricts} onChange={handleSelectDistricts} className={cx('selectAdd')}>
+                            {listDistricts.map(item => (
+                                <option label={item.name}>{item.id}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className={cx('mt10')}>
+                        <div>Phường / Xã</div>
+                        <select value={selectWards} onChange={handleSelectWards} className={cx('selectAdd')}>
+                            {listWards.map(item => (
+                                <option label={item.name}>{item.id}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className={cx('mt10')}>
+                        <div>Địa chỉ cụ thể</div>
+                        <input placeholder={selectedItem?.name || "Nhập địa chỉ cụ thể"}
+                               value={addressKClient}
+                               onChange={handleAddressK}
+                               className={cx('selectAddress', 'inputClient')}
+                        />
+                    </div>
                 </div>)}
 
                 <div className={cx('itemClient')}>
@@ -123,13 +229,22 @@ function PayScreen (props) {
             <div className={cx('shippingPayment')}>
                 <div>
                     <div className={cx('textShippingPayment')}>Vận chuyển</div>
-                    <div className={cx('flex', 'center', 'shipPay')}>
+                    <div className={cx('shipPay')}>
                         <div className={cx('flex', 'center')}>
-                            <i className={cx('bx bx-check-circle', 'check')}></i>
-                            <div>Giao hàng tận nơi:</div>
+                            <div className={cx('flex', 'center')}>
+                                <i className={cx('bx bx-check-circle', 'check')}></i>
+
+                                <select value={shippingUnits?.id || "Chọn đơn vị vận chuyển"} onChange={handleShippingUnits} className={cx('selectAdd')}>
+                                    {ListOfShippingUnits.map(item => (
+                                        <option label={item.carrier_name}>{item.id}</option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div>{formatPrice(shippingUnits?.total_fee || 0)}</div>
                         </div>
 
-                        <div>{formatPrice(40000)}</div>
+                        <div className={cx('mt10')}>{shippingUnits?.expected}</div>
                     </div>
                 </div>
 
@@ -138,7 +253,15 @@ function PayScreen (props) {
                     <div className={cx('flex', 'center', 'shipPay')}>
                         <div className={cx('flex', 'center')}>
                             <i className={cx('bx bx-check-circle', 'check')}></i>
-                            <div>VNPAY</div>
+                            <select
+                                value={paymentId}
+                                onChange={e => setPaymentId(e.target.value)}
+                                className={cx('selectAdd')}
+                            >
+                                {payment_id.map(item => (
+                                    <option value={item.id}>{item.paymentName}</option>
+                                ))}
+                            </select>
                         </div>
 
                         <i className={cx('bx bx-money')} style={{ fontSize: 22, color: '#05b2e9' }}></i>
@@ -172,12 +295,12 @@ function PayScreen (props) {
 
                 <div className={cx('flex', 'mt10')}>
                     <div className={cx('colorItemSp')}>Phí vận chuyển</div>
-                    <div className={cx('priceP')}>{formatPrice(40000)}</div>
+                    <div className={cx('priceP')}>{formatPrice(shippingUnits?.total_fee)}</div>
                 </div>
 
                 <div className={cx('mt30', 'flex')}>
                     <div className={cx('sumTT')}>Tổng thanh toán</div>
-                    <div className={cx('priceTT')}>{formatPrice(totalPrice + 40000)}</div>
+                    <div className={cx('priceTT')}>{formatPrice(totalPrice + shippingUnits?.total_fee)}</div>
                 </div>
 
                 <div className={cx('btn', 'btnPay')} onClick={handlePay}>ĐẶT HÀNG</div>

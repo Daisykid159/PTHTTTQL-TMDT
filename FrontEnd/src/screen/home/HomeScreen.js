@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classNames from "classnames/bind";
 import styles from "./HomeScreen.modules.scss";
 import CategoryHomeScreen from "../../component/categoryHomeScreen/CategoryHomeScreen";
+import {useDispatch} from "react-redux";
+import {actionLoginGoShip} from "../../redux-store/action/actionPay";
 
 const cx = classNames.bind(styles);
 
@@ -318,6 +320,12 @@ function HomeScreen(params) {
             ]
         }
     ]
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(actionLoginGoShip());
+    }, []);
 
     return (
         <div className={cx('home')}>

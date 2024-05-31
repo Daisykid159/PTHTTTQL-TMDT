@@ -1,9 +1,13 @@
 const INITIAL_STATE = {
-    listProducts: [],
-    productDetail: {},
+    tokenGoShip: '',
+    listCity: [],
+    listDistricts: [],
+    listWards: [],
+    ListOfShippingUnits: [],
+
 };
 
-const reducerProducts = (state = INITIAL_STATE, action) => {
+const reducerPay = (state = INITIAL_STATE, action) => {
     let newState = { ...state };
     switch (action.type) {
         case 'UPDATE_DATA': {
@@ -18,4 +22,4 @@ const reducerProducts = (state = INITIAL_STATE, action) => {
     }
 };
 
-export default reducerProducts;
+export default reducerPay;

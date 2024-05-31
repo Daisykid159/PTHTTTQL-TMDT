@@ -36,8 +36,9 @@ export function actionLogin (username, password, nextToScreen) {
                 alert("Đăng nhập thất bại!");
             }
         } catch (error) {
-            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+            alert("Đăng nhập thất bại!");
             dispatch(updateData({
+                isLogin: true,
                 token: '',
             }))
         }
