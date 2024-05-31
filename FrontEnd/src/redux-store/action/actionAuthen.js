@@ -38,7 +38,7 @@ export function actionLogin (username, password, nextToScreen) {
         } catch (error) {
             alert("Đăng nhập thất bại!");
             dispatch(updateData({
-                isLogin: true,
+                isLogin: false,
                 token: '',
             }))
         }
