@@ -185,23 +185,25 @@ function HeaderComponent () {
                 </ul>
             </div>
 
-            <Routes>
-                <Route path="/" element={<HomeScreen />} />
-                <Route path="/screen/authen/LoginScreen" element={<LoginScreen />} />
-                <Route path="/screen/authen/RegisterScreen" element={<RegisterScreen />} />
-                <Route path="/screen/ListProduct/ListProduct" element={<ListProduct />} />
-                <Route path="/screen/productDetail/DetailProduct" element={<DetailProduct />} />
-                <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
-                <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
-                <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
-                <Route path="/screen/pay/PayScreen" element={<PayScreen />} />
-                <Route path="/screen/categoryLists/ShoppingGuideScreen" element={<ShoppingGuideScreen />} />
-                <Route path="/screen/categoryLists/CommitmentToQualityScreen" element={<CommitmentToQualityScreen />} />
-                <Route path="/screen/categoryLists/ExchangePolicyScreen" element={<ExchangePolicyScreen />} />
-                <Route path="/screen/categoryLists/WarrantyPolicyScreen" element={<WarrantyPolicyScreen />} />
-                <Route path="/screen/categoryLists/ShippingPolicyScreen" element={<ShippingPolicyScreen />} />
-                <Route path="*" element={<NoPage />} />
-            </Routes>
+            <div className={cx('screen')}>
+                <Routes>
+                    <Route path="/" element={<HomeScreen />} />
+                    <Route path="/screen/authen/LoginScreen" element={<LoginScreen />} />
+                    <Route path="/screen/authen/RegisterScreen" element={<RegisterScreen />} />
+                    <Route path="/screen/ListProduct/ListProduct" element={<ListProduct />} />
+                    <Route path="/screen/productDetail/DetailProduct" element={<DetailProduct />} />
+                    <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
+                    <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
+                    <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
+                    <Route path="/screen/pay/PayScreen" element={<PayScreen />} />
+                    <Route path="/screen/categoryLists/ShoppingGuideScreen" element={<ShoppingGuideScreen />} />
+                    <Route path="/screen/categoryLists/CommitmentToQualityScreen" element={<CommitmentToQualityScreen />} />
+                    <Route path="/screen/categoryLists/ExchangePolicyScreen" element={<ExchangePolicyScreen />} />
+                    <Route path="/screen/categoryLists/WarrantyPolicyScreen" element={<WarrantyPolicyScreen />} />
+                    <Route path="/screen/categoryLists/ShippingPolicyScreen" element={<ShippingPolicyScreen />} />
+                    <Route path="*" element={<NoPage />} />
+                </Routes>
+            </div>
 
             <div className={cx('footer')}>
                 <FooterComponent />
