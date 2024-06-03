@@ -3,39 +3,51 @@ import axios from 'axios';
 const Api = (token, username, role) => {
     let api
 
-    if(role === 'goship') {
-        api = axios.create({
-            baseURL: 'http://sandbox.goship.io/api/v2',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token || ''}`,
-            },
-            timeout: 20000,
-        });
-    }
+    switch (role) {
+        case 'goship':
+            api = axios.create({
+                baseURL: 'http://sandbox.goship.io/api/v2',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token || ''}`,
+                },
+                timeout: 20000,
+            });
+            break;
 
-    if(role === 'user') {
-        api = axios.create({
-            baseURL: 'http://localhost:8080/api/v1',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token || ''}`,
-                'x-user-username': username,
-            },
-            timeout: 20000,
-        });
-    }
+        case 'user':
+            api = axios.create({
+                baseURL: 'http://localhost:8080/api/v1',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token || ''}`,
+                    'x-user-username': username,
+                },
+                timeout: 20000,
+            });
+            break;
 
-    if(role === 'admin') {
-        api = axios.create({
-            baseURL: 'http://localhost:8080/api/v1',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${token || ''}`,
-                'x-admin-username': username,
-            },
-            timeout: 20000,
-        });
+        case 'admin':
+            api = axios.create({
+                baseURL: 'http://localhost:8080/api/v1',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token || ''}`,
+                    'x-admin-username': username,
+                },
+                timeout: 20000,
+            });
+            break;
+
+        default:
+            api = axios.create({
+                baseURL: 'http://localhost:8080/api/v1',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token || ''}`,
+                },
+                timeout: 20000,
+            });
     }
 
     // api get token
