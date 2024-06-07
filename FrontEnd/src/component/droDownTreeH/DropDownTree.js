@@ -15,8 +15,9 @@ const DropDownTree = (props) => {
     }
 
     const handleList = (item) => {
-        const categoryId = item.categories;
-        const type = parseInt(item.type);
+        setShowListChild(!showListChild);
+        const categoryId = item.categories || item.id;
+        const type = item.type;
 
         navigate('/screen/ListProduct/ListProduct', {
             state: { categoryId, type },
@@ -24,19 +25,23 @@ const DropDownTree = (props) => {
     }
 
     return (
-        <div className={cx('modal')} onMouseEnter={handleShowChild} onMouseLeave={handleShowChild} >
-            <div className={cx('flex', 'list')} onClick={handleList} >
-                <div className={cx('flex')}>
-                    <i className={cx(props.item.icon, 'modalIcon')} />
-                    <div className={cx('textNameList')}>{props.item.nameListProduct}</div>
+        <div>
+            {props.dataListAll.map(item => (
+                <div className={cx('modal')} onMouseEnter={handleShowChild} onMouseLeave={handleShowChild} >
+                    <div className={cx('flex', 'list')} onClick={() => handleList(item)} >
+                        <div className={cx('flex')}>
+                            <i className={cx(item.icon, 'modalIcon')} />
+                            <div className={cx('textNameList')}>{item.nameListProduct}</div>
+                        </div>
+
+                        {item.listItem.length !== 0 ? (<i className={cx('bx bx-chevron-right', 'iconArrowR')}></i>) : null}
+                    </div>
+
+                    {showListChild && (<div className={cx('childList')}>
+                        {item.listItem.map(item => (<div className={cx('textNameListChild')} onClick={() => handleList(item)} >{item.spuCustom}</div>))}
+                    </div>)}
                 </div>
-
-                {props.item.listItem.length !== 0 ? (<i className={cx('bx bx-chevron-right', 'iconArrowR')}></i>) : null}
-            </div>
-
-            {showListChild && (<div className={cx('childList')}>
-                {props.item.listItem.map(item => (<div className={cx('textNameListChild')} onClick={() => handleList(item)} >{item.spuCustom}</div>))}
-            </div>)}
+            ))}
         </div>
     )
 }

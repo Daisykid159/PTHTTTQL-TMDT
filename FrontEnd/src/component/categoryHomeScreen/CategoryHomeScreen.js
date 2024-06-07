@@ -1,19 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import styles from './CategoryHomeScreen.module.scss';
 import ItemProduct from "../itemProduct/ItemProduct";
 import SellingProducts from "../sellingProducts/SellingProducts";
 import classNames from "classnames/bind";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetListProducts} from "../../redux-store/action/actionProducts";
 
 const cx = classNames.bind(styles);
 
 function CategoryHomeScreen (props) {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleList = () => {
         navigate('/screen/ListProduct/ListProduct');
     }
+
+    const listProducts = useSelector(state => state.reducerProducts.listProducts) || [];
+
+    useEffect(() => {
+        dispatch(actionGetListProducts(0, 'name', null, props.categoryId));
+    }, [])
 
     return (
         <div className={cx('phone')}>
@@ -38,7 +47,7 @@ function CategoryHomeScreen (props) {
 
                     <div className={cx('listScroll')}>
                         <div className={cx('ListProduct')}>
-                            {props.data.listProducts.map(item => (
+                            {listProducts?.map(item => (
                                 <div className={cx('itemItem')} >
                                     <ItemProduct data={item}/>
                                 </div>
@@ -48,7 +57,7 @@ function CategoryHomeScreen (props) {
                 </div>
 
                 <div style={{ width: '24%' }}>
-                    <SellingProducts data={props.data.listSellingProducts} />
+                    <SellingProducts data={listProducts || []} />
                 </div>
             </div>
         </div>

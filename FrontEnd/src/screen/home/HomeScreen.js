@@ -2,8 +2,9 @@ import React, {useEffect} from "react";
 import classNames from "classnames/bind";
 import styles from "./HomeScreen.modules.scss";
 import CategoryHomeScreen from "../../component/categoryHomeScreen/CategoryHomeScreen";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {actionLoginGoShip} from "../../redux-store/action/actionPay";
+import {actionGetListProducts} from "../../redux-store/action/actionProducts";
 
 const cx = classNames.bind(styles);
 
@@ -334,9 +335,9 @@ function HomeScreen(params) {
             </div>
 
             <div className={cx('category')}>
-                {listCategory.map(item => (
+                {listCategory.map((item, index) => (
                     <div className={cx('category')}>
-                        <CategoryHomeScreen data={item} />
+                        <CategoryHomeScreen data={item} categoryId={index} />
                     </div>
                 ))}
             </div>

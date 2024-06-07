@@ -277,11 +277,12 @@ function PayScreen (props) {
                     <div className={cx('flex', 'center', 'btn')} onClick={handleToDetailProduct}>
                         <div className={cx('relative', 'imgP')}>
                             <img src={item.src} alt="Logo" className={cx('imgProduct')} />
-                            <p className={cx('numberProduct')}>1</p>
+                            <p className={cx('numberProduct')}>{item.quantity}</p>
                         </div>
 
                         <div className={cx('nameP')}>
                             <div className={cx('nameItemSp')}>{item.name} {item.description}</div>
+                            <div className={cx('colorItemSp')}>{item.color}</div>
                         </div>
 
                         <div className={cx('priceP')}>{formatPrice(item.quantity * item.price)}</div>
@@ -295,12 +296,12 @@ function PayScreen (props) {
 
                 <div className={cx('flex', 'mt10')}>
                     <div className={cx('colorItemSp')}>Phí vận chuyển</div>
-                    <div className={cx('priceP')}>{formatPrice(shippingUnits?.total_fee)}</div>
+                    <div className={cx('priceP')}>{formatPrice(shippingUnits?.total_fee || 0)}</div>
                 </div>
 
                 <div className={cx('mt30', 'flex')}>
                     <div className={cx('sumTT')}>Tổng thanh toán</div>
-                    <div className={cx('priceTT')}>{formatPrice(totalPrice + shippingUnits?.total_fee)}</div>
+                    <div className={cx('priceTT')}>{formatPrice(totalPrice + (shippingUnits?.total_fee || 0))}</div>
                 </div>
 
                 <div className={cx('btn', 'btnPay')} onClick={handlePay}>ĐẶT HÀNG</div>

@@ -6,6 +6,8 @@ import {formatPrice} from "../../unitl";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {actionAddProduct} from "../../redux-store/action/actionCart";
+import {actionLogout} from "../../redux-store/action/actionAuthen";
+import {actionGetDetailProducts} from "../../redux-store/action/actionProducts";
 
 const cx = classNames.bind(styles);
 
@@ -22,28 +24,53 @@ function DetailProduct (props) {
 
     const listCart = useSelector(state => state.reducerCart.listCart);
     const isLogin = useSelector(state => state.reducerAuth.isLogin);
+    const productDetail = useSelector(state => state.reducerProducts.productDetail);
 
-    const handleImg = (index) => {
-        setIndexImg(index);
+    const handleImg = (item) => {
+        setIndexImg(item);
+        setSelectedOption(item.skuId);
     }
 
     const incrementQuantity = () => {
-        setQuantity(quantity + 1);
+        if(quantity + 1 <= indexImg.quantity) {
+            setQuantity(quantity + 1)
+        } else {
+            setQuantity(indexImg.quantity)
+            alert("Số lượng sản phẩm còn lại không đủ")
+        }
     };
 
     const decrementQuantity = () => {
-        if (quantity > 1) {
-            setQuantity(quantity - 1);
+        if(quantity - 1 > 0) {
+            setQuantity(quantity - 1)
+        } else {
+            setQuantity(1)
+            alert("Số lượng sản phẩm ít nhất là 1")
         }
     };
 
     const handleQuantity = (event) => {
-        setQuantity(parseInt(event.target.value, 10))
+        const tmp = parseInt(event.target.value, 10);
+        if(tmp > 0) {
+            if(tmp <= indexImg.quantity) {
+                setQuantity(tmp)
+            } else {
+                setQuantity(indexImg.quantity)
+                alert("Số lượng sản phẩm còn lại không đủ")
+            }
+        } else {
+            setQuantity(1)
+            alert("Số lượng sản phẩm ít nhất là 1")
+        }
     }
 
     const handleOptionChange = (event) => {
         setSelectedOption(event.target.value);
-        setIndexImg(event.target.value);
+        productDetail?.skuResponseList?.map(item => {
+            if(item.skuId === event.target.value) {
+                setIndexImg(item)
+            }
+        })
     };
 
     const handleBuy = () => {
@@ -57,17 +84,43 @@ function DetailProduct (props) {
         }
     }
 
+    useEffect(() => {
+        if(productDetail?.skuResponseList?.length > 0){
+            setIndexImg(productDetail?.skuResponseList[0])
+        }
+    }, [productDetail])
+
+    useEffect(() => {
+        dispatch(actionGetDetailProducts(data.id));
+    }, [])
+
     return (
         <div className={cx('DetailProduct')}>
             <div className={cx('product')}>
                 <div className={cx('flex')}>
                     <div className={cx('imgProduct')}>
-                        <img src={data.src} alt="Product" className={cx('imgItem')} />
+                        <img src={indexImg.src} alt="Product" className={cx('imgItem')} />
+
+                        <div className={cx('listImg')}>
+                            {productDetail?.skuResponseList?.map((item, index) => (
+                                <div onClick={() => handleImg(item)} className={cx('imgItemList')}>
+                                    <img src={item.src} alt="Product" className={cx('imgItem')} />
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     <div className={cx('productInformation')}>
-                        <div className={cx('textProductName')}>{data.name} {data.description}</div>
-                        <div className={cx('textProductPrice')}>{formatPrice(data.price)}</div>
+                        <div className={cx('textProductName')}>{productDetail.name} {productDetail.description}</div>
+                        <div className={cx('textProductPrice')}>{formatPrice(indexImg.price || 0)}</div>
+                        <div className={cx('colorsProduct')}>
+                            <div className={cx('textColorsProduct')}>Màu sắc:</div>
+                            <select value={selectedOption} onChange={handleOptionChange} className={cx('selectColorsProduct')}>
+                                {productDetail?.skuResponseList?.map(item => (
+                                    <option value={item.skuId} >{item.color}</option>
+                                ))}
+                            </select>
+                        </div>
 
                         <div className={cx('quantityProduct')}>
                             <div className={cx('textQuantityProduct')}>Số lương:</div>

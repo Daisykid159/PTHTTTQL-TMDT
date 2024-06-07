@@ -70,7 +70,11 @@ const Api = (token, username, role) => {
     }
 
     const getListTypeProducts = (pageNumber, sortBy, type, categoryId) => {
-        return api.get(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type}&categoryId=${categoryId}`)
+        return api.get(`/product/allProductSpu?pageNumber=${pageNumber}&pageSize=8&sortBy=${sortBy}&type=${type || ''}&categoryId=${categoryId}`)
+    }
+
+    const getDetailProduct = (id) => {
+        return api.get(`/product/detailProduct/${id}`)
     }
 
     const getAllUser = () => {
@@ -122,6 +126,7 @@ const Api = (token, username, role) => {
         getTokenLogin,
         register,
         getListTypeProducts,
+        getDetailProduct,
         loginGoship,
         getAllCity,
         getAllDistrictsById,

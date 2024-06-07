@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     listProducts: [],
     productDetail: {},
+    totalElements: 1,
 };
 
 const reducerProducts = (state = INITIAL_STATE, action) => {

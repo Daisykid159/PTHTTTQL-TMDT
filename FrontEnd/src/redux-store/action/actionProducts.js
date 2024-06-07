@@ -14,7 +14,8 @@ export function actionGetListProducts (pageNumber, sortBy, type, categoryId) {
 
             if (response && response.data){
                 dispatch(updateData({
-                    listProducts: response.data,
+                    listProducts: response.data.responses,
+                    totalElements: response.data.totalElements,
                 }))
 
             } else {
@@ -26,12 +27,18 @@ export function actionGetListProducts (pageNumber, sortBy, type, categoryId) {
     };
 }
 
-export function actionGetDetailProducts (product) {
+export function actionGetDetailProducts (id) {
     return async (dispatch, getState) => {
         try {
-            dispatch(updateData({
-                productDetail: product,
-            }))
+            const response = await Api().getDetailProduct(id);
+
+            if (response && response.data){
+                dispatch(updateData({
+                    productDetail: response.data,
+                }))
+            } else {
+                alert("Lấy danh sách sản phẩm thất bại!");
+            }
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
         }

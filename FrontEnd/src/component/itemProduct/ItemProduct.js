@@ -20,7 +20,7 @@ function ItemProduct (props) {
         <div className={cx('itemProduct')} onClick={handleDetailProduct} >
             <img src={props.data.src} className={cx('imgItem')} alt={'ảnh sản phẩm'}/>
 
-            <div className={cx('itemName')}>{props.data.name}</div>
+            <div className={cx('itemName')}>{props.data.name} {props.data.description}</div>
             <div className={cx('itemPrice')}>{formatPrice(props.data.price)}</div>
 
             <div className={cx('active', 'selectSp')}>

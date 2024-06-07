@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom';
 import HomeScreen from "../../screen/home/HomeScreen";
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
@@ -33,42 +33,42 @@ function HeaderComponent () {
             nameListProduct: 'Điện thoại',
             listItem: [
                 {
-                    "type": "11",
+                    "type": "IPhone 11",
                     "categories": 1,
                     "spuCustom": "IPhone 11|IPhone 11 Pro|IPhone 11 ProMax"
                 },
                 {
-                    "type": "12",
+                    "type": "IPhone 12",
                     "categories": 1,
                     "spuCustom": "IPhone 12 Mini|IPhone 12 |IPhone 12 Pro|IPhone 12 ProMax"
                 },
                 {
-                    "type": "13",
+                    "type": "IPhone 13",
                     "categories": 1,
                     "spuCustom": "IPhone 13|IPhone 13 Pro|IPhone 13 Pro Max"
                 },
                 {
-                    "type": "14",
+                    "type": "IPhone 14",
                     "categories": 1,
                     "spuCustom": "IPhone 14|IPhone 14 Plus|IPhone 14 Pro|IPhone 14 Pro Max"
                 },
                 {
-                    "type": "15",
+                    "type": "IPhone 15",
                     "categories": 1,
                     "spuCustom": "IPhone 15|IPhone 15 Plus|IPhone 15 Pro|IPhone 15 Pro Max"
                 },
                 {
-                    "type": "5",
+                    "type": "IPhone 5",
                     "categories": 1,
                     "spuCustom": "IPhone SE"
                 },
                 {
-                    "type": "8",
+                    "type": "IPhone 8",
                     "categories": 1,
                     "spuCustom": "IPhone 8|IPhone 8 Plus"
                 },
                 {
-                    "type": "10",
+                    "type": "IPhone 10",
                     "categories": 1,
                     "spuCustom": "IPhone XS|IPhone XR|IPhone XSMax"
                 }
@@ -138,7 +138,7 @@ function HeaderComponent () {
                                 <div>
                                     <div className={cx('space')}></div>
                                     <div className={cx('modalListItem')}>
-                                        {dataListAll.map(item => (<DropDownTree item={item} />))}
+                                        <DropDownTree dataListAll={dataListAll} />
                                     </div>
                                 </div>
                             )}

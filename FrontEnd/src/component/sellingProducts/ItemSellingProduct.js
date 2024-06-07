@@ -16,9 +16,9 @@ function ItemSellingProduct (props) {
 
     return (
         <div className={cx('ItemSellingProduct', 'flex')} onClick={handleDetailProduct} >
-            <img src={require(`../../assets/img/${props.data.img}`)} alt="Logo" className={cx('imgItem')} />
+            <img src={props.data.src} alt="Logo" className={cx('imgItem')} />
             <div className={cx('itemText')}>
-                <p className={cx('itemName')}>{props.data.name}</p>
+                <p className={cx('itemName')}>{props.data.name} {props.data.description}</p>
                 <p className={cx('itemPrice')}>{formatPrice(props.data.price)}</p>
             </div>
         </div>
