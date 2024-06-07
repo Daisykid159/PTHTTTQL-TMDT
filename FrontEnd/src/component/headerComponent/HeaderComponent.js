@@ -138,7 +138,7 @@ function HeaderComponent () {
                                 <div>
                                     <div className={cx('space')}></div>
                                     <div className={cx('modalListItem')}>
-                                        <DropDownTree dataListAll={dataListAll} />
+                                        <DropDownTree dataListAll={dataListAll} setShowListProduct={setShowListProduct} />
                                     </div>
                                 </div>
                             )}

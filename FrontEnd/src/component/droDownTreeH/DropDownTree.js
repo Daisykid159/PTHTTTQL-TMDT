@@ -16,6 +16,7 @@ const DropDownTree = (props) => {
 
     const handleList = (item) => {
         setShowListChild(!showListChild);
+        props.setShowListProduct(false);
         const categoryId = item.categories || item.id;
         const type = item.type;
 
