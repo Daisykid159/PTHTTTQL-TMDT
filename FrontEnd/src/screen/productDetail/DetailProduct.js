@@ -22,7 +22,8 @@ function DetailProduct (props) {
     const [selectedOption, setSelectedOption] = useState('');
     const [quantity, setQuantity] = useState(1);
 
-    const listCart = useSelector(state => state.reducerCart.listCart);
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
     const isLogin = useSelector(state => state.reducerAuth.isLogin);
     const productDetail = useSelector(state => state.reducerProducts.productDetail);
 
@@ -75,8 +76,14 @@ function DetailProduct (props) {
 
     const handleBuy = () => {
         if(isLogin) {
-            listCart.push({...data, quantity: quantity, "idSku": 1, "idSpu": data.id});
-            dispatch(actionAddProduct(listCart))
+            const cartNew = {
+                "idSku": indexImg.skuId,
+                "idSpu": data.id,
+                "quantity": quantity,
+                "price": indexImg.price
+            }
+
+            dispatch(actionAddProduct(token, decoded.sub, cartNew))
         } else {
             navigate('/screen/authen/LoginScreen', {
                 state: { data: data }
@@ -115,9 +122,12 @@ function DetailProduct (props) {
                         <div className={cx('textProductPrice')}>{formatPrice(indexImg.price || 0)}</div>
                         <div className={cx('colorsProduct')}>
                             <div className={cx('textColorsProduct')}>Màu sắc:</div>
-                            <select value={selectedOption} onChange={handleOptionChange} className={cx('selectColorsProduct')}>
+                            <select
+                                value={selectedOption} onChange={handleOptionChange}
+                                className={cx('selectColorsProduct')}
+                            >
                                 {productDetail?.skuResponseList?.map(item => (
-                                    <option value={item.skuId} >{item.color}</option>
+                                    <option value={item.skuId}>{item.color}</option>
                                 ))}
                             </select>
                         </div>

@@ -13,316 +13,89 @@ function HomeScreen(params) {
     const listCategory = [
         {
             id: 1,
-            name: 'Điện thoại',
-            banner: 'home_banner_phone.png',
-            listType: [
+            nameListProduct: 'Điện thoại',
+            listItem: [
                 {
-                    id: 1,
-                    name: "15 Series",
+                    "type": "IPhone 11",
+                    "categories": 1,
+                    "spuCustom": "IPhone 11|IPhone 11 Pro|IPhone 11 ProMax"
                 },
                 {
-                    id: 2,
-                    name: "14 Series",
+                    "type": "IPhone 12",
+                    "categories": 1,
+                    "spuCustom": "IPhone 12 Mini|IPhone 12 |IPhone 12 Pro|IPhone 12 ProMax"
                 },
                 {
-                    id: 3,
-                    name: "13 Series",
+                    "type": "IPhone 13",
+                    "categories": 1,
+                    "spuCustom": "IPhone 13|IPhone 13 Pro|IPhone 13 Pro Max"
                 },
                 {
-                    id: 4,
-                    name: "12 Series",
+                    "type": "IPhone 14",
+                    "categories": 1,
+                    "spuCustom": "IPhone 14|IPhone 14 Plus|IPhone 14 Pro|IPhone 14 Pro Max"
                 },
                 {
-                    id: 5,
-                    name: "11 Series",
+                    "type": "IPhone 15",
+                    "categories": 1,
+                    "spuCustom": "IPhone 15|IPhone 15 Plus|IPhone 15 Pro|IPhone 15 Pro Max"
+                },
+                {
+                    "type": "IPhone 5",
+                    "categories": 1,
+                    "spuCustom": "IPhone SE"
+                },
+                {
+                    "type": "IPhone 8",
+                    "categories": 1,
+                    "spuCustom": "IPhone 8|IPhone 8 Plus"
+                },
+                {
+                    "type": "IPhone 10",
+                    "categories": 1,
+                    "spuCustom": "IPhone XS|IPhone XR|IPhone XSMax"
                 }
-            ],
-            listProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000001,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000002,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000003,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000004,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000005,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 253000006,
-                },
-            ],
-            listSellingProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
             ]
         },
         {
             id: 2,
-            name: 'Điện thoại',
-            banner: 'home_banner_phone.png',
-            listType: [
-                {
-                    id: 1,
-                    name: "15 Series",
-                },
-                {
-                    id: 2,
-                    name: "14 Series",
-                },
-                {
-                    id: 3,
-                    name: "13 Series",
-                },
-                {
-                    id: 4,
-                    name: "12 Series",
-                },
-                {
-                    id: 5,
-                    name: "11 Series",
-                }
-            ],
-            listProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-            ],
-            listSellingProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-            ]
+            icon: 'bx bx-mobile-alt',
+            nameListProduct: 'Linh kiện',
+            listItem: []
         },
         {
             id: 3,
-            name: 'Điện thoại',
-            banner: 'home_banner_phone.png',
-            listType: [
+            icon: 'bx bx-mobile-alt',
+            nameListProduct: 'Phụ kiện',
+            listItem: [
                 {
-                    id: 1,
-                    name: "15 Series",
+                    "type": "Củ sạc Iphone/Ipad",
+                    "categories": 3,
+                    "spuCustom": "Sạc nhanh IPhone 20W|Sạc IPhone 5W"
                 },
                 {
-                    id: 2,
-                    name: "14 Series",
+                    "type": "Tai nghe",
+                    "categories": 3,
+                    "spuCustom": "Tai nghe Lightning Iphone"
                 },
                 {
-                    id: 3,
-                    name: "13 Series",
-                },
-                {
-                    id: 4,
-                    name: "12 Series",
-                },
-                {
-                    id: 5,
-                    name: "11 Series",
+                    "type": "Cáp sạc Iphone/Ipad",
+                    "categories": 3,
+                    "spuCustom": "Cáp sạc nhanh Type-C PD|Cáp Type C - Type C 1m|Cap IPhone|Cáp dù sạc nhanh Type-C PD iMac"
                 }
-            ],
-            listProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-            ],
-            listSellingProducts: [
-                {
-                    id: 1,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 2,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 3,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 4,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 5,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
-                {
-                    id: 6,
-                    img: 'imgItemH.png',
-                    name: 'Apple iPhone 15 Pro - 256GB - 99% Likenew',
-                    price: 25300000,
-                },
             ]
-        }
-    ]
-
+        },
+    ];
+    const listProducts1 = useSelector(state => state.reducerProducts.listProducts1);
+    const listProducts2 = useSelector(state => state.reducerProducts.listProducts2);
+    const listProducts3 = useSelector(state => state.reducerProducts.listProducts3);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(actionGetListProducts(0, 'name', null, 1));
+        dispatch(actionGetListProducts(0, 'name', null, 2));
+        dispatch(actionGetListProducts(0, 'name', null, 3));
+    }, [])
 
     useEffect(() => {
         dispatch(actionLoginGoShip());
@@ -335,11 +108,30 @@ function HomeScreen(params) {
             </div>
 
             <div className={cx('category')}>
-                {listCategory.map((item, index) => (
-                    <div className={cx('category')}>
-                        <CategoryHomeScreen data={item} categoryId={index} />
-                    </div>
-                ))}
+                {listCategory.map((item, index) => {
+                    switch (index + 1) {
+                        case 1:
+                            return (
+                                <div className={cx('category')}>
+                                    <CategoryHomeScreen data={item} dataListProduct={listProducts1} categoryId={index} />
+                                </div>
+                            )
+
+                        case 2:
+                            return (
+                                <div className={cx('category')}>
+                                    <CategoryHomeScreen data={item} dataListProduct={listProducts2} categoryId={index} />
+                                </div>
+                            )
+
+                        case 3:
+                            return (
+                                <div className={cx('category')}>
+                                    <CategoryHomeScreen data={item} dataListProduct={listProducts3} categoryId={index} />
+                                </div>
+                            )
+                    }
+                })}
             </div>
         </div>
     )

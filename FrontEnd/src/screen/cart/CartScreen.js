@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import {formatPrice} from "../../unitl";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {actionDeleteProduct} from "../../redux-store/action/actionCart";
+import {actionDeleteProduct, actionGetListCart} from "../../redux-store/action/actionCart";
 
 const cx = classNames.bind(styles);
 
@@ -17,6 +17,8 @@ function CartScreen (props) {
     const [totalPrice, setTotalPrice] = useState(0);
     const [resetView, setResetView] = useState();
 
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
     const listCart = useSelector(state => state.reducerCart.listCart);
 
     const incrementQuantity = (item) => {
@@ -64,6 +66,10 @@ function CartScreen (props) {
         setTotalPrice(totalPriceTmp);
     }, [resetView])
 
+    useEffect(() => {
+        dispatch(actionGetListCart(token, decoded.sub))
+    }, [])
+
     return (
         <div className={cx('cart')}>
             {listCart.length === 0 ? (
@@ -88,7 +94,7 @@ function CartScreen (props) {
                                 <img src={item.src} alt="Logo" className={cx('img')} />
                             </td>
                             <td onClick={() => handleToDetailProduct(item)} className={cx('itemSp')} >
-                                <div className={cx('nameItemSp')}>{item.name} {item.description}</div>
+                                <div className={cx('nameItemSp')}>{item.productSpu_name} ( {item.productSku_name} )</div>
                             </td>
                             <td className={cx('colorItemSp')}>{formatPrice(item.price)}</td>
                             <td>

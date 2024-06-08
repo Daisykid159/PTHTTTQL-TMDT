@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import {actionCreateFlashOrder} from "../../redux-store/action/actionFakeApi";
 import {
+    actionCreateOrderNew,
     actionGetAllCityGoShip,
     actionGetAllDistrictsById,
     actionGetAllWardsById, actionGetRate
@@ -103,14 +104,18 @@ function PayScreen (props) {
 
     const handlePay = () => {
         const dataPay = {
-            "username": decoded.sub,
-            "createdAt": moment(Date.now()).format("HH:mm DD/MM/yyyy"),
-            "total": totalPrice+40000,
-            "payment_id": 1,
-            "carts": listCart,
+            "total": totalPrice + 40000,
+            "payment_id": paymentId,
+            "ordercode": shippingUnits.id,
+            "addressRequest": {
+                "city": selectCity.name,
+                "district": selectDistricts.name,
+                "street": selectWards.name,
+                "username": decoded.sub,
+            },
+            "shippingRequest": shippingUnits,
         }
-        console.log(dataPay)
-        dispatch(actionCreateFlashOrder(token, decoded.sub, dataPay, 'admin'))
+        dispatch(actionCreateOrderNew(token, decoded.sub, dataPay))
     }
 
     const handleSelectCity = (e) => {
@@ -281,7 +286,7 @@ function PayScreen (props) {
                         </div>
 
                         <div className={cx('nameP')}>
-                            <div className={cx('nameItemSp')}>{item.name} {item.description}</div>
+                            <div className={cx('nameItemSp')}>{item.productSpu_name} ( {item.productSku_name} )</div>
                             <div className={cx('colorItemSp')}>{item.color}</div>
                         </div>
 

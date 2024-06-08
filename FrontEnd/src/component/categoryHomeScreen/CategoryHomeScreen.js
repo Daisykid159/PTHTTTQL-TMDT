@@ -18,22 +18,18 @@ function CategoryHomeScreen (props) {
         navigate('/screen/ListProduct/ListProduct');
     }
 
-    const listProducts = useSelector(state => state.reducerProducts.listProducts) || [];
-
-    useEffect(() => {
-        dispatch(actionGetListProducts(0, 'name', null, props.categoryId));
-    }, [])
+    const listProducts = props.dataListProduct;
 
     return (
         <div className={cx('phone')}>
             <div className={cx('phoneHeader', 'flex')} >
                 <div className={cx('titleH')} onClick={handleList} >
-                    <h3 className={cx('titleP')}>{props.data.name}</h3>
+                    <h3 className={cx('titleP')}>{props.data.nameListProduct}</h3>
                     <div className={cx('titleA')} />
                 </div>
 
                 <ul className={cx('listItem', 'flex')}>
-                    {props.data.listType.map(item => (
+                    {props.data.listType?.map(item => (
                         <li className={cx('itemL')} onClick={handleList} >{item.name}</li>
                     ))}
                 </ul>
@@ -42,7 +38,7 @@ function CategoryHomeScreen (props) {
             <div className={cx('phoneList')}>
                 <div style={{ width: '75%' }}>
                     <div onClick={handleList}>
-                        <img src={require('../../assets/img/home_banner_phone.png')} alt="imgBannerItem" className={cx('imgBannerItem')} />
+                        <img src={require(`../../assets/img/home_banner-${props.categoryId + 1}.png`)} alt="imgBannerItem" className={cx('imgBannerItem')} />
                     </div>
 
                     <div className={cx('listScroll')}>
@@ -57,7 +53,7 @@ function CategoryHomeScreen (props) {
                 </div>
 
                 <div style={{ width: '24%' }}>
-                    <SellingProducts data={listProducts || []} />
+                    <SellingProducts data={listProducts} />
                 </div>
             </div>
         </div>

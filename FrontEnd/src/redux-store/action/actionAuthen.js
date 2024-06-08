@@ -1,5 +1,6 @@
 import Api from "../../api";
 import {jwtDecode} from "jwt-decode";
+import actionCart, {actionGetListCart} from "./actionCart";
 
 export function updateData(data) {
     return {
@@ -21,6 +22,8 @@ export function actionLogin (username, password, nextToScreen) {
                     token: response.data.accessToken,
                     admin: decoded?.authorities[0] === "ADMIN",
                 }))
+
+                dispatch(actionCart.actionGetListCart(response.data.accessToken, username));
 
                 alert("Đăng nhập thành công!");
                 if(decoded?.authorities[0] === "ADMIN") {
@@ -73,6 +76,11 @@ export function actionLogout () {
                 admin: false,
                 userName: '',
                 token: '',
+            }))
+
+            dispatch(actionCart.updateData({
+                listCart: [],
+                quantityCart: 0,
             }))
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");

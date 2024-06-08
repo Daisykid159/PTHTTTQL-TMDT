@@ -1,5 +1,8 @@
 const INITIAL_STATE = {
     listProducts: [],
+    listProducts1: [],
+    listProducts2: [],
+    listProducts3: [],
     productDetail: {},
     totalElements: 1,
 };

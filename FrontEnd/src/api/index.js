@@ -21,7 +21,7 @@ const Api = (token, username, role) => {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token || ''}`,
-                    'x-user-username': username,
+                    'x-client-username': username,
                 },
                 timeout: 20000,
             });
@@ -89,10 +89,6 @@ const Api = (token, username, role) => {
         return api.get(`/admin/getAllSkuBy/${id}`);
     }
 
-    const createFlashOrder = (data) => {
-        return api.post(`/admin/createFlashOrder`, {...data});
-    }
-
     const productImportBill = (data) => {
         return api.post(`/import/productImportBill`, {...data});
     }
@@ -122,6 +118,18 @@ const Api = (token, username, role) => {
         return api.post(`/rates`, data)
     }
 
+    const postAddCart = (data) => {
+        return api.post(`/cart/add`, data)
+    }
+
+    const getCart = () => {
+        return api.get(`/cart/getCart`)
+    }
+
+    const postOrderNew = (data) => {
+        return api.post(`/order/new`, data)
+    }
+
     return {
         getTokenLogin,
         register,
@@ -136,8 +144,11 @@ const Api = (token, username, role) => {
         getAllUser,
         getAllSpu,
         getAllSkuById,
-        createFlashOrder,
         productImportBill,
+
+        getCart,
+        postAddCart,
+        postOrderNew,
     };
 };
 

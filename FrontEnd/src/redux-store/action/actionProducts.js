@@ -13,6 +13,31 @@ export function actionGetListProducts (pageNumber, sortBy, type, categoryId) {
             const response = await Api().getListTypeProducts(pageNumber, sortBy, type, categoryId);
 
             if (response && response.data){
+                switch (categoryId) {
+                    case 1:
+                        dispatch(updateData({
+                            listProducts1: response.data.responses,
+                            totalElements1: response.data.totalElements,
+                        }))
+                        break;
+
+                    case 2:
+                        dispatch(updateData({
+                            listProducts2: response.data.responses,
+                            totalElements2: response.data.totalElements,
+                        }))
+                        break;
+
+                    case 3:
+                        dispatch(updateData({
+                            listProducts3: response.data.responses,
+                            totalElements3: response.data.totalElements,
+                        }))
+                        break;
+
+                    default:
+                }
+
                 dispatch(updateData({
                     listProducts: response.data.responses,
                     totalElements: response.data.totalElements,
