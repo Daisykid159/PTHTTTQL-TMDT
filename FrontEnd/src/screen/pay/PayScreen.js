@@ -106,7 +106,7 @@ function PayScreen (props) {
         const dataPay = {
             "total": totalPrice + (shippingUnits?.total_fee || 0),
             "payment_id": paymentId,
-            "ordercode": shippingUnits.id,
+            "ordercode": shippingUnits.id + Date.now().toString(),
             "addressRequest": {
                 "city": listCity.find(item => item.id === selectCity).name,
                 "district": listDistricts.find(item => item.id === selectDistricts).name,

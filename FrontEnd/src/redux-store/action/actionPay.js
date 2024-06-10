@@ -124,13 +124,13 @@ export function actionCreateOrderNew (token, username, data, navigate) {
             const response = await Api(token, username, 'user').postOrderNew(data);
 
             if (response && response.data){
-                if(response.data.code === 200) {
-                    alert("Đặt đơn hàng thành công!")
+                if(data.payment_id === '2') {
+                    window.open(response.data.message, '_blank');
                 } else {
-                    alert(response.data.message);
+                    alert("Đặt đơn hàng thành công!")
+                    dispatch(actionCart.actionGetListCart(token, username));
+                    navigate("/");
                 }
-                 dispatch(actionCart.actionGetListCart(token, username));
-                navigate("/");
             } else {
                 alert("Lấy dữ liệu thất bại!");
             }
