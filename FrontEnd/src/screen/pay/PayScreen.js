@@ -46,11 +46,11 @@ function PayScreen (props) {
     const payment_id = [
         {
             id: 1,
-            paymentName: "Thanh toán qua VNPAY",
+            paymentName: "Thanh toán khi nhận hàng",
         },
         {
             id: 2,
-            paymentName: "Thanh toán khi nhận hàng",
+            paymentName: "Thanh toán qua VNPAY",
         }
     ];
 
@@ -104,18 +104,18 @@ function PayScreen (props) {
 
     const handlePay = () => {
         const dataPay = {
-            "total": totalPrice + 40000,
+            "total": totalPrice + (shippingUnits?.total_fee || 0),
             "payment_id": paymentId,
             "ordercode": shippingUnits.id,
             "addressRequest": {
-                "city": selectCity.name,
-                "district": selectDistricts.name,
-                "street": selectWards.name,
+                "city": listCity.find(item => item.id === selectCity).name,
+                "district": listDistricts.find(item => item.id === selectDistricts).name,
+                "street": listWards.find(item => item.id === parseInt(selectWards, 10)).name,
                 "username": decoded.sub,
             },
             "shippingRequest": shippingUnits,
         }
-        dispatch(actionCreateOrderNew(token, decoded.sub, dataPay))
+        dispatch(actionCreateOrderNew(token, decoded.sub, dataPay, navigate))
     }
 
     const handleSelectCity = (e) => {

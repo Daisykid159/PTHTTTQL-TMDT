@@ -52,9 +52,8 @@ function CartScreen (props) {
         navigate('/screen/pay/PayScreen')
     }
 
-    const handleDelete = (i) => {
-        listCart.splice(i, 1);
-        dispatch(actionDeleteProduct(listCart));
+    const handleDelete = (item) => {
+        dispatch(actionDeleteProduct(token, decoded.sub, item));
         setResetView(!resetView);
     }
 
@@ -109,7 +108,7 @@ function CartScreen (props) {
                                 </div>
                             </td>
                             <td className={cx('colorItemSp')} >{formatPrice(item.price*item.quantity)}</td>
-                            <td className={cx('delete')} onClick={() => handleDelete(index)}>
+                            <td className={cx('delete')} onClick={() => handleDelete(item)}>
                                 <i className='bx bx-trash'></i>
                             </td>
                         </tr>

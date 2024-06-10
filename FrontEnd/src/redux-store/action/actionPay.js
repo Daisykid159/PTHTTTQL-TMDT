@@ -1,4 +1,5 @@
 import Api from "../../api";
+import actionCart from "./actionCart";
 
 export function updateData(data) {
     return {
@@ -117,7 +118,7 @@ export function actionGetRate (token, user, data) {
     };
 }
 
-export function actionCreateOrderNew (token, username, data) {
+export function actionCreateOrderNew (token, username, data, navigate) {
     return async (dispatch, getState) => {
         try {
             const response = await Api(token, username, 'user').postOrderNew(data);
@@ -128,6 +129,8 @@ export function actionCreateOrderNew (token, username, data) {
                 } else {
                     alert(response.data.message);
                 }
+                 dispatch(actionCart.actionGetListCart(token, username));
+                navigate("/");
             } else {
                 alert("Lấy dữ liệu thất bại!");
             }

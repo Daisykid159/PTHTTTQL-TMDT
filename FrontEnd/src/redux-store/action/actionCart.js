@@ -13,10 +13,17 @@ export function actionGetListCart (token, username) {
             const response = await Api(token, username, 'user').getCart();
 
             if (response && response.data){
-                dispatch(updateData({
-                    listCart: response.data,
-                    quantityCart: response.data.length,
-                }))
+                if(!response.data.code) {
+                    dispatch(updateData({
+                        listCart: response.data,
+                        quantityCart: response.data.length || 0,
+                    }))
+                } else {
+                    dispatch(updateData({
+                        listCart: [],
+                        quantityCart: 0,
+                    }))
+                }
             } else {
                 alert("Lấy danh sách giỏ hàng thất bại!");
             }
@@ -45,13 +52,19 @@ export function actionAddProduct (token, username, listCart) {
     };
 }
 
-export function actionDeleteProduct (listCart) {
+export function actionDeleteProduct (token, username, data) {
     return async (dispatch, getState) => {
         try {
-            dispatch(updateData({
-                listCart: listCart,
-                quantityCart: listCart.length,
-            }))
+            const response = await Api(token, username, 'user').postRemoveItemCart(data.idSku, data.idSpu);
+
+            if (response && response.data){
+                dispatch(updateData({
+                    listCart: response.data,
+                    quantityCart: response.data.length,
+                }))
+            } else {
+                alert("Thêm sản phẩm thất bại!");
+            }
         } catch (error) {
             alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
         }

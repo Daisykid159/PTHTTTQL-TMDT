@@ -122,6 +122,10 @@ const Api = (token, username, role) => {
         return api.post(`/cart/add`, data)
     }
 
+    const postRemoveItemCart = (idSku, idSpu) => {
+        return api.post(`/cart/removeItem?sku=${idSku}&spu=${idSpu}`)
+    }
+
     const getCart = () => {
         return api.get(`/cart/getCart`)
     }
@@ -148,6 +152,7 @@ const Api = (token, username, role) => {
 
         getCart,
         postAddCart,
+        postRemoveItemCart,
         postOrderNew,
     };
 };
