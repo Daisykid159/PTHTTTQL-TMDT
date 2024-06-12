@@ -137,6 +137,7 @@
 }
 
 .textDay {
+  color: black;
   margin-right: 10px;
 }
 
@@ -146,4 +147,13 @@
   border-radius: 10px;
   border: 1px solid #cccccc;
   margin-right: 10px;
+}
+
+.btnThongKe {
+  cursor: pointer;
+  color: white;
+  margin: 0 10px;
+  padding: 5px 15px;
+  border-radius: 10px;
+  background-color: #238dba;
 }

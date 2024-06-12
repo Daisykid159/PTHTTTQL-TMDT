@@ -313,6 +313,8 @@ function HomeAdminScreen (props) {
                     <input className={cx('inputDay')} type={'date'} value={dayFrom} onChange={handleDateFrom} />
                     <div className={cx('textDay')}>Đến ngày</div>
                     <input className={cx('inputDay')} type={'date'} value={dayTo} onChange={handleDateTo} />
+
+                    <div className={cx('btnThongKe')}>Thống kê</div>
                 </div>
 
                 <div className={cx('flex', 'warp', 'center')}>
