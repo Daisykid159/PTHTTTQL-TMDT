@@ -81,6 +81,10 @@ const Api = (token, username, role) => {
         return api.get(`/admin/getAllUser`);
     }
 
+    const getAllBill = () => {
+        return api.get(`/admin/allOrderDetails`)
+    }
+
     const getAllSpu = () => {
         return api.get(`/admin/getAllSpu`);
     }
@@ -138,6 +142,10 @@ const Api = (token, username, role) => {
         return api.post(`/order/new`, data)
     }
 
+    const postUpdateOrder = (code, status) => {
+        return api.post(`/admin/changOrderStatus?orderCode=${code}&status=${status}`)
+    }
+
     return {
         getTokenLogin,
         register,
@@ -149,6 +157,8 @@ const Api = (token, username, role) => {
         getAllWardsById,
         getRate,
 
+        getAllBill,
+        postUpdateOrder,
         getAllUser,
         getAllSpu,
         getAllSkuById,

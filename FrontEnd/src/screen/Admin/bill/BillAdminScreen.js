@@ -1,47 +1,20 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './BillAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatDay, formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetAllOrder} from "../../../redux-store/action/actionAdminOrder";
 
 const cx = classNames.bind(styles);
 
 function BillAdminScreen (props) {
 
-    const dataListBill = [
-        {
-            id: '872',
-            userBuy: 'Thomas Hardy',
-            priceBuy: 250000,
-            status: 'Hoàn thành',
-            dateBuy: '2024-03-19T10:55:40',
-        },
-        {
-            id: '873',
-            userBuy: 'Victoria Hardy',
-            priceBuy: 240000,
-            status: 'Hoàn thành',
-            dateBuy: '2024-03-19T10:55:40',
-        },
-        {
-            id: '874',
-            userBuy: 'Maria Anders',
-            priceBuy: 290000,
-            status: 'Hoàn thành',
-            dateBuy: '2024-03-19T10:55:40',
-        },
-        {
-            id: '875',
-            userBuy: 'Thomas Hardy',
-            priceBuy: 260000,
-            status: 'Hoàn thành',
-            dateBuy: '2024-03-19T10:55:40',
-        }
-    ]
-
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+    const dataListBill = useSelector(state => state.reducerAdminOrder.listAllOrders);
 
     const [textSearch, setTextSearch] = useState('');
 
@@ -50,8 +23,12 @@ function BillAdminScreen (props) {
     }
 
     const handleDetailBill = (bill) => {
-        navigate(`/admin/DetailBillAdminScreen/${bill.id}`);
+        navigate(`/admin/DetailBillAdminScreen/${bill.code}`);
     }
+
+    useEffect(() => {
+        dispatch(actionGetAllOrder(token, decoded.sub));
+    }, []);
 
     return (
         <div className={cx('BillAdminScreen')}>
@@ -84,11 +61,11 @@ function BillAdminScreen (props) {
                         <tbody>
                         {dataListBill.map(item => (
                             <tr onClick={() => handleDetailBill(item)}>
-                                <td>{item.id}</td>
-                                <td>{item.userBuy}</td>
-                                <td>{formatPrice(item.priceBuy)}</td>
-                                <td>{item.status}</td>
-                                <td>{formatDay(item.dateBuy)}</td>
+                                <td>{item.code}</td>
+                                <td>{item.username}</td>
+                                <td>{formatPrice(item.total || 0)}</td>
+                                <td>{item.orderStatus}</td>
+                                <td>{formatDay(item.dateBuy || '')}</td>
                                 <td className={cx('iconList')}>
                                     <i className={cx('bx bx-show-alt', 'iconShow')}></i>
                                     <i className={cx('bx bxs-pencil', 'iconEdit')}></i>

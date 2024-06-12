@@ -49,11 +49,11 @@ function FakeAPIPay(props) {
     const payment_id = [
         {
             id: 1,
-            paymentName: "VNPAY",
+            paymentName: "Thanh toán khi nhận hàng",
         },
         {
             id: 2,
-            paymentName: "Trực tiếp",
+            paymentName: "Thanh toán qua VNPAY",
         }
     ];
 

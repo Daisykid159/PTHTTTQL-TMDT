@@ -1,11 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useParams } from 'react-router-dom';
 import styles from './DetailBillAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {formatDay, formatPrice} from "../../../unitl";
 import moment from "moment";
+import {actionUpdateOrder} from "../../../redux-store/action/actionAdminOrder";
 
 const cx = classNames.bind(styles);
 
@@ -14,76 +15,36 @@ function DetailBillAdminScreen ({ route, props }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const dataDetail = {
-        idBill: "1345",
-        statusBill: 'new',
-        userName: 'Jhon Michle',
-        emailUser: 'jhon@_78@example.com',
-        phoneUser: '+91-9910XXXXXX',
-        listProductBill: [
-            {
-                idProduct: 'IP15',
-                nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
-                imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-                colorProduct: 'Titan',
-                quantityProduct: 2,
-                priceSell: 27500000,
-                type: 'Iphone 15',
-            },
-            {
-                idProduct: 'IP15',
-                nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
-                imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-                colorProduct: 'Titan',
-                quantityProduct: 2,
-                priceSell: 27500000,
-                type: 'Iphone 15',
-            },
-            {
-                idProduct: 'IP15',
-                nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
-                imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-                colorProduct: 'Titan',
-                quantityProduct: 2,
-                priceSell: 27500000,
-                type: 'Iphone 15',
-            },
-            {
-                idProduct: 'IP15',
-                nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
-                imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-                colorProduct: 'Titan',
-                quantityProduct: 2,
-                priceSell: 27500000,
-                type: 'Iphone 15',
-            }
-        ],
-    }
+    const detailOrder = useSelector(state => state.reducerAdminOrder.detailOrder);
     const opstionStatusBill = [
-        {
-            value: 'done',
-            label: 'Hoàn thành',
-        },
-        {
-            value: 'shiping',
-            label: 'Đang giao',
-        },
-        {
-            value: 'new',
-            label: 'Mới tạo',
-        }
+        "PROCESSING",
+        "DONE",
+        "CACELED",
+        "WAITING",
+        "SHIPPING"
     ]
 
     const dateNow = new Date();
     const formattedDate = moment(dateNow).format('dddd DD/MM/YYYY HH:mm');
 
-    const [selectStatusBill, setSelectStatusBill] = useState();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+
+    const [selectStatusBill, setSelectStatusBill] = useState(opstionStatusBill[0]);
 
     const params = useParams();
 
     const handleOptionChange = (e) => {
         setSelectStatusBill(e.target.value);
     };
+
+    const handleUpdateOrder = () => {
+        dispatch(actionUpdateOrder(token, decoded.sub, detailOrder.code, selectStatusBill))
+    }
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <div className={cx('DetailBillAdminScreen')}>
@@ -98,16 +59,16 @@ function DetailBillAdminScreen ({ route, props }) {
 
                         <select
                             className={cx('selectStatus')}
-                            value={selectStatusBill || dataDetail.statusBill}
+                            value={selectStatusBill || detailOrder.statusBill}
                             onChange={handleOptionChange}
                         >
                             {opstionStatusBill.map(item => (
-                                <option value={item.value}>{item.label}</option>
+                                <option value={item}>{item}</option>
                             ))}
                         </select>
                     </div>
 
-                    <div className={cx('updateStatusBull')}>Cập nhật</div>
+                    <div className={cx('updateStatusBull')} onClick={handleUpdateOrder}>Cập nhật</div>
                 </div>
 
             </div>
@@ -120,9 +81,9 @@ function DetailBillAdminScreen ({ route, props }) {
 
                     <div className={cx('itemB')}>
                         <div className={cx('textH', 'bold')}>Thông tin người mua</div>
-                        <div className={cx('bold')}>{dataDetail.userName}</div>
-                        <div>{dataDetail.emailUser}</div>
-                        <div>{dataDetail.phoneUser}</div>
+                        <div className={cx('bold')}>{detailOrder.userName}</div>
+                        <div>{detailOrder.emailUser}</div>
+                        <div>{detailOrder.phoneUser}</div>
                     </div>
                 </div>
 
@@ -189,7 +150,7 @@ function DetailBillAdminScreen ({ route, props }) {
 
                         <tbody>
                         {
-                            dataDetail.listProductBill.map(item => (
+                            detailOrder?.listProductBill.map(item => (
                                 <tr>
                                     <td className={cx('nameProduct')}>
                                         <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />

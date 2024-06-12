@@ -250,11 +250,26 @@ function HomeAdminScreen (props) {
     const [dayTo, setDayTo] = useState(getTodayDate(1));
 
     const handleDateFrom = (e) => {
-        setDayFrom(e.target.value);
+        const selectedDate = new Date(e.target.value);
+        const dateTo = new Date(dayTo);
+
+        if (selectedDate > dateTo) {
+            setDayTo(e.target.value);
+            setDayFrom(e.target.value)
+        } else {
+            setDayFrom(e.target.value);
+        }
     }
 
     const handleDateTo = (e) => {
-        setDayTo(e.target.value);
+        const selectedDate = new Date(e.target.value);
+        const dateFrom = new Date(dayFrom);
+
+        if (selectedDate < dateFrom) {
+            setDayTo(dayFrom);
+        } else {
+            setDayTo(e.target.value);
+        }
     }
 
     return (
