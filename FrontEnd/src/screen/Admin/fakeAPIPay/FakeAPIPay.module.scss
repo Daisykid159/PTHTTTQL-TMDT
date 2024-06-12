@@ -96,3 +96,126 @@
   margin-top: 20px;
   border-radius: 10px;
 }
+
+.shippingPayment {
+  width: 25%;
+}
+
+.textShippingPayment {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.shipPay {
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.selectAddress {
+  margin-top: 10px;
+  width: 96%;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 2px 5px;
+}
+
+.itemClient {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.inputClient {
+  margin-left: 10px;
+  width: 50%;
+  padding: 3px 10px;
+}
+
+.textH {
+  font-weight: 700;
+}
+
+.product {
+  width: 35%;
+}
+
+.imgP {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.imgProduct {
+  width: 100%;
+}
+
+.numberProduct {
+  margin: 0;
+  padding: 4px 10px;
+  font-size: 15px;
+  border-radius: 100px;
+  color: #ffffff;
+  background-color: red;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+}
+
+.nameItemSp {
+  font-weight: 800;
+  color: #0f8eb6;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+.colorItemSp {
+  font-weight: 700;
+}
+
+.priceP {
+  text-align: end;
+  margin-left: 10px;
+  width: 35%;
+  font-weight: 700;
+}
+
+.sumTT {
+  font-weight: 800;
+  font-size: 22px;
+}
+
+.priceTT {
+  font-weight: 800;
+  font-size: 22px;
+  color: #0799c7;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.btnPay {
+  padding: 20px;
+  width: 60%;
+  margin: 30px auto;
+  font-weight: 800;
+  font-size: 22px;
+  color: #fff;
+  text-align: center;
+  border-radius: 20px;
+  background-color: #05b2e9;
+}
+
+.selectAdd {
+  margin-top: 5px;
+  width: 96%;
+  padding: 3px 5px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  font-size: 16px;
+}

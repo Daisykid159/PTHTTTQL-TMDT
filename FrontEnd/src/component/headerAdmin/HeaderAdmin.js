@@ -90,14 +90,6 @@ function HeaderAdmin () {
                         </Link>
                     </li>
 
-                    <li className={cx('item')} >
-                        <Link to="/admin/NotificationAdminScreen" className={cx('flex')}>
-                            <i className={cx('bx bx-bell', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Thông báo</div>
-                            <div className={cx('numberNotification')}>( 10 )</div>
-                        </Link>
-                    </li>
-
                     <li className={cx('item')} onClick={handleLogout}>
                         <Link to="/" className={cx('flex')}>
                             <i className={cx('bx bx-log-out', 'iconArrowR')}></i>

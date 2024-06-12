@@ -1,52 +1,18 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './QLUserScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatDay, formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetAllSkuById, actionGetAllSpu, actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
 function QLUserScreen () {
 
-    const data = [
-        {
-            id: 1,
-            role: 'ADMIN',
-            nameUser: 'Vũ Văn Dũng',
-            phoneUser: '01216048012',
-            emailUser: 'daisyss159@gmail.com',
-            dateCreate: '2024-04-05T00:00:00',
-            totalPrice: 700000000,
-        },
-        {
-            id: 2,
-            role: 'ADMIN',
-            nameUser: 'Vũ Văn Dũng',
-            phoneUser: '01216048012',
-            emailUser: 'daisyss159@gmail.com',
-            dateCreate: '2024-04-05T00:00:00',
-            totalPrice: 700000000,
-        },
-        {
-            id: 3,
-            role: 'ADMIN',
-            nameUser: 'Vũ Văn Dũng',
-            phoneUser: '01216048012',
-            emailUser: 'daisyss159@gmail.com',
-            dateCreate: '2024-04-05T00:00:00',
-            totalPrice: 700000000,
-        },
-        {
-            id: 4,
-            role: 'ADMIN',
-            nameUser: 'Vũ Văn Dũng',
-            phoneUser: '01216048012',
-            emailUser: 'daisyss159@gmail.com',
-            dateCreate: '2024-04-05T00:00:00',
-            totalPrice: 700000000,
-        }
-    ]
+    const listUser = useSelector(state => state.reducerFakeApi.listAllUser);
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -60,6 +26,10 @@ function QLUserScreen () {
     const handleToDetailUserAdminScreen = (item) => {
         navigate(`/admin/DetailUserAdminScreen/${item.id}`);
     }
+
+    useEffect(() => {
+        dispatch(actionGetAllUser(token, decoded.sub))
+    }, [])
 
     return (
         <div className={cx('QLUserScreen')}>
@@ -87,21 +57,19 @@ function QLUserScreen () {
                         <th>SĐT</th>
                         <th>E-mail</th>
                         <th>Ngày tạo</th>
-                        <th>Tổng chi tiêu</th>
                         <th></th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    {data.map(item => (
+                    {listUser?.map(item => (
                         <tr>
                             <td onClick={handleToDetailUserAdminScreen}>{item.id}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.role}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.nameUser}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.phoneUser}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.emailUser}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{formatDay(item.dateCreate)}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{formatPrice(item.totalPrice)}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.roles[0].name}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.username}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item?.phone}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{item.email}</td>
+                            <td onClick={handleToDetailUserAdminScreen}>{formatDay(item.createdAt)}</td>
                             <td className={cx('iconTrash')}>
                                 <i className='bx bx-trash'></i>
                             </td>

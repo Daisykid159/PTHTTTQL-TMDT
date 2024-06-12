@@ -343,7 +343,7 @@ function HomeAdminScreen (props) {
                                     <div className={cx('bold')}>{item.nameProduct}</div>
                                 </div>
 
-                                <div>{item.priceBuy}</div>
+                                <div>{formatPrice(item.priceBuy)}</div>
                             </div>
                         </div>
                     ))}

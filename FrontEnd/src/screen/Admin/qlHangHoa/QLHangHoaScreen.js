@@ -1,53 +1,19 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './QLHangHoaScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetAllSkuById, actionGetAllSpu, actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
 function QLHangHoaScreen (props) {
 
-    const dataListTypeProduct = [
-        {
-            id: 1,
-            name: 'iPhone XS',
-        },
-        {
-            id: 2,
-            name: 'iPhone 12',
-        }
-    ]
-    const dataListProducts = [
-        {
-            idProduct: 'IP15',
-            nameProduct: 'Apple iPhone 15 Pro Max - 256GB - 99% Like New',
-            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-            colorProduct: 'Titan',
-            priceBuy: 27000000,
-            priceSell: 27500000,
-            type: 'Iphone 15',
-        },
-        {
-            idProduct: 'IP14',
-            nameProduct: 'Apple iPhone 14 Pro Max - 256GB - 99% Like New',
-            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-            colorProduct: 'Titan',
-            priceBuy: 26000000,
-            priceSell: 26500000,
-            type: 'Iphone 14',
-        },
-        {
-            idProduct: 'IP13',
-            nameProduct: 'Apple iPhone 13Pro Max - 256GB - 99% Like New',
-            imgProduct: 'https://bizweb.dktcdn.net/100/112/815/products/3qu436-compressed-151f18c2-3346-4113-a925-0b8876c26d1e.jpg?v=1703477493057',
-            colorProduct: 'Titan',
-            priceBuy: 25000000,
-            priceSell: 25500000,
-            type: 'Iphone 13',
-        }
-    ]
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
+    const dataListTypeProduct = useSelector(state => state.reducerFakeApi.listDataProduct);
+    const listDataProductColor = useSelector(state => state.reducerFakeApi.listDataProductColor);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -60,6 +26,7 @@ function QLHangHoaScreen (props) {
     }
 
     const handleOptionChange = (event) => {
+        dispatch(actionGetAllSkuById(token, decoded.sub, event.target.value));
         setSelectedOption(event.target.value);
     };
 
@@ -71,6 +38,11 @@ function QLHangHoaScreen (props) {
             },
         });
     }
+
+    useEffect(() => {
+        dispatch(actionGetAllSpu(token, decoded.sub));
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1))
+    }, [])
 
     return (
         <div className={cx('QLHangHoaScreen')}>
@@ -104,7 +76,7 @@ function QLHangHoaScreen (props) {
                         <thead>
                         <tr>
                             <th>Mã SP</th>
-                            <th style={{ width: '45%' }}>Tên sản phẩm</th>
+                            <th style={{ width: '40%' }}>Tên sản phẩm</th>
                             <th>Đơn vị tính</th>
                             <th>Màu</th>
                             <th>Giá bán</th>
@@ -115,25 +87,25 @@ function QLHangHoaScreen (props) {
                         </thead>
 
                         <tbody>
-                        {dataListProducts.map(item => (
-                            <tr>
-                                <td onClick={() => handleToEditProductKhoHangAdminScreen(item)}>{item.idProduct}</td>
-                                <td className={cx('nameProduct')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
-                                    <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
-                                    <div>{item.nameProduct}</div>
-                                </td>
-                                <td>Cái</td>
-                                <td>{item.colorProduct}</td>
-                                <td onClick={() => handleToEditProductKhoHangAdminScreen(item)}>{formatPrice(item.priceSell)}</td>
-                                <td>{item.type}</td>
+                        {
+                            listDataProductColor?.map(item => (
+                                <tr>
+                                    <td>{item.id}</td>
+                                    <td className={cx('nameProduct')}>
+                                        <div>{item.productSpu.name} {item.productSpu.description}</div>
+                                    </td>
+                                    <td>{item.color}</td>
+                                    <td>{formatPrice(item.price)}</td>
+                                    <td>{item.quantity}</td>
+                                    <td>{formatPrice(item.quantity * item.price)}</td>
 
-                                <td className={cx('iconList')}>
-                                    <i className={cx('bx bx-show-alt', 'iconShow')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
-                                    <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
-                                    <i className={cx('bx bx-trash', 'iconTrash')}></i>
-                                </td>
-                            </tr>
-                        ))}
+                                    <td className={cx('iconList')}>
+                                        <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
+                                        <i className={cx('bx bx-trash', 'iconTrash')}></i>
+                                    </td>
+                                </tr>
+                            ))
+                        }
                         </tbody>
                     </table>
                 </div>

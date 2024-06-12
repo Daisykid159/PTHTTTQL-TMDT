@@ -4,8 +4,6 @@ import classNames from "classnames/bind";
 import {formatPrice} from "../../unitl";
 import {useDispatch, useSelector} from "react-redux";
 import { useNavigate } from "react-router-dom";
-import moment from "moment/moment";
-import {actionCreateFlashOrder} from "../../redux-store/action/actionFakeApi";
 import {
     actionCreateOrderNew,
     actionGetAllCityGoShip,
@@ -104,7 +102,7 @@ function PayScreen (props) {
 
     const handlePay = () => {
         const dataPay = {
-            "total": totalPrice + (shippingUnits?.total_fee || 0),
+            "total": totalPrice,
             "payment_id": paymentId,
             "ordercode": shippingUnits.id + Date.now().toString(),
             "addressRequest": {
@@ -113,7 +111,16 @@ function PayScreen (props) {
                 "street": listWards.find(item => item.id === parseInt(selectWards, 10)).name,
                 "username": decoded.sub,
             },
-            "shippingRequest": shippingUnits,
+            "shippingRequest": {
+                "carrier": shippingUnits.carrier_name,
+                "expected": shippingUnits.expected,
+                "code": shippingUnits.id + Date.now().toString(),
+                "status": "Don moi",
+                "fee_ship": shippingUnits?.total_fee,
+                "total_bill": totalPrice + shippingUnits?.total_fee,
+                "phone": sdtClient,
+                "service": shippingUnits?.service,
+            },
         }
         dispatch(actionCreateOrderNew(token, decoded.sub, dataPay, navigate))
     }

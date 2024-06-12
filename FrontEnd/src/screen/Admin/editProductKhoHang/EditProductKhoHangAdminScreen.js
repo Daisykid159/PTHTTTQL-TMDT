@@ -29,7 +29,8 @@ function EditProductKhoHangAdminScreen (props) {
         const dateNow = new Date();
         setNameProduct(data.productSpu.name);
         setColorProduct(data.color);
-        setPriceImportProduct(data.price);
+        setPriceImportProduct(parseInt(data.price, 10));
+        setPriceSellProduct(parseInt(data.price, 10));
         setQuantityImportProduct(1);
         setTypeProduct(data.productSpu.type);
         setDateImportProduct(moment(dateNow).format('YYYY-MM-DDTHH:mm:ss'));
@@ -120,8 +121,12 @@ function EditProductKhoHangAdminScreen (props) {
                 <div className={cx('w50pt')}>
                     {!editSanPham && (<div className={cx('itemInput')}>
                         <div className={cx('textInput')}>Giá nhập sản phẩm (đ)</div>
-                        <input className={cx('input')} type={'number'} onChange={handlePriceImportProduct}
-                               value={priceImportProduct}/>
+                        <input
+                            className={cx('input')}
+                            type={'number'}
+                            onChange={handlePriceImportProduct}
+                            value={priceImportProduct}
+                        />
                     </div>)}
 
                     {!editSanPham && (<div className={cx('itemInput')}>

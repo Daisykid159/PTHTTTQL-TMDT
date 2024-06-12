@@ -10,7 +10,7 @@ export function updateData(data) {
 export function actionGetAllUser (token, username) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username).getAllUser();
+            const response = await Api(token, username, 'admin').getAllUser();
 
             if (response && response.data){
                 dispatch(updateData({
@@ -29,7 +29,7 @@ export function actionGetAllUser (token, username) {
 export function actionGetAllSpu (token, username) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username).getAllSpu();
+            const response = await Api(token, username, 'admin').getAllSpu();
 
             if (response && response.data){
                 dispatch(updateData({
@@ -48,7 +48,7 @@ export function actionGetAllSpu (token, username) {
 export function actionGetAllSkuById (token, username, id, setProduct, setColorProduct) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username).getAllSkuById(id);
+            const response = await Api(token, username, 'admin').getAllSkuById(id);
 
             if (response && response.data){
                 dispatch(updateData({
@@ -72,10 +72,10 @@ export function actionGetAllSkuById (token, username, id, setProduct, setColorPr
     };
 }
 
-export function actionCreateFlashOrder (token, username, data, role) {
+export function actionCreateFlashOrder (token, username, data) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username, role).createFlashOrder(data);
+            const response = await Api(token, username, 'admin').createFlashOrder(data);
 
             if (response && response.data){
                 if(response.data === "done") {
@@ -98,7 +98,7 @@ export function actionCreateFlashOrder (token, username, data, role) {
 export function actionImportProduct (token, username, data) {
     return async (dispatch, getState) => {
         try {
-            const response = await Api(token, username).productImportBill(data);
+            const response = await Api(token, username, 'admin').productImportBill(data);
 
             if (response && response.data){
                 if(response.data === "done") {

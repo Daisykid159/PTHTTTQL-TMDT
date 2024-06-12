@@ -123,7 +123,7 @@ export function actionCreateOrderNew (token, username, data, navigate) {
         try {
             const response = await Api(token, username, 'user').postOrderNew(data);
 
-            if (response && response.data){
+            if (response && response.data && response.data.code !== "404 NOT_FOUND" && response.data.code !== "400 BAD_REQUEST"){
                 if(data.payment_id === '2') {
                     window.open(response.data.message, '_blank');
                 } else {
@@ -132,7 +132,7 @@ export function actionCreateOrderNew (token, username, data, navigate) {
                     navigate("/");
                 }
             } else {
-                alert("Lấy dữ liệu thất bại!");
+                alert("Đặt đơn hàng thất bại!");
             }
         } catch (error) {
 

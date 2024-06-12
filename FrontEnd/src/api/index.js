@@ -89,6 +89,10 @@ const Api = (token, username, role) => {
         return api.get(`/admin/getAllSkuBy/${id}`);
     }
 
+    const createFlashOrder = (data) => {
+        return api.post(`/admin/createFlashOrder`, {...data});
+    }
+
     const productImportBill = (data) => {
         return api.post(`/import/productImportBill`, {...data});
     }
@@ -149,6 +153,7 @@ const Api = (token, username, role) => {
         getAllSpu,
         getAllSkuById,
         productImportBill,
+        createFlashOrder,
 
         getCart,
         postAddCart,

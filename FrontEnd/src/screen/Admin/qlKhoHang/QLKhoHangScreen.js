@@ -11,7 +11,6 @@ const cx = classNames.bind(styles);
 function QLKhoHangScreen (props) {
 
     const dataListTypeProductKho = useSelector(state => state.reducerFakeApi.listDataProduct);
-
     const dataListProduct = useSelector(state => state.reducerFakeApi.listDataProductColor);
 
     const navigate = useNavigate();
@@ -85,7 +84,7 @@ function QLKhoHangScreen (props) {
                         <thead>
                         <tr>
                             <th>Mã SP</th>
-                            <th width={'35ss%'}>Tên sản phẩm</th>
+                            <th width={'40%'}>Tên sản phẩm</th>
                             <th>Màu</th>
                             <th>Giá nhập</th>
                             <th>Loại</th>
