@@ -1,9 +1,10 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import Chart from 'react-apexcharts'
 import styles from './HomeAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatPrice} from "../../../unitl";
 import {useDispatch, useSelector} from "react-redux";
+import moment from "moment";
 
 const cx = classNames.bind(styles);
 
@@ -237,6 +238,25 @@ function HomeAdminScreen (props) {
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
 
+    const getTodayDate = (timeLast) => {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + (timeLast || 0)).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    const [dayFrom, setDayFrom] = useState(getTodayDate());
+    const [dayTo, setDayTo] = useState(getTodayDate(1));
+
+    const handleDateFrom = (e) => {
+        setDayFrom(e.target.value);
+    }
+
+    const handleDateTo = (e) => {
+        setDayTo(e.target.value);
+    }
+
     return (
         <div className={cx('HomeAdminScreen')}>
             <div className={cx('flex', 'headerA')}>
@@ -248,7 +268,7 @@ function HomeAdminScreen (props) {
                     <div>
                         <div>Tổng đơn hàng</div>
                         <div>100</div>
-                        <div className={cx('flex', 'percent', 'green')}>
+                        <div className={cx('flex', 'center', 'percent', 'green')}>
                             <i className={cx('bx bxs-up-arrow')} style={{ marginRight: 5 }}></i>
                             <div>5% Tuần trước</div>
                         </div>
@@ -263,7 +283,7 @@ function HomeAdminScreen (props) {
                     <div>
                         <div>Tổng danh thu</div>
                         <div>{formatPrice(10000000)}</div>
-                        <div className={cx('flex', 'percent', 'green')}>
+                        <div className={cx('flex', 'center', 'percent', 'green')}>
                             <i className={cx('bx bxs-up-arrow')} style={{ marginRight: 5 }}></i>
                             <div>5% Tuần trước</div>
                         </div>
@@ -278,7 +298,7 @@ function HomeAdminScreen (props) {
                     <div>
                         <div>Tổng khách hàng</div>
                         <div>10</div>
-                        <div className={cx('flex', 'percent', 'red')}>
+                        <div className={cx('flex', 'center', 'percent', 'red')}>
                             <i className={cx('bx bxs-down-arrow')} style={{ marginRight: 5 }}></i>
                             <div>5% Tuần trước</div>
                         </div>
@@ -287,6 +307,14 @@ function HomeAdminScreen (props) {
             </div>
 
             <div className={cx('listChart')}>
+
+                <div className={cx('flex', 'center', 'date')}>
+                    <div className={cx('textDay')}>Từ ngày</div>
+                    <input className={cx('inputDay')} type={'date'} value={dayFrom} onChange={handleDateFrom} />
+                    <div className={cx('textDay')}>Đến ngày</div>
+                    <input className={cx('inputDay')} type={'date'} value={dayTo} onChange={handleDateTo} />
+                </div>
+
                 <div className={cx('flex', 'warp', 'center')}>
                     <Chart
                         options={state1.options}
