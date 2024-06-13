@@ -79,6 +79,10 @@ function QLNhapKho(props) {
 
     return (
         <div className={cx('QLNhapKho')}>
+            <div className={cx('headerQl', 'flex')}>
+                <i className={cx('bx bx-menu', 'iconMenu')}></i>
+                <div>QUẢN LÝ NHẬP KHO</div>
+            </div>
 
             <div>
                 <div className={cx('bold')}>Danh sách sản phẩm</div>

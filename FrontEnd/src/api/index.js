@@ -138,6 +138,10 @@ const Api = (token, username, role) => {
         return api.get(`/cart/getCart`)
     }
 
+    const getDetailOrder = (id) => {
+        return api.get(`order/getDetailOrder?ordercode=${id}`);
+    }
+
     const postOrderNew = (data) => {
         return api.post(`/order/new`, data)
     }
@@ -164,6 +168,7 @@ const Api = (token, username, role) => {
         getAllSkuById,
         productImportBill,
         createFlashOrder,
+        getDetailOrder,
 
         getCart,
         postAddCart,

@@ -69,12 +69,7 @@ function QLKhoHangScreen (props) {
                             <option label={item.name} >{item.id}</option>
                         ))}
                     </select>
-                </div>
-
-                <div
-                    className={cx('btn', 'addSp')}
-                    onClick={() => handleToEditProductKhoHangAdminScreen()}
-                >Thêm sản phẩm</div>
+                </div>s
             </div>
 
             <div className={cx('body')}>

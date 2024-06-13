@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {formatDay, formatPrice} from "../../../unitl";
 import moment from "moment";
-import {actionUpdateOrder} from "../../../redux-store/action/actionAdminOrder";
+import {actionGetDetailOrder, actionUpdateOrder} from "../../../redux-store/action/actionAdminOrder";
 
 const cx = classNames.bind(styles);
 
@@ -30,7 +30,8 @@ function DetailBillAdminScreen ({ route, props }) {
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
 
-    const [selectStatusBill, setSelectStatusBill] = useState(opstionStatusBill[0]);
+    const [selectStatusBill, setSelectStatusBill] = useState(detailOrder.status);
+    let totalOrder = 0;
 
     const params = useParams();
 
@@ -39,11 +40,11 @@ function DetailBillAdminScreen ({ route, props }) {
     };
 
     const handleUpdateOrder = () => {
-        dispatch(actionUpdateOrder(token, decoded.sub, detailOrder.code, selectStatusBill))
+        dispatch(actionUpdateOrder(token, decoded.sub, params.id, selectStatusBill))
     }
 
     useEffect(() => {
-
+        dispatch(actionGetDetailOrder(token, decoded.sub, params.id))
     }, [])
 
     return (
@@ -59,7 +60,7 @@ function DetailBillAdminScreen ({ route, props }) {
 
                         <select
                             className={cx('selectStatus')}
-                            value={selectStatusBill || detailOrder.statusBill}
+                            value={ selectStatusBill }
                             onChange={handleOptionChange}
                         >
                             {opstionStatusBill.map(item => (
@@ -81,9 +82,8 @@ function DetailBillAdminScreen ({ route, props }) {
 
                     <div className={cx('itemB')}>
                         <div className={cx('textH', 'bold')}>Thông tin người mua</div>
-                        <div className={cx('bold')}>{detailOrder.userName}</div>
-                        <div>{detailOrder.emailUser}</div>
-                        <div>{detailOrder.phoneUser}</div>
+                        <div className={cx('bold')}>{detailOrder?.userDetailResponse?.username}</div>
+                        <div>{detailOrder?.userDetailResponse?.phone}</div>
                     </div>
                 </div>
 
@@ -111,7 +111,7 @@ function DetailBillAdminScreen ({ route, props }) {
                         <div className={cx('flex')}>
                             <div className={cx('bold')}>
                                 Trạng thái:
-                                <span className={cx('textAfter')}>Đơn hàng mới</span>
+                                <span className={cx('textAfter')}>{detailOrder.status}</span>
                             </div>
                         </div>
                     </div>
@@ -127,7 +127,9 @@ function DetailBillAdminScreen ({ route, props }) {
                         <div className={cx('flex')}>
                             <div className={cx('bold')}>
                                 Địa chỉ:
-                                <span className={cx('textAfter')}>Số 9, ngõ 313 Quan Nhân, Nhân Hoà, Nhân Chính, Thanh Xuân, Hà Nội</span>
+                                <span className={cx('textAfter')}>
+                                    {detailOrder?.userDetailResponse?.district}, {detailOrder?.userDetailResponse?.street}, {detailOrder?.userDetailResponse?.city}
+                                </span>
                             </div>
                         </div>
 
@@ -150,18 +152,21 @@ function DetailBillAdminScreen ({ route, props }) {
 
                         <tbody>
                         {
-                            detailOrder?.listProductBill.map(item => (
-                                <tr>
-                                    <td className={cx('nameProduct')}>
-                                        <img src={item.imgProduct} className={cx('imgProduct')} alt={'ảnh sản phẩm'} />
-                                        <div>{item.nameProduct}</div>
-                                    </td>
-                                    <td>{item.colorProduct}</td>
-                                    <td>{formatPrice(item.priceSell)}</td>
-                                    <td>{item.quantityProduct}</td>
-                                    <td>{formatPrice(item.priceSell)}</td>
-                                </tr>
-                            ))
+                            detailOrder?.cartResponseList?.map(item => {
+                                totalOrder += item.price * item.quantity;
+                                return (
+                                    <tr>
+                                        <td className={cx('nameProduct')}>
+                                            <img src={item.src} className={cx('imgProduct')} alt={'ảnh sản phẩm'}/>
+                                            <div>{item.productSpu_name}</div>
+                                        </td>
+                                        <td>{item.productSku_name}</td>
+                                        <td>{formatPrice(item.price)}</td>
+                                        <td>{item.quantity}</td>
+                                        <td>{formatPrice(item.price * item.quantity)}</td>
+                                    </tr>
+                                )
+                            })
                         }
                         </tbody>
                     </table>
@@ -175,7 +180,7 @@ function DetailBillAdminScreen ({ route, props }) {
 
                     <div className={cx('flex', 'spaceBetween')}>
                         <div className={cx('bold')}>Tổng tiền</div>
-                        <div>{formatPrice(200000000)}</div>
+                        <div>{formatPrice(totalOrder)}</div>
                     </div>
 
                     <div className={cx('flex', 'spaceBetween')}>
@@ -183,14 +188,9 @@ function DetailBillAdminScreen ({ route, props }) {
                         <div>{formatPrice(40000)}</div>
                     </div>
 
-                    <div className={cx('flex', 'spaceBetween')}>
-                        <div className={cx('bold')}>Thếu</div>
-                        <div>{formatPrice(200000)}</div>
-                    </div>
-
                     <div className={cx('flex', 'spaceBetween', 'mT20', 'textH')}>
                         <div className={cx('bold')}>Tổng thanh toán</div>
-                        <div className={cx('bold', 'red')}>- {formatPrice(200000000)}</div>
+                        <div className={cx('bold', 'red')}>{formatPrice(totalOrder + 40000)}</div>
                     </div>
                 </div>
             </div>
