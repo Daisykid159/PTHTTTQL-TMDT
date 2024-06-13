@@ -6,6 +6,7 @@ import reducerProducts from "./reducerProducts";
 import reducerFakeApi from "./reducerFakeApi";
 import reducerPay from "./reducerPay";
 import reducerAdminOrder from "./reducerAdminOrder";
+import reducerAdminDashboard from "./reducerAdminDashboard";
 
 const rootReducer = combineReducers({
     reducerAuth: reducerAuth,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
     reducerPay: reducerPay,
 
     reducerAdminOrder: reducerAdminOrder,
+    reducerAdminDashboard: reducerAdminDashboard,
 
     reducerFakeApi: reducerFakeApi,
 });

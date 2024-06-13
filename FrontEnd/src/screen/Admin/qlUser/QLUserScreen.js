@@ -5,6 +5,7 @@ import {formatDay, formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {actionGetAllSkuById, actionGetAllSpu, actionGetAllUser} from "../../../redux-store/action/actionFakeApi";
+import {actionGetInfoUser} from "../../../redux-store/action/actionUserInformation";
 
 const cx = classNames.bind(styles);
 
@@ -23,8 +24,9 @@ function QLUserScreen () {
         setTextSearch(e.target.value)
     }
 
-    const handleToDetailUserAdminScreen = (item) => {
-        navigate(`/admin/DetailUserAdminScreen/${item.id}`);
+    const handleToDetailUserAdminScreen = (username) => {
+        dispatch(actionGetInfoUser(token, decoded.sub, username));
+        navigate(`/admin/DetailUserAdminScreen/${username}`);
     }
 
     useEffect(() => {
@@ -64,12 +66,12 @@ function QLUserScreen () {
                     <tbody>
                     {listUser?.map(item => (
                         <tr>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.id}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.roles[0].name}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.username}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item?.phone}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{item.email}</td>
-                            <td onClick={handleToDetailUserAdminScreen}>{formatDay(item.createdAt)}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.id}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.roles[0].name}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.username}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item?.phone}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.email}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{formatDay(item.createdAt)}</td>
                             <td className={cx('iconTrash')}>
                                 <i className='bx bx-trash'></i>
                             </td>

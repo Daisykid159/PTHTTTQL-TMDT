@@ -1,16 +1,9 @@
 const INITIAL_STATE = {
-    UserInformations: [{
-        name: null,
-        sdt: null,
-        address: 'Địa chỉ khác',
-        default: false,
-        notView: true,
-    }],
-
-    detailUser: {},
+    listAllOrders: [],
+    detailOrder: {},
 };
 
-const reducerUserInformation = (state = INITIAL_STATE, action) => {
+const reducerAdminDashboard = (state = INITIAL_STATE, action) => {
     let newState = { ...state };
     switch (action.type) {
         case 'UPDATE_DATA': {
@@ -25,4 +18,4 @@ const reducerUserInformation = (state = INITIAL_STATE, action) => {
     }
 };
 
-export default reducerUserInformation;
+export default reducerAdminDashboard;

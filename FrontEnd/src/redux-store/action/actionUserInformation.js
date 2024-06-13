@@ -19,7 +19,27 @@ export function actionUpdateAddress (UserInformations) {
     };
 }
 
+export function actionGetInfoUser (token, user, username) {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api(token, user, 'admin').postInfoDetailUser(username);
+
+            if (response && response.data){
+                dispatch(updateData({
+                    detailUser: response.data,
+                }))
+            } else {
+                alert("Lấy dữ liệu thất bại!");
+            }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+        }
+    };
+}
+
 
 export default {
+    updateData,
     actionUpdateAddress,
+    actionGetInfoUser,
 };

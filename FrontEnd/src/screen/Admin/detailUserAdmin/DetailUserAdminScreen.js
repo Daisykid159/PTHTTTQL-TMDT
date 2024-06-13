@@ -1,76 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './DetailUserAdminScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatDay, formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const cx = classNames.bind(styles);
 
 function DetailUserAdminScreen (props) {
 
-    const data = {
-        id: 1,
-        role: 'ADMIN',
-        nameUser: 'Vũ Văn Dũng',
-        phoneUser: '01216048012',
-        emailUser: 'daisyss159@gmail.com',
-        dateCreate: '2024-04-05T00:00:00',
-        totalPrice: 700000000,
-        addresses: [
-            {
-                id: 1,
-                address: 'Thanh Xuân, Hà Nội',
-                default: true,
-            },
-            {
-                id: 2,
-                address: 'Thanh Xuân, Hà Nội',
-                default: false,
-            },
-            {
-                id: 3,
-                address: 'Thanh Xuân, Hà Nội',
-                default: false,
-            }
-        ],
-        bills: [
-            {
-                id: '872',
-                userBuy: 'Thomas Hardy',
-                priceBuy: 250000,
-                status: 'Hoàn thành',
-                dateBuy: '2024-03-19T10:55:40',
-            },
-            {
-                id: '873',
-                userBuy: 'Victoria Hardy',
-                priceBuy: 240000,
-                status: 'Hoàn thành',
-                dateBuy: '2024-03-19T10:55:40',
-            },
-            {
-                id: '874',
-                userBuy: 'Maria Anders',
-                priceBuy: 290000,
-                status: 'Hoàn thành',
-                dateBuy: '2024-03-19T10:55:40',
-            },
-            {
-                id: '875',
-                userBuy: 'Thomas Hardy',
-                priceBuy: 260000,
-                status: 'Hoàn thành',
-                dateBuy: '2024-03-19T10:55:40',
-            }
-        ],
-    }
+    const detailUser = useSelector(state => state.reducerUserInformation.detailUser);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleDetailBill = (bill) => {
-        navigate(`/admin/DetailBillAdminScreen/${bill.id}`);
+        navigate(`/admin/DetailBillAdminScreen/${bill.code}`);
     }
 
     return (
@@ -82,29 +27,29 @@ function DetailUserAdminScreen (props) {
                     <div className={cx('w45pt')}>
                         <p className={cx('flex', 'center')}>
                             <div className={cx('bold', 'textT')}>Tên khách hàng:</div>
-                            <div>{data.nameUser}</div></p>
+                            <div>{detailUser.username}</div></p>
                         <p className={cx('flex', 'center')}>
                             <div className={cx('bold', 'textT')}>Loại tài khoản:</div>
-                            <div>{data.role}</div>
+                            <div>{detailUser?.role_name[0]}</div>
                         </p>
                         <p className={cx('bold', 'flex', 'center')}>
                             <div className={cx('bold', 'textT')}>Tổng chi tiêu:</div>
-                            <div>{formatPrice(data.totalPrice)}</div>
+                            <div>{formatPrice(detailUser.total_all)}</div>
                         </p>
                     </div>
 
                     <div className={cx('w45pt')}>
                         <p className={cx('flex', 'center')}>
                             <div   className={cx('bold', 'textT')}>Mã khách hàng:</div>
-                            <div>{data.id}</div>
+                            <div>{detailUser.userId}</div>
                         </p>
                         <p className={cx('flex', 'center')}>
                             <div   className={cx('bold', 'textT')}>Số điện thoại:</div>
-                            <div>{data.phoneUser}</div>
+                            <div>{detailUser.sdt || ''}</div>
                         </p>
                         <p className={cx('flex', 'center')}>
                             <div className={cx('bold', 'textT')}> E-mail:</div>
-                            <div>{data.emailUser}</div>
+                            <div>{detailUser.email}</div>
                         </p>
                     </div>
                 </div>
@@ -113,7 +58,7 @@ function DetailUserAdminScreen (props) {
                     <div className={cx('w8pt', 'bold')}>Địa chỉ:</div>
 
                     <div>
-                        {data.addresses.map((item, index) => (
+                        {detailUser?.addressResponseList.map((item, index) => (
                             <div className={cx('itemAddress')}>{index + 1}: {item.address}</div>
                         ))}
                     </div>
@@ -136,13 +81,13 @@ function DetailUserAdminScreen (props) {
                         </thead>
 
                         <tbody>
-                        {data.bills.map(itemBill => (
+                        {detailUser?.orderDetailResponses.map(itemBill => (
                             <tr onClick={() => handleDetailBill(itemBill)}>
-                                <td>{itemBill.id}</td>
-                                <td>{itemBill.userBuy}</td>
-                                <td>{formatPrice(itemBill.priceBuy)}</td>
+                                <td>{itemBill.code}</td>
+                                <td>{itemBill.username}</td>
+                                <td>{formatPrice(itemBill.total)}</td>
                                 <td>{itemBill.status}</td>
-                                <td>{formatDay(itemBill.dateBuy)}</td>
+                                <td>{formatDay(itemBill.createdAt)}</td>
                                 <td className={cx('iconList')}>
                                     <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
                                 </td>

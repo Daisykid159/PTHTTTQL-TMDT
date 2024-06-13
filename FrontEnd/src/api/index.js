@@ -150,6 +150,10 @@ const Api = (token, username, role) => {
         return api.post(`/admin/changOrderStatus?orderCode=${code}&status=${status}`)
     }
 
+    const postInfoDetailUser = (username) => {
+        return api.post(`user/info?username=${username}`)
+    }
+
     return {
         getTokenLogin,
         register,
@@ -169,6 +173,7 @@ const Api = (token, username, role) => {
         productImportBill,
         createFlashOrder,
         getDetailOrder,
+        postInfoDetailUser,
 
         getCart,
         postAddCart,
