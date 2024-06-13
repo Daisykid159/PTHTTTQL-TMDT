@@ -67,7 +67,7 @@ function QLUserScreen () {
                     {listUser?.map(item => (
                         <tr>
                             <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.id}</td>
-                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.roles[0].name}</td>
+                            <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item?.roles[0].name}</td>
                             <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.username}</td>
                             <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item?.phone}</td>
                             <td onClick={() => handleToDetailUserAdminScreen(item.username)}>{item.email}</td>
