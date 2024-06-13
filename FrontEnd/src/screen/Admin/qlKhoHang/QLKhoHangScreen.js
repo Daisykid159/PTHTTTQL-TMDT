@@ -69,7 +69,7 @@ function QLKhoHangScreen (props) {
                             <option label={item.name} >{item.id}</option>
                         ))}
                     </select>
-                </div>s
+                </div>
             </div>
 
             <div className={cx('body')}>

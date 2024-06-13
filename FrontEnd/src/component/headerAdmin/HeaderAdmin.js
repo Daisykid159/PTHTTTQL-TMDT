@@ -32,7 +32,9 @@ function HeaderAdmin () {
             <div id='headerAdmin' className={cx('headerAdmin')} >
                 <ul className={cx('headerAdminList')} >
                     <Link to="/" className={cx('link')}>
-                        <img src={require('../../assets/img/logoWeb.png')} alt="Logo" className={cx('logo')} />
+                        <div className={cx('logoAdmin')}>
+                            <img src={require('../../assets/img/logoAdmin.png')} alt="Logo" className={cx('logo')} />
+                        </div>
                     </Link>
 
                     <li className={cx('item')} >
@@ -62,14 +64,6 @@ function HeaderAdmin () {
                         <Link to="/admin/BillAdminScreen" className={cx('flex')}>
                             <i className={cx('bx bx-cart-alt', 'iconArrowR')}></i>
                             <div className={cx('colorW')}>Đơn hàng</div>
-                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        </Link>
-                    </li>
-
-                    <li className={cx('item')} >
-                        <Link to="/admin/FakeAPIPay" className={cx('flex')}>
-                            <i className={cx('bx bx-archive-out', 'iconArrowR')}></i>
-                            <div className={cx('colorW')}>Call Api thanh toán</div>
                             <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
                         </Link>
                     </li>

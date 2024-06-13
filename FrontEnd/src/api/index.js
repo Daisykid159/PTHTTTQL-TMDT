@@ -154,6 +154,18 @@ const Api = (token, username, role) => {
         return api.post(`user/info?username=${username}`)
     }
 
+    const getDataDashboardMonth = (month, year) => {
+        return api.post(`/dashboard/forMonth?month=${month}&year=${year}`)
+    }
+
+    const getDataDayStartToEnd = (dayFrom, dayTo) => {
+        return api.post(`/dashboard/forDay?start=${dayFrom}&end=${dayTo}`)
+    }
+
+    const getForAllMonth = () => {
+        return api.post(`/dashboard/forAllMonth`)
+    }
+
     return {
         getTokenLogin,
         register,
@@ -179,6 +191,10 @@ const Api = (token, username, role) => {
         postAddCart,
         postRemoveItemCart,
         postOrderNew,
+
+        getForAllMonth,
+        getDataDashboardMonth,
+        getDataDayStartToEnd,
     };
 };
 

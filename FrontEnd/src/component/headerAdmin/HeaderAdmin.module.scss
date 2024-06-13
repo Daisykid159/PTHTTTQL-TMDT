@@ -1,15 +1,22 @@
 .headerAdmin {
   width: 20%;
-  background-color: #206c05;
+  background-color: #111111;
   position: fixed;
   top: 0;
   bottom: 0;
   overflow-y: auto;
 }
 
-.logo {
+.logoAdmin {
   width: 100%;
-  margin-bottom: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 60%;
+  align-items: center;
+  margin-bottom: 5%;
 }
 
 .item {
@@ -26,7 +33,7 @@
 
 .headerAdminList {
   padding: 15px;
-  margin-top: 20%;
+  margin-top: 5%;
   overflow-y: auto;
 }
 
