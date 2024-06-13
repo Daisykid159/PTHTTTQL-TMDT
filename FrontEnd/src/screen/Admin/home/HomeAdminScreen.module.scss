@@ -1,7 +1,7 @@
 .HomeAdminScreen {
   padding: 20px 4% 30px 22%;
   color: #454545;
-  width: 74%;
+  width: 75%;
 }
 
 .flex {
@@ -22,6 +22,10 @@
 
 .w100pt {
   width: 100%;
+}
+
+.mg10 {
+  margin: 15px;
 }
 
 .rank {
@@ -69,7 +73,7 @@
 .headerA {
   justify-content: space-between;
   width: 95%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .itemH {
@@ -132,13 +136,10 @@
   color: #0892c1;
 }
 
-.date {
-  margin: 10px 0;
-}
-
 .textDay {
-  color: black;
+  color: #051b93;
   margin-right: 10px;
+  font-size: 20px;
 }
 
 .inputDay {
@@ -152,8 +153,18 @@
 .btnThongKe {
   cursor: pointer;
   color: white;
+  font-size: 20px;
   margin: 0 10px;
   padding: 5px 15px;
   border-radius: 10px;
   background-color: #238dba;
+}
+
+.textHeader {
+  width: 95%;
+  color: #051b93;
+  text-align: center;
+  font-size: 26px;
+  font-weight: 800;
+  margin: 10px 0 30px;
 }
