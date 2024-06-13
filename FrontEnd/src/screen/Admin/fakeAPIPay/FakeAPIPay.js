@@ -85,7 +85,7 @@ function FakeAPIPay(props) {
     const handlePay = () => {
         const dataPay = {
             "username" : userCurrent,
-            "createdAt": dateCreateBill,
+            "createdAt": moment(dateCreateBill).format("hh:mm DD/MM/yyyy"),
             "total" : totalPrice,
             "payment_id" : paymentId,
             "ordercode" : shippingUnits.id + Date.now().toString(),
