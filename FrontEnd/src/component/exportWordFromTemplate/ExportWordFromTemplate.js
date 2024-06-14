@@ -56,7 +56,7 @@ const ExportWordFromTemplate = (props) => {
                 return;
             }
 
-            const calculatedValue = (dataDashboardMonth?.revenue - 500000000) /dataDashboardMonth?.revenue * 100;
+            const calculatedValue = (dataDashboardMonth?.revenue - 500000000) / 500000000 * 100;
             const roundedValue = calculatedValue.toFixed(2);
 
             const dataWithIndex = dataDayStartToEnd1.map((item, index) => ({
