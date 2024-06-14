@@ -4,10 +4,23 @@ import PizZip from 'pizzip';
 import Docxtemplater from 'docxtemplater';
 import styles from './ExportWordFromTemplate.module.scss'
 import classNames from "classnames/bind";
+import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetFileBC} from "../../redux-store/action/actionAdminDashbord";
 
 const cx = classNames.bind(styles);
 
 const ExportWordFromTemplate = () => {
+
+    const dataDashboardMonth = useSelector(state => state.reducerAdminDashboard.dataDashboardMonth);
+    const dataDayStartToEnd1 = useSelector(state => state.reducerAdminDashboard.dataDayStartToEnd1);
+    const dataDayStartToEnd2 = useSelector(state => state.reducerAdminDashboard.dataDayStartToEnd2);
+    const revenue_by_day1 = useSelector(state => state.reducerAdminDashboard.revenue_by_day1);
+    const revenue_by_day2 = useSelector(state => state.reducerAdminDashboard.revenue_by_day2);
+    const profit_by_day1 = useSelector(state => state.reducerAdminDashboard.profit_by_day1);
+    const profit_by_day2 = useSelector(state => state.reducerAdminDashboard.profit_by_day2);
+
+
     const loadFile = (url) => {
         return fetch(url)
             .then(response => {
@@ -19,10 +32,10 @@ const ExportWordFromTemplate = () => {
     };
 
     const generateDocument = () => {
-        loadFile("./template.docx").then(content => {
+        loadFile('/template.docx').then(content => {
             let zip;
             try {
-
+                zip = new PizZip(content);
             } catch (error) {
                 console.error("Lỗi khi tạo PizZip:", error);
                 return;
@@ -43,11 +56,24 @@ const ExportWordFromTemplate = () => {
                 return;
             }
 
-            // Dữ liệu để thay thế các placeholder
+            const calculatedValue = (dataDashboardMonth?.revenue - 500000000) /dataDashboardMonth?.revenue * 100;
+            const roundedValue = calculatedValue.toFixed(2);
+
+            const dataWithIndex = dataDayStartToEnd1.map((item, index) => ({
+                name: dataDayStartToEnd1[index],
+                saled: dataDayStartToEnd2[index],
+                total_price: profit_by_day2[index],
+                productive: profit_by_day2[index],
+                index: index + 1
+            }));
+
             const data = {
-                name: "Nguyễn Văn A",
-                address: "123 Đường ABC, Thành phố XYZ",
-                date: "01/01/2024"
+                num_of_orders: dataDashboardMonth?.amount_order,
+                sum_total_price: dataDashboardMonth?.revenue,
+                sum_productive: dataDashboardMonth?.percent,
+                data: dataWithIndex,
+                kpi: roundedValue.toString(),
+                text: 'Hoàn thành khá tốt kế hoạch đã đặt ra!',
             };
 
             try {

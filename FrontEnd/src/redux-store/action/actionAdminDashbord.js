@@ -152,9 +152,26 @@ export function actionGetForAllMonth (token, user, month, year) {
     };
 }
 
+export function actionGetFileBC (token, username) {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api(token, username, 'admin').getFileBC();
+
+            if (response && response.data){
+                dispatch(updateData({
+                    linkFile: response.data,
+                }))
+            }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+        }
+    };
+}
+
 export default {
     updateData,
     actionGetDataDashboardMonth,
     actionGetDataDayStartToEnd,
     actionGetForAllMonth,
+    actionGetFileBC,
 };

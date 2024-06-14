@@ -267,6 +267,7 @@ function HomeAdminScreen (props) {
     const dispatch = useDispatch();
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
+    const fileContent = useSelector(state => state.reducerAdminDashboard.linkFile);
 
     const [resetView, setResetView] = useState(false);
 

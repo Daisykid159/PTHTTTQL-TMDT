@@ -166,6 +166,10 @@ const Api = (token, username, role) => {
         return api.post(`/dashboard/forAllMonth`)
     }
 
+    const getFileBC = () => {
+        return api.post(`/report/export_demo?month=6&year=2024&username=admin1`)
+    }
+
     return {
         getTokenLogin,
         register,
@@ -195,6 +199,7 @@ const Api = (token, username, role) => {
         getForAllMonth,
         getDataDashboardMonth,
         getDataDayStartToEnd,
+        getFileBC,
     };
 };
 

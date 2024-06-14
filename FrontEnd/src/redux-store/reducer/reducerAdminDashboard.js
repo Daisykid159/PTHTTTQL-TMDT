@@ -18,6 +18,7 @@ const INITIAL_STATE = {
     most_user2: [],
     most_product1: [],
     most_product2: [],
+    linkFile: '',
 };
 
 const reducerAdminDashboard = (state = INITIAL_STATE, action) => {
