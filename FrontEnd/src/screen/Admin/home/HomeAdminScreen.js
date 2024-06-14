@@ -326,8 +326,6 @@ function HomeAdminScreen (props) {
 
             <div className={cx('textHeader')}>Thông số bán hàng trong tháng vừa qua</div>
 
-            <ExportWordFromTemplate />
-
             <div className={cx('flex', 'warp', 'headerA')}>
                 <div className={cx('itemH', 'flex')} style={{ color: '#c26b02' }}>
                     <div className={cx('iconH')}>
@@ -405,6 +403,8 @@ function HomeAdminScreen (props) {
                     <div className={cx('textDay')}>Đến ngày</div>
                     <input className={cx('inputDay')} type={'date'} value={dayTo} onChange={handleDateTo} />
                 </div>
+
+                <ExportWordFromTemplate dayFrom={dayFrom} dayTo={dayTo}/>
 
                 <div className={cx('flex', 'warp', 'flexEnd', 'spaceBetween')}>
                     <div className={cx('mg10')}>

@@ -10,7 +10,7 @@ import {actionGetFileBC} from "../../redux-store/action/actionAdminDashbord";
 
 const cx = classNames.bind(styles);
 
-const ExportWordFromTemplate = () => {
+const ExportWordFromTemplate = (props) => {
 
     const dataDashboardMonth = useSelector(state => state.reducerAdminDashboard.dataDashboardMonth);
     const dataDayStartToEnd1 = useSelector(state => state.reducerAdminDashboard.dataDayStartToEnd1);
@@ -68,6 +68,8 @@ const ExportWordFromTemplate = () => {
             }));
 
             const data = {
+                month: 6,
+                year: 2024,
                 num_of_orders: dataDashboardMonth?.amount_order,
                 sum_total_price: dataDashboardMonth?.revenue,
                 sum_productive: dataDashboardMonth?.percent,
