@@ -5,6 +5,7 @@ import CategoryHomeScreen from "../../component/categoryHomeScreen/CategoryHomeS
 import {useDispatch, useSelector} from "react-redux";
 import {actionLoginGoShip} from "../../redux-store/action/actionPay";
 import {actionGetListProducts} from "../../redux-store/action/actionProducts";
+import {actionGetListCart} from "../../redux-store/action/actionCart";
 
 const cx = classNames.bind(styles);
 
@@ -87,9 +88,11 @@ function HomeScreen(params) {
         },
     ];
     const listProducts1 = useSelector(state => state.reducerProducts.listProducts1);
-    const listProducts2 = useSelector(state => state.reducerProducts.listProducts2);
+    const listProducts2 = useSelector(state => state.reducerProducts.listProducts3);
     const listProducts3 = useSelector(state => state.reducerProducts.listProducts3);
     const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
 
     useEffect(() => {
         dispatch(actionGetListProducts(0, 'name', null, 1));
@@ -100,6 +103,10 @@ function HomeScreen(params) {
     useEffect(() => {
         dispatch(actionLoginGoShip());
     }, []);
+
+    useEffect(() => {
+        if(token && decoded.sub) dispatch(actionGetListCart(token, decoded.sub))
+    }, [])
 
     return (
         <div className={cx('home')}>

@@ -70,7 +70,6 @@ function QLNhapKho(props) {
         if(doneImport) {
             setListImportProduct([]);
             setTotalPrice(0);
-            dispatch(actionGetAllUser(token, decoded.sub))
             dispatch(actionGetAllSpu(token, decoded.sub))
             dispatch(actionGetAllSkuById(token, decoded.sub, 1))
             dispatch(actionDonePay());
@@ -124,7 +123,7 @@ function QLNhapKho(props) {
                 </table>
             </div>
 
-            <div className={cx('flex', 'center')}>
+            <div className={cx('flex', 'center', 'w90pt', 'spbw')}>
                 <div className={cx('w50pt')}>
                     <div className={cx('flex', 'bold', 'mt10px')}>
                         <div className={cx('w30pt')}>Tổng thanh toán:</div>

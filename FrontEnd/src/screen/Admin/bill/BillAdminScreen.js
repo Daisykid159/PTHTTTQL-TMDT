@@ -59,13 +59,13 @@ function BillAdminScreen (props) {
                         </thead>
 
                         <tbody>
-                        {dataListBill.map(item => (
+                        {dataListBill?.map(item => (
                             <tr onClick={() => handleDetailBill(item)}>
                                 <td>{item.code}</td>
                                 <td>{item.username}</td>
                                 <td>{formatPrice(item.total || 0)}</td>
                                 <td>{item.orderStatus}</td>
-                                <td>{formatDay(item.dateBuy || '')}</td>
+                                <td>{formatDay(item.createdAt || '')}</td>
                                 <td className={cx('iconList')}>
                                     <i className={cx('bx bx-show-alt', 'iconShow')}></i>
                                     <i className={cx('bx bxs-pencil', 'iconEdit')}></i>

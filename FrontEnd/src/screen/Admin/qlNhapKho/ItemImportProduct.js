@@ -22,7 +22,7 @@ function ItemImportProduct(props) {
     const [idProduct, setIdProduct] = useState(null);
 
     useEffect(() => {
-        setIdProduct(props.listDataProduct[0].id);
+        setIdProduct(props.listDataProduct[0]?.id);
         dispatch(actionGetAllSkuById(token, decoded.sub, 1, setProduct, setColorProduct))
     }, [])
 
@@ -33,7 +33,7 @@ function ItemImportProduct(props) {
     }, [idProduct]);
 
     useEffect(() => {
-        setPriceImport(product.price);
+        setPriceImport(product?.price);
     }, [product]);
 
     const handleAddProduct = () => {
@@ -73,7 +73,7 @@ function ItemImportProduct(props) {
                     value={nameProduct}
                     onChange={handleSelectProduct}
                 >
-                    {props.listDataProduct.map((item, index) => (
+                    {props?.listDataProduct.map((item, index) => (
                         <option label={item.name}>{index}</option>
                     ))}
                 </select>
@@ -117,7 +117,7 @@ function ItemImportProduct(props) {
                     className={cx('btlAddProduct')}
                     onClick={handleAddProduct}
                 >
-                    Thêm sản phẩm
+                    Nhập sản phẩm
                 </button>
             </div>
         </div>

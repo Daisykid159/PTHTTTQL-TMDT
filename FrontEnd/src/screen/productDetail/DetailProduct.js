@@ -145,7 +145,7 @@ function DetailProduct (props) {
                             </div>
                         </div>
 
-                        <div className={cx('btnBuy')} onClick={handleBuy}>MUA HÀNG</div>
+                        <div className={cx('btnBuy')} onClick={handleBuy}>Thêm vào giỏ hàng</div>
                     </div>
                 </div>
 

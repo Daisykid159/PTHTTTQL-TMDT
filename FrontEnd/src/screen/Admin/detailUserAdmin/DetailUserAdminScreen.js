@@ -30,7 +30,7 @@ function DetailUserAdminScreen (props) {
                             <div>{detailUser.username}</div></p>
                         <p className={cx('flex', 'center')}>
                             <div className={cx('bold', 'textT')}>Loại tài khoản:</div>
-                            <div>{detailUser?.role_name[0]}</div>
+                            <div>USER</div>
                         </p>
                         <p className={cx('bold', 'flex', 'center')}>
                             <div className={cx('bold', 'textT')}>Tổng chi tiêu:</div>
@@ -45,7 +45,7 @@ function DetailUserAdminScreen (props) {
                         </p>
                         <p className={cx('flex', 'center')}>
                             <div   className={cx('bold', 'textT')}>Số điện thoại:</div>
-                            <div>{detailUser.sdt || ''}</div>
+                            <div>{detailUser.sdt || 'Chưa cập nhật số điện thoại'}</div>
                         </p>
                         <p className={cx('flex', 'center')}>
                             <div className={cx('bold', 'textT')}> E-mail:</div>
@@ -59,7 +59,7 @@ function DetailUserAdminScreen (props) {
 
                     <div>
                         {detailUser?.addressResponseList.map((item, index) => (
-                            <div className={cx('itemAddress')}>{index + 1}: {item.address}</div>
+                            <div className={cx('itemAddress')}>{index + 1}: {item.street}, {item.district}, {item.city}</div>
                         ))}
                     </div>
                 </div>
@@ -85,9 +85,9 @@ function DetailUserAdminScreen (props) {
                             <tr onClick={() => handleDetailBill(itemBill)}>
                                 <td>{itemBill.code}</td>
                                 <td>{itemBill.username}</td>
-                                <td>{formatPrice(itemBill.total)}</td>
+                                <td>{formatPrice(itemBill.total || 0)}</td>
                                 <td>{itemBill.status}</td>
-                                <td>{formatDay(itemBill.createdAt)}</td>
+                                <td>{formatDay(itemBill.createdAt || "")}</td>
                                 <td className={cx('iconList')}>
                                     <i className={cx('bx bxs-pencil', 'iconEdit')}></i>
                                 </td>

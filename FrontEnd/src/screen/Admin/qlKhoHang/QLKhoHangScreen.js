@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './QLKhoHangScreen.module.scss';
 import classNames from "classnames/bind";
 import {formatDay, formatPrice} from "../../../unitl";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {actionGetAllSkuById} from "../../../redux-store/action/actionFakeApi";
+import {actionDonePay, actionGetAllSkuById, actionGetAllSpu} from "../../../redux-store/action/actionFakeApi";
 
 const cx = classNames.bind(styles);
 
@@ -47,6 +47,11 @@ function QLKhoHangScreen (props) {
             });
         }
     }
+
+    useEffect(() => {
+        dispatch(actionGetAllSpu(token, decoded.sub))
+        dispatch(actionGetAllSkuById(token, decoded.sub, 1))
+    }, []);
 
     return (
         <div className={cx('QLKhoHangScreen')}>
@@ -92,9 +97,9 @@ function QLKhoHangScreen (props) {
 
                         <tbody>
                             {dataListProduct.map(item => (
-                                <tr>
+                                <tr onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
                                     <td>{item.id}</td>
-                                    <td className={cx('nameProduct')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
+                                    <td className={cx('nameProduct')} >
                                         <div>{item.productSpu.name} {item.productSpu.description}</div>
                                     </td>
                                     <td>{item.color}</td>
@@ -104,9 +109,7 @@ function QLKhoHangScreen (props) {
                                     <td>{item.quantity} chiếc</td>
 
                                     <td className={cx('iconList')}>
-                                        <i className={cx('bx bx-show-alt', 'iconShow')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
-                                        <i className={cx('bx bxs-pencil', 'iconEdit')} onClick={() => handleToEditProductKhoHangAdminScreen(item)}></i>
-                                        <i className={cx('bx bx-trash', 'iconTrash')}></i>
+                                        <i className={cx('bx bx-show-alt', 'iconShow')} ></i>
                                     </td>
                                 </tr>
                             ))}

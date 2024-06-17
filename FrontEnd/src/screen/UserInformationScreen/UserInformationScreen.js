@@ -1,19 +1,26 @@
-import React from "react";
+import React, {useEffect} from "react";
 import styles from './UserInformationScreen.module.scss';
 import classNames from "classnames/bind";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {actionGetInfoUser1} from "../../redux-store/action/actionUserInformation";
 
 const cx = classNames.bind(styles);
 
 function UserInformationScreen (props) {
 
-    const userName = "Vũ Dũng";
-
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const token = useSelector(state => state.reducerAuth.token);
+    const decoded = useSelector(state => state.reducerAuth.decoded);
 
     const handleToAddressInformationScreen = () => {
         navigate('/screen/UserInformationScreen/AddressInformationScreen')
     }
+
+    useEffect(() => {
+        dispatch(actionGetInfoUser1(token, decoded.sub, decoded.sub));
+    }, [])
 
     return (
         <div className={cx('UserInformationScreen', 'flex')}>
@@ -21,7 +28,7 @@ function UserInformationScreen (props) {
                 <h3>THÔNG TIN ĐỊA CHỈ</h3>
 
                 <div>
-                    <h4>Xin chào, {userName}!</h4>
+                    <h4>Xin chào, {decoded?.sub}!</h4>
 
                     <p>Cập nhật thông tin tài khoản của bạn để hưởng các chính sách của cửa hàng vào chế độ bảo mật tốt nhất</p>
                 </div>
@@ -57,7 +64,7 @@ function UserInformationScreen (props) {
                 <div className={cx('bannerUserB')}>
                     <div className={cx('flex', 'center', 'borderB')}>
                         <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        <h3 className={cx('nameTK')} >Tên tài khoản: {userName}</h3>
+                        <h3 className={cx('nameTK')} >Tên tài khoản: {decoded?.sub}</h3>
                     </div>
 
                     <div className={cx('flex', 'center')}>

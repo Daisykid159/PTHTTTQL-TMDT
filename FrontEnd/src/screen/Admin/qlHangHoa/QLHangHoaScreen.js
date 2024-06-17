@@ -89,7 +89,7 @@ function QLHangHoaScreen (props) {
                         <tbody>
                         {
                             listDataProductColor?.map(item => (
-                                <tr>
+                                <tr onClick={() => handleToEditProductKhoHangAdminScreen(item)}>
                                     <td>{item.id}</td>
                                     <td className={cx('nameProduct')}>
                                         <div>{item.productSpu.name} {item.productSpu.description}</div>
