@@ -4,6 +4,15 @@
   margin: 0px auto 40px;
 }
 
+.payDoneScreen {
+  padding-top: 160px;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px auto 40px;
+}
+
 .mt10 {
   margin-top: 10px;
 }
@@ -156,4 +165,38 @@
   border: 1px solid #d9d9d9;
   border-radius: 5px;
   font-size: 16px;
+}
+.btnGoToHomeCenter {
+  justify-content: center;
+}
+
+.notifiDone {
+  text-align: center;
+}
+
+.textPayDone {
+  font-size: 26px;
+  font-weight: 800;
+  padding: 10px 0;
+}
+
+.textNotifiDone {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0;
+}
+
+.iconePayDone {
+  font-size: 60px;
+  color: #02ac02;
+}
+
+.btnGoToHome {
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  width: 30%;
+  background-color: #01a7f3;
 }

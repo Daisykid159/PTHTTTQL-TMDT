@@ -96,8 +96,10 @@ function PayScreen (props) {
         setCmtClient(e.target.value);
     }
 
-    const handleToDetailProduct = () => {
-        navigate('/screen/productDetail/DetailProduct');
+    const handleToDetailProduct = (item) => {
+        navigate('/screen/productDetail/DetailProduct', {
+            state: { data: item }
+        });
     }
 
     const handlePay = () => {
@@ -286,7 +288,7 @@ function PayScreen (props) {
                 <div className={cx('textShippingPayment')}>Đơn hàng</div>
 
                 {listCart.map(item => (
-                    <div className={cx('flex', 'center', 'btn')} onClick={handleToDetailProduct}>
+                    <div className={cx('flex', 'center', 'btn')} onClick={() => handleToDetailProduct(item)}>
                         <div className={cx('relative', 'imgP')}>
                             <img src={item.src} alt="Logo" className={cx('imgProduct')} />
                             <p className={cx('numberProduct')}>{item.quantity}</p>

@@ -23,13 +23,18 @@ export function actionLogin (username, password, nextToScreen) {
                     admin: decoded?.authorities[0] === "ADMIN",
                 }))
 
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+
                 dispatch(actionCart.actionGetListCart(response.data.accessToken, username));
 
-                alert("Đăng nhập thành công!");
-                if(decoded?.authorities[0] === "ADMIN") {
-                    nextToScreen("/");
-                } else {
-                    nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
+                if(nextToScreen) {
+                    alert("Đăng nhập thành công!");
+                    if(decoded?.authorities[0] === "ADMIN") {
+                        nextToScreen("/");
+                    } else {
+                        nextToScreen("/screen/UserInformationScreen/UserInformationScreen");
+                    }
                 }
             } else {
                 dispatch(updateData({
@@ -71,6 +76,8 @@ export function actionRegister (username, email, password, handleBack) {
 export function actionLogout () {
     return (dispatch, getState) => {
         try {
+            localStorage.removeItem('username');
+            localStorage.removeItem('password');
             dispatch(updateData({
                 isLogin: false,
                 admin: false,

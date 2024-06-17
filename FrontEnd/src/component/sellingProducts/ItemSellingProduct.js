@@ -11,7 +11,9 @@ function ItemSellingProduct (props) {
     const navigate = useNavigate();
 
     const handleDetailProduct = () => {
-        navigate('/screen/productDetail/DetailProduct');
+        navigate('/screen/productDetail/DetailProduct', {
+            state: { data: props.data }
+        });
     }
 
     return (
