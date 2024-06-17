@@ -22,6 +22,8 @@ import CommitmentToQualityScreen from "../../screen/categoryLists/CommitmentToQu
 import ExchangePolicyScreen from "../../screen/categoryLists/ExchangePolicyScreen";
 import WarrantyPolicyScreen from "../../screen/categoryLists/WarrantyPolicyScreen";
 import ShippingPolicyScreen from "../../screen/categoryLists/ShippingPolicyScreen";
+import DetailUserAdminScreen from "../../screen/Admin/detailUserAdmin/DetailUserAdminScreen";
+import DetailBillUserScreen from "../../screen/detailBillUser/DetailBillUserScreen";
 
 const cx = classNames.bind(styles);
 
@@ -194,6 +196,7 @@ function HeaderComponent () {
                     <Route path="/screen/productDetail/DetailProduct" element={<DetailProduct />} />
                     <Route path="/screen/cart/CartScreen" element={<CartScreen />} />
                     <Route path="/screen/UserInformationScreen/UserInformationScreen" element={<UserInformationScreen />} />
+                    <Route path="/screen/UserInformationScreen/DetailBillUserScreen/:id" element={<DetailBillUserScreen />} />
                     <Route path="/screen/UserInformationScreen/AddressInformationScreen" element={<AddressInformationScreen />} />
                     <Route path="/screen/pay/PayScreen" element={<PayScreen />} />
                     <Route path="/screen/categoryLists/ShoppingGuideScreen" element={<ShoppingGuideScreen />} />

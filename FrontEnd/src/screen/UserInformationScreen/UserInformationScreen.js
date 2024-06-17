@@ -3,7 +3,8 @@ import styles from './UserInformationScreen.module.scss';
 import classNames from "classnames/bind";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {actionGetInfoUser1} from "../../redux-store/action/actionUserInformation";
+import {actionGetDetailOrder1, actionGetInfoUser1} from "../../redux-store/action/actionUserInformation";
+import {formatDay} from "../../unitl";
 
 const cx = classNames.bind(styles);
 
@@ -13,9 +14,15 @@ function UserInformationScreen (props) {
     const dispatch = useDispatch();
     const token = useSelector(state => state.reducerAuth.token);
     const decoded = useSelector(state => state.reducerAuth.decoded);
+    const detailUser = useSelector(state => state.reducerUserInformation.detailUser1);
 
     const handleToAddressInformationScreen = () => {
         navigate('/screen/UserInformationScreen/AddressInformationScreen')
+    }
+
+    const handleDetailBill = (item) => {
+        dispatch(actionGetDetailOrder1(token, decoded.sub, item.code))
+        navigate(`/screen/UserInformationScreen/DetailBillUserScreen/${item.code}`)
     }
 
     useEffect(() => {
@@ -28,7 +35,7 @@ function UserInformationScreen (props) {
                 <h3>THÔNG TIN ĐỊA CHỈ</h3>
 
                 <div>
-                    <h4>Xin chào, {decoded?.sub}!</h4>
+                    <h4>Xin chào, {detailUser?.username}!</h4>
 
                     <p>Cập nhật thông tin tài khoản của bạn để hưởng các chính sách của cửa hàng vào chế độ bảo mật tốt nhất</p>
                 </div>
@@ -39,22 +46,31 @@ function UserInformationScreen (props) {
                     <table className={cx('tableOrder')}>
                         <thead>
                         <tr>
-                            <th className={cx('order')}>Đơn hàng</th>
+                            <th className={cx('order')}>Mã đơn hàng</th>
                             <th className={cx('time')}>Thời gian</th>
-                            <th className={cx('transport')}>Vận chuyển</th>
+                            <th className={cx('transport')}>Trạng thái</th>
+                            <th className={cx('transport')}>Trạng thái thanh toán</th>
                             <th className={cx('sumPrice')}>Tổng tiền</th>
-                            <th className={cx('cmt')}>Ghi chú</th>
                         </tr>
                         </thead>
 
                         <tbody>
+                        {
+                            detailUser?.orderDetailResponses?.map(item => (
+                                <tr onClick={() => handleDetailBill(item)}>
+                                    <td>{item.code}</td>
+                                    <td>{formatDay(item.createdAt)}</td>
+                                    <td>{item.status}</td>
+                                    <td>{item?.payment_status}</td>
+                                    <td>{item.total}</td>
+                                </tr>
+                            ))
+                        }
                         <tr>
-                            <td>Không có đơn hàng nào</td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <div className={cx('btnTTDC')} onClick={handleToAddressInformationScreen}>Thông tin địa chỉ</div>
                 </div>
             </div>
 
@@ -64,12 +80,22 @@ function UserInformationScreen (props) {
                 <div className={cx('bannerUserB')}>
                     <div className={cx('flex', 'center', 'borderB')}>
                         <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        <h3 className={cx('nameTK')} >Tên tài khoản: {decoded?.sub}</h3>
+                        <h3 className={cx('nameTK')} >Tên tài khoản: {detailUser?.username}</h3>
                     </div>
 
-                    <div className={cx('flex', 'center')}>
-                        <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
-                        <p className={cx('addTk')}>Sổ địa chỉ (0)</p>
+                    <div >
+                        <div className={cx('flex', 'center')}>
+                            <i className={cx('bx bx-chevron-right', 'iconArrowR')} />
+                            <p className={cx('addTk')}>Sổ địa chỉ ({detailUser?.addressResponseList?.length})</p>
+                        </div>
+
+                        {
+                            detailUser?.addressResponseList?.map((item, index) => (
+                                <div className={cx('itemAddress')}>
+                                    {index+1}: {item?.street}, {item?.district}, {item?.city}
+                                </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>

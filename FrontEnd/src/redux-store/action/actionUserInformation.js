@@ -44,7 +44,7 @@ export function actionGetInfoUser1 (token, user, username) {
 
             if (response && response.data){
                 dispatch(updateData({
-                    detailUser: response.data,
+                    detailUser1: response.data,
                 }))
             } else {
                 alert("Lấy dữ liệu thất bại!");
@@ -55,10 +55,28 @@ export function actionGetInfoUser1 (token, user, username) {
     };
 }
 
+export function actionGetDetailOrder1 (token, user, codeOrder) {
+    return async (dispatch, getState) => {
+        try {
+            const response = await Api(token, user, 'user').getDetailOrder(codeOrder);
+
+            if (response && response.data){
+                dispatch(updateData({
+                    detailOrder1: response.data,
+                }))
+            } else {
+                alert("Lấy dữ liệu thất bại!");
+            }
+        } catch (error) {
+            alert("Lỗi mạng Xin vui lòng kiểm tra lại kết nối internet");
+        }
+    };
+}
 
 export default {
     updateData,
     actionUpdateAddress,
     actionGetInfoUser,
     actionGetInfoUser1,
+    actionGetDetailOrder1,
 };

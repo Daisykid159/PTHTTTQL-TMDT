@@ -5,6 +5,8 @@ const INITIAL_STATE = {
         address: 'Địa chỉ khác',
         default: false,
         notView: true,
+        detailUser1: {},
+        detailOrder1: {},
     }],
 
     detailUser: {},

@@ -1,0 +1,157 @@
+.DetailBillUserScreen {
+  padding: 150px 0 50px 0;
+  position: relative;
+  width: 70%;
+  margin: auto;
+}
+
+.mT20 {
+  margin-top: 20px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.flex {
+  display: flex;
+}
+
+.center {
+  align-items: center;
+}
+
+.red {
+  color: red;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.textHeader {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.statusBill {
+  margin: 10px 0 20px 0;
+  padding: 10px 30px 10px 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+}
+
+.textStatus {
+  padding-right: 10px;
+}
+
+.selectStatus {
+  width: 150px;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+}
+
+.updateStatusBull {
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 10px ;
+  background-color: #3461ff;
+}
+
+.itemH {
+  width: 30%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+}
+
+.itemB {
+  margin-top: 10px;
+  height: 100%;
+  line-height: 26px;
+}
+
+.textH {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.icon {
+  font-size: 30px;
+  margin-right: 15px;
+}
+
+.iconTrack {
+  padding: 10px;
+  border-radius: 100000px;
+  background-color: rgb(18 191 35 / 22%);
+  color: #12bf24;
+}
+
+.iconMap {
+  padding: 10px;
+  border-radius: 100000px;
+  background-color: rgb(231 46 46 / 22%);
+  color: #e72e2e;
+}
+
+.iconUser {
+  padding: 10px;
+  border-radius: 100000px;
+  background-color: rgba(52, 96, 255, 0.22);
+  color: #0892c1;
+}
+
+.textAfter {
+  margin-left: 10px;
+  font-weight: normal;
+}
+
+.listProduct {
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  width: 65%;
+}
+
+.pay {
+  width: 30%;
+  line-height: 30px;
+  border-radius: 10px;
+  border: 1px solid #cccccc;
+  padding: 10px;
+}
+
+.table {
+  width: 100%;
+}
+
+.nameProductH {
+  width: 40%;
+}
+
+.imgProduct {
+  width: 8%;
+  margin-right: 15px;
+}
+
+.nameProduct {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.t4h {
+  margin: 10px 0 10px 0;
+}
+
+.summit {
+  padding: 10px 25px;
+  border-radius: 10px;
+  color: #026d00;
+  background-color: rgb(18 191 35 / 22%);
+}
