@@ -15,12 +15,7 @@ function DetailBillUserScreen () {
     const dateNow = new Date();
     const formattedDate = moment(dateNow).format('dddd DD/MM/YYYY HH:mm');
 
-    const [selectStatusBill, setSelectStatusBill] = useState(detailOrder.status);
     let totalOrder = 0;
-
-    const handleOptionChange = (e) => {
-        setSelectStatusBill(e.target.value);
-    };
 
     return (
         <div className={cx('DetailBillUserScreen')}>
